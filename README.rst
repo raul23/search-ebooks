@@ -10,7 +10,7 @@ Search through ebooks of different formats.
 
 Search through ``djvu``
 =======================
-TODO
+- Using `djvutxt`_
 
 Search through ``epub`` and ``mobi``
 =======================
@@ -19,3 +19,6 @@ TODO
 Search through ``pdf``
 ======================
 TODO
+
+.. URLs
+.. _djvutxt: http://djvu.sourceforge.net/doc/man/djvutxt.html
