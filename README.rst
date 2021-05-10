@@ -1,23 +1,23 @@
 ======
 README
 ======
-Search through ebooks of different formats.
+Search content and metadata of ebooks with different formats.
 
 .. contents:: **Contents**
    :depth: 3
    :local:
    :backlinks: top
 
-Search through ``djvu``
-=======================
+Search through ``djvu`` files
+=============================
 - Using `djvutxt`_
 
-Search through ``epub`` and ``mobi``
-=======================
+Search through ``epub`` and ``mobi`` files
+==========================================
 TODO
 
-Search through ``pdf``
-======================
+Search through ``pdf`` files
+============================
 TODO
 
 .. URLs
