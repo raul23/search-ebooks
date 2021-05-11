@@ -53,7 +53,7 @@ Use ``ebook-meta`` which supports almost any ebook formats
 References
 ==========
 .. [MAN_EGREP] https://www.unix.com/man-page/osx/1/egrep/
-.. [MOBI_NOT_EPUB] https://bit.ly/2SBAru1
+.. [MOBI_NOT_ZIP] https://bit.ly/2SBAru1
 .. [ZIPGREP] https://unix.stackexchange.com/a/416207
 .. [ZIPGREP_QUIET] https://unix.stackexchange.com/a/452491
 
