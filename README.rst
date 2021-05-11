@@ -12,7 +12,7 @@ Search through content
 ======================
 Search ``djvu`` files
 ---------------------
-- Use `djvutxt`_ to extract text and pipe it to ``grep``.
+- Use `djvutxt`_ to extract text and pipe it to ``grep``
 
 Search ``epub`` files
 ---------------------
@@ -40,6 +40,8 @@ Search ``epub`` files
 
   **NOTE:** ``zipgrep`` doesn't work on ``mobi`` files (they are not related 
   to `zip` or `epub`)
+  
+- Use `ebook-convert`_ (from Calibre) to extract text and pipe it to ``grep``
 
 Search ``pdf`` files
 --------------------
@@ -72,4 +74,5 @@ References
 .. _complete list of supported formats: https://manual.calibre-ebook.com/generated/en/ebook-meta.html
 .. _djvutxt: http://djvu.sourceforge.net/doc/man/djvutxt.html
 .. _DocFetcher: http://docfetcher.sourceforge.net/en/index.html
+.. _ebook-convert: https://manual.calibre-ebook.com/generated/en/ebook-convert.html
 .. _Quality Check plugin: https://www.mobileread.com/forums/showthread.php?t=125428
