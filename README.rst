@@ -24,6 +24,19 @@ Search ``epub`` files
    
   [ZIPGREP]_
   
+  To print only the filenames (not the matching lines):
+  
+  .. code-block:: terminal
+  
+     find . -name '*.epub'  -exec zipgrep -q {pattern} {} \; -print
+  
+  [ZIPGREP_QUIET]
+  
+  NOTE: by using the ``-q, --quiet`` flag, ``zipgrep`` "will only search a 
+  file until a match has been found, making searches potentially less 
+  expensive." [MAN_EGREP]_
+  
+  
   Or for a single file:
   
   .. code-block:: terminal
@@ -44,8 +57,10 @@ Use ``ebook-meta`` which supports almost any ebook formats
 
 References
 ==========
+.. [MAN_EGREP] https://www.unix.com/man-page/osx/1/egrep/
 .. [MOBI] https://bit.ly/2SBAru1
 .. [ZIPGREP] https://unix.stackexchange.com/a/416207
+.. [ZIPGREP_QUIET] https://unix.stackexchange.com/a/452491
 
 .. URLs
 .. _complete list of supported formats: https://manual.calibre-ebook.com/generated/en/ebook-meta.html
