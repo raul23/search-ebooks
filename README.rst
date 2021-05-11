@@ -28,7 +28,7 @@ Search ``epub`` files
   
   .. code-block:: terminal
   
-     find "test.epub" -exec zipgrep pattern {} \;
+     find test.epub -exec zipgrep pattern {} \;
 
   **NOTE:** ``zipgrep`` doesn't work on ``mobi`` files (they are not related 
   to `zip` or `epub`) [MOBI]_
