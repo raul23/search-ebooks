@@ -22,7 +22,7 @@ Search ``epub`` files
 
   .. code-block:: terminal
 
-     find . -name "*.epub" -exec zipgrep pattern {} \;
+     find . -name '*.epub' -exec zipgrep pattern {} \;
   
   To print only the filenames (not the matching lines):
   
