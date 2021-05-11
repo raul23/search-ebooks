@@ -1,7 +1,7 @@
 ======
 README
 ======
-Search through content and metadata of different types of ebooks.
+Using command-line tools only, search through content and metadata of different types of ebooks.
 
 .. contents:: **Contents**
    :depth: 3
