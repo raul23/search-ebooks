@@ -58,7 +58,7 @@ Search through metadata
      imp, lit, lrf, lrx, mobi, odt, oebzip, opf, pdb, pdf, pml, pmlz, pobi, prc, 
      rar, rb, rtf, snb, tpz, txt, txtz, updb, zip
 
-NOTES
+Notes
 =====
 * Some desktop applications for searching ebook files:
 
