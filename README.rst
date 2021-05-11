@@ -57,7 +57,9 @@ NOTES
   * `DocFetcher`_: open source, cross-platform, supports among
     other documentformats ``epub``, ``pdf``, and ``rtf``.
     
-  * `Quality Check plugin`_ for Calibre
+  * `Quality Check plugin`_ for Calibre: search across your ePubs 
+    for ad hoc criteria to find text or specifically named items 
+    using regular expressions.
 
 References
 ==========
