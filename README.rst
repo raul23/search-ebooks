@@ -50,6 +50,15 @@ Search through metadata
 Use ``ebook-meta`` which supports almost any ebook formats 
 (`complete list of supported formats`_)
 
+NOTES
+=====
+* Some desktop applications for searching ebook files:
+
+  * `DocFetcher`_: open source, cross-platform, supports among
+    other documentformats ``epub``, ``pdf``, and ``rtf``.
+    
+  * Calibre's `Quality Check plugin`_
+
 References
 ==========
 .. [MAN_EGREP] https://www.unix.com/man-page/osx/1/egrep/
@@ -60,3 +69,5 @@ References
 .. URLs
 .. _complete list of supported formats: https://manual.calibre-ebook.com/generated/en/ebook-meta.html
 .. _djvutxt: http://djvu.sourceforge.net/doc/man/djvutxt.html
+.. _DocFetcher: http://docfetcher.sourceforge.net/en/index.html
+.. _Quality Check plugin: https://www.mobileread.com/forums/showthread.php?t=282268
