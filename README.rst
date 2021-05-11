@@ -18,8 +18,8 @@ Search ``epub`` and ``mobi`` files
 ----------------------------------
 TODO
 
-Search``pdf`` files
--------------------
+Search ``pdf`` files
+--------------------
 TODO
 
 Search through metadata
