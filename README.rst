@@ -14,8 +14,8 @@ Search ``djvu`` files
 ---------------------
 - Use `djvutxt`_ to extract text and pipe it to ``grep``.
 
-Search ``epub`` and ``mobi`` files
-----------------------------------
+Search ``epub`` files
+---------------------
 - Use ``find`` and ``zipgrep``:
 
   .. code-block:: terminal
@@ -30,6 +30,9 @@ Search ``epub`` and ``mobi`` files
   
      find "test.epub" -exec zipgrep pattern {} \;
 
+  **NOTE:** ``zipgrep`` doesn't work on ``mobi`` files (they are not related 
+  to `zip` or `epub`) [MOBI]_
+
 Search ``pdf`` files
 --------------------
 TODO
@@ -41,6 +44,7 @@ Use ``ebook-meta`` which supports almost any ebook formats
 
 References
 ==========
+.. [MOBI] https://bit.ly/2SBAru1
 .. [ZIPGREP] https://unix.stackexchange.com/a/416207
 
 .. URLs
