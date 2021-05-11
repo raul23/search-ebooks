@@ -63,8 +63,8 @@ Notes
 =====
 * Some desktop applications for searching ebook files:
 
-  * `DocFetcher`_: open source, cross-platform, supports among
-    other document formats ``epub``, ``pdf``, and ``rtf``.
+  * `DocFetcher`_: open source, cross-platform, supports ``epub``, ``pdf``, and 
+    ``rtf``.
     
   * `Quality Check plugin`_ for calibre: "search across your ePubs 
     for ad hoc criteria to find text or specifically named items 
