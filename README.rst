@@ -16,7 +16,7 @@ Search ``djvu`` files
 
 Search ``epub`` and ``mobi`` files
 ----------------------------------
-- Use ``zip`` and ``zipgrep``:
+- Use ``find`` and ``zipgrep``:
 
   .. code-block:: terminal
 
