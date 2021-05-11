@@ -1,7 +1,7 @@
 ======
 README
 ======
-Search content and metadata of different types of ebooks.
+Search through content and metadata of different types of ebooks.
 
 .. contents:: **Contents**
    :depth: 3
