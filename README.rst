@@ -16,7 +16,13 @@ Search ``djvu`` files
 
 Search ``epub`` and ``mobi`` files
 ----------------------------------
-TODO
+- Use ``zip`` and ``zipgrep``:
+
+.. code-block:: terminal
+
+   find . -name "*.epub" -exec zipgrep pattern {} \;
+   
+[ZIPGREP]_
 
 Search ``pdf`` files
 --------------------
@@ -26,6 +32,10 @@ Search through metadata
 =======================
 Use ``ebook-meta`` which supports almost any ebook formats 
 (`complete list of supported formats`_)
+
+References
+==========
+.. [ZIPGREP]
 
 .. URLs
 .. _complete list of supported formats: https://manual.calibre-ebook.com/generated/en/ebook-meta.html
