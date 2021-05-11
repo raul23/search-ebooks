@@ -16,21 +16,17 @@ Search ``djvu`` files
 
 Search ``epub`` files
 ---------------------
-- Use ``find`` and ``zipgrep``:
+- Use ``find`` and ``zipgrep``: [ZIPGREP]_
 
   .. code-block:: terminal
 
      find . -name "*.epub" -exec zipgrep pattern {} \;
-   
-  [ZIPGREP]_
   
-  To print only the filenames (not the matching lines):
+  To print only the filenames (not the matching lines): [ZIPGREP_QUIET]_
   
   .. code-block:: terminal
   
      find . -name '*.epub'  -exec zipgrep -q {pattern} {} \; -print
-  
-  [ZIPGREP_QUIET]_
   
   **NOTE:** by using the ``-q, --quiet`` flag, ``zipgrep`` "will only 
   search a file until a match has been found, making searches 
