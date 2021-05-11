@@ -13,7 +13,7 @@ Search through content
 Search ``djvu`` files
 ---------------------
 - Use `djvutxt`_ to extract text and pipe it to ``grep``
-- Use `ebook-convert`_ (from Calibre) to extract text and pipe it to ``grep``
+- Use `ebook-convert`_ (from calibre) to extract text and pipe it to ``grep``
 
 Search ``epub`` files
 ---------------------
@@ -42,12 +42,12 @@ Search ``epub`` files
   **NOTE:** ``zipgrep`` doesn't work on ``mobi`` files (they are not related 
   to `zip` or `epub`)
   
-- Use `ebook-convert`_ (from Calibre) to extract text and pipe it to ``grep``
+- Use `ebook-convert`_ (from calibre) to extract text and pipe it to ``grep``
 
 Search ``pdf`` files
 --------------------
 - Use `pdftotext`_ to extract text and pipe it to ``grep``
-- Use `ebook-convert`_ (from Calibre) to extract text and pipe it to ``grep``
+- Use `ebook-convert`_ (from calibre) to extract text and pipe it to ``grep``
 
 Search through metadata
 =======================
@@ -61,7 +61,7 @@ NOTES
   * `DocFetcher`_: open source, cross-platform, supports among
     other document formats ``epub``, ``pdf``, and ``rtf``.
     
-  * `Quality Check plugin`_ for Calibre: "search across your ePubs 
+  * `Quality Check plugin`_ for calibre: "search across your ePubs 
     for ad hoc criteria to find text or specifically named items 
     using regular expressions."
 
