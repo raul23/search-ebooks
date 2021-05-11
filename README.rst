@@ -35,7 +35,7 @@ Use ``ebook-meta`` which supports almost any ebook formats
 
 References
 ==========
-.. [ZIPGREP]
+.. [ZIPGREP] https://unix.stackexchange.com/a/416207
 
 .. URLs
 .. _complete list of supported formats: https://manual.calibre-ebook.com/generated/en/ebook-meta.html
