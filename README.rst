@@ -13,6 +13,7 @@ Search through content
 Search ``djvu`` files
 ---------------------
 - Use `djvutxt`_ to extract text and pipe it to ``grep``
+- Use `ebook-convert`_ (from Calibre) to extract text and pipe it to ``grep``
 
 Search ``epub`` files
 ---------------------
