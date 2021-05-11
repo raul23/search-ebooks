@@ -70,4 +70,4 @@ References
 .. _complete list of supported formats: https://manual.calibre-ebook.com/generated/en/ebook-meta.html
 .. _djvutxt: http://djvu.sourceforge.net/doc/man/djvutxt.html
 .. _DocFetcher: http://docfetcher.sourceforge.net/en/index.html
-.. _Quality Check plugin: https://www.mobileread.com/forums/showthread.php?t=282268
+.. _Quality Check plugin: https://www.mobileread.com/forums/showthread.php?t=125428
