@@ -52,7 +52,7 @@ Search ``pdf`` files
 
 Search through metadata
 =======================
-Use ``ebook-meta`` which supports almost any ebook formats 
+Use `ebook-meta`_ which supports almost any ebook formats 
 (`complete list of supported formats`_)
 
 NOTES
@@ -78,5 +78,6 @@ References
 .. _djvutxt: http://djvu.sourceforge.net/doc/man/djvutxt.html
 .. _DocFetcher: http://docfetcher.sourceforge.net/en/index.html
 .. _ebook-convert: https://manual.calibre-ebook.com/generated/en/ebook-convert.html
+.. _ebook-meta: https://manual.calibre-ebook.com/generated/en/ebook-meta.html
 .. _pdftotext: https://www.xpdfreader.com/pdftotext-man.html
 .. _Quality Check plugin: https://www.mobileread.com/forums/showthread.php?t=125428
