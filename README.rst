@@ -52,7 +52,7 @@ Search ``pdf`` files
 
 Search through metadata
 =======================
-* Use `ebook-meta`_ which supports almost any ebook formats for reading metadata:
+* Use `ebook-meta`_ which supports the following ebook formats for reading metadata:
 
      azw, azw1, azw3, azw4, cb7, cbr, cbz, chm, docx, epub, fb2, fbz, html, htmlz, 
      imp, lit, lrf, lrx, mobi, odt, oebzip, opf, pdb, pdf, pml, pmlz, pobi, prc, 
