@@ -10,6 +10,8 @@ Search through content and metadata of different types of ebooks.
 
 Search through ``djvu`` files
 =============================
+Search through content:
+
 - Using `djvutxt`_ to extract text and pipe it to ``grep``.
 
 Search through ``epub`` and ``mobi`` files
