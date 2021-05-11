@@ -46,7 +46,8 @@ Search ``epub`` files
 
 Search ``pdf`` files
 --------------------
-TODO
+- Use `pdftotext`_ to extract text and pipe it to ``grep``
+- Use `ebook-convert`_ (from Calibre) to extract text and pipe it to ``grep``
 
 Search through metadata
 =======================
@@ -76,4 +77,5 @@ References
 .. _djvutxt: http://djvu.sourceforge.net/doc/man/djvutxt.html
 .. _DocFetcher: http://docfetcher.sourceforge.net/en/index.html
 .. _ebook-convert: https://manual.calibre-ebook.com/generated/en/ebook-convert.html
+.. _pdftotext: https://www.xpdfreader.com/pdftotext-man.html
 .. _Quality Check plugin: https://www.mobileread.com/forums/showthread.php?t=125428
