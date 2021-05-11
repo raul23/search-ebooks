@@ -18,11 +18,11 @@ Search ``epub`` and ``mobi`` files
 ----------------------------------
 - Use ``zip`` and ``zipgrep``:
 
-.. code-block:: terminal
+  .. code-block:: terminal
 
-   find . -name "*.epub" -exec zipgrep pattern {} \;
+     find . -name "*.epub" -exec zipgrep pattern {} \;
    
-[ZIPGREP]_
+  [ZIPGREP]_
 
 Search ``pdf`` files
 --------------------
