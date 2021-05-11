@@ -30,12 +30,11 @@ Search ``epub`` files
   
      find . -name '*.epub'  -exec zipgrep -q {pattern} {} \; -print
   
-  [ZIPGREP_QUIET]
+  [ZIPGREP_QUIET]_
   
-  NOTE: by using the ``-q, --quiet`` flag, ``zipgrep`` "will only search a 
-  file until a match has been found, making searches potentially less 
-  expensive." [MAN_EGREP]_
-  
+  **NOTE:** by using the ``-q, --quiet`` flag, ``zipgrep`` "will only 
+  search a file until a match has been found, making searches 
+  potentially less expensive." [MAN_EGREP]_
   
   Or for a single file:
   
