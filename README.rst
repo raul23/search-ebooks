@@ -1,8 +1,8 @@
 ======
 README
 ======
-Using **command-line tools** only, search through **content** and **metadata** of different 
-types of ebooks.
+Using **command-line tools** only, search through **content** and
+**metadata** of different types of ebooks.
 
 .. contents:: **Contents**
    :depth: 3
@@ -52,18 +52,18 @@ Search ``pdf`` files
 
 Search through metadata
 =======================
-* Use `ebook-meta`_ (from calibre) which supports the following ebook formats for 
-  reading metadata:
+* Use `ebook-meta`_ (from calibre) which supports the following ebook formats
+  for reading metadata:
 
-     azw, azw1, azw3, azw4, cb7, cbr, cbz, chm, docx, epub, fb2, fbz, html, htmlz, 
-     imp, lit, lrf, lrx, mobi, odt, oebzip, opf, pdb, pdf, pml, pmlz, pobi, prc, 
-     rar, rb, rtf, snb, tpz, txt, txtz, updb, zip
+     azw, azw1, azw3, azw4, cb7, cbr, cbz, chm, docx, epub, fb2, fbz, html,
+     htmlz, imp, lit, lrf, lrx, mobi, odt, oebzip, opf, pdb, pdf, pml, pmlz,
+     pobi, prc, rar, rb, rtf, snb, tpz, txt, txtz, updb, zip
 
 Notes
 =====
 * Some desktop applications for searching ebook files:
 
-  * `DocFetcher`_: open source, cross-platform, supports ``epub``, ``pdf``, and 
+  * `DocFetcher`_: open source, cross-platform, supports ``epub``, ``pdf``, and
     ``rtf``.
     
   * `Quality Check plugin`_ for calibre: "search across your ePubs 
