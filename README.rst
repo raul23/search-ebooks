@@ -14,7 +14,7 @@ Search through content
 Search ``djvu`` files
 ---------------------
 - Use `djvutxt`_ to extract text and pipe it to ``grep``
-- Use `ebook-convert`_ (from calibre) to extract text and pipe it to ``grep``
+- Use `ebook-convert`_ (from *calibre*) to extract text and pipe it to ``grep``
 
 Search ``epub`` files
 ---------------------
@@ -48,11 +48,11 @@ Search ``epub`` files
 Search ``pdf`` files
 --------------------
 - Use `pdftotext`_ to extract text and pipe it to ``grep``
-- Use `ebook-convert`_ (from calibre) to extract text and pipe it to ``grep``
+- Use `ebook-convert`_ (from *calibre*) to extract text and pipe it to ``grep``
 
 Search through metadata
 =======================
-* Use `ebook-meta`_ (from calibre) which supports the following ebook formats
+* Use `ebook-meta`_ (from *calibre*) which supports the following ebook formats
   for reading metadata:
 
      azw, azw1, azw3, azw4, cb7, cbr, cbz, chm, docx, epub, fb2, fbz, html,
