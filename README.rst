@@ -1,7 +1,7 @@
 ======
 README
 ======
-Using **command-line tools** only, search through **content** and
+List of **command-line tools** to search through **content** and
 **metadata** of different types of ebooks.
 
 .. contents:: **Contents**
