@@ -1,31 +1,128 @@
 #!/usr/bin/env python
 import argparse
+from pathlib import Path
 
 
 import searchebooks
+
+DEFAULT_EBOOK_FORMATS = ['djvu', 'epub', 'html', 'pdf', 'txt']
+
+
+def check_formats():
+    class CheckFromats(argparse.Action):
+        def __call__(self, parser, args, values, option_string=None):
+            for i, v in enumerate(values):
+                if v.startswith('.'):
+                    v = v[1:]
+                    values[i] = v
+                if v not in DEFAULT_EBOOK_FORMATS:
+                    msg = f'argument "{self.dest}" doesn\'t support {v}. Only ' \
+                          'the following ebook formats are supported: ' \
+                          f'{DEFAULT_EBOOK_FORMATS}'
+                    raise argparse.ArgumentTypeError(msg)
+            setattr(args, self.dest, values)
+    return CheckFromats
 
 
 def setup_argparser():
     # Setup the parser
     parser = argparse.ArgumentParser(
-        description='''\
-Search through content and metadata of ebooks''',
+        description='Search through content and metadata of ebooks.\n\n'
+                    'IMPORTANT: if an argument has spaces, enclose it in '
+                    'quotation marks, e.g. "Book title with spaces"',
+        # ArgumentDefaultsHelpFormatter
+        # HelpFormatter
         # RawDescriptionHelpFormatter
         formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument(
         '-v', '--version', action='version',
         version=f'%(prog)s v{searchebooks.__version__}')
+    parser.add_argument(
+        '-q', '--quiet', action='store_true',
+        help='Enable quiet mode, i.e. nothing will be printed.')
+    parser.add_argument(
+        '--verbose', action='store_true',
+        help='Print various debugging information, e.g. print traceback '
+             'when there is an exception.')
+    parser.add_argument(
+        '-c', '--case-sensitive', action='store_true',
+        help='Case sensitive')
+    parser.add_argument(
+        '-r', '--regex', action='store_true',
+        help='Regex')
     # ===========
     # Search text
     # ===========
-    search_text_group = parser.add_argument_group(title='Search text', description='test')
-    search_text_group.add_argument('-t', '--text')
+    search_text_group = parser.add_argument_group(title='Search text of ebooks')
+    search_text_group.add_argument(
+        '--query', dest='search_query', metavar='QUERY', required=True,
+        help='Search query')
+    search_text_group.add_argument(
+        '-f', '--ebook-formats', metavar='FORMAT', nargs='+',
+        default=DEFAULT_EBOOK_FORMATS, action=check_formats(),
+        help='Ebook formats')
+    search_text_group.add_argument(
+        '--dsm', '--djvu-search-method', metavar='METHOD',
+        choices=['djvutxt', 'calibre'], default='djvutxt',
+        help='Search method for djvu files')
+    search_text_group.add_argument(
+        '--esm', '--epub-search-method', metavar='METHOD',
+        choices=['zipgrep', 'calibre'], default='zipgrep',
+        help='Search method for epub files')
+    search_text_group.add_argument(
+        '--psm', '--pdf-search-method', metavar='METHOD',
+        choices=['pdftotext', 'calibre'], default='pdftotext',
+        help='Search method for pdf files')
+    # ===============
+    # Search metadata
+    # ===============
+    search_metadata_group = parser.add_argument_group(title='Search metadata of ebooks')
+    search_metadata_group.add_argument(
+        '-a', '--authors', help='Authors')
+    search_metadata_group.add_argument(
+        '-k', '--book-producer', help='Book producer')
+    search_metadata_group.add_argument(
+        '--category', help='Category')
+    search_metadata_group.add_argument(
+        '--comments', help='Comments')
+    search_metadata_group.add_argument(
+        '-d', '--date', help='Published date')
+    search_metadata_group.add_argument(
+        '--identifiers', help='Identifiers')
+    search_metadata_group.add_argument(
+        '-i', '--isbn', help='ISBN')
+    search_metadata_group.add_argument(
+        '-l', '--language', help='Language')
+    search_metadata_group.add_argument(
+        '-p', '--publisher', help='Publisher')
+    search_metadata_group.add_argument(
+        '--rating', help='Rating')
+    search_metadata_group.add_argument(
+        '-s', '--series', help='Series')
+    search_metadata_group.add_argument(
+        '--tags', help='Tags')
+    search_metadata_group.add_argument(
+        '-t', '--title', help='Title')
+    # ==============
+    # Input argument
+    # ==============
+    input_group = parser.add_argument_group(title='Input argument')
+    input_group.add_argument(
+        'input_data',
+        help='Can either be the path to an ebook or a folder containing ebooks')
     return parser
 
 
 def main():
     parser = setup_argparser()
     args = parser.parse_args()
+    import ipdb
+    ipdb.set_trace()
+    for fp in Path(args.folder_to_search).rglob('*'):
+        ext = fp.suffix.split('.')[-1]
+        if ext in args.ebook_formats:
+            print(fp.name)
+
     return 0
 
 
