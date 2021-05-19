@@ -41,7 +41,7 @@ Search ``epub`` files
      find test.epub -exec zipgrep pattern {} \;
 
   **NOTE:** ``zipgrep`` doesn't work on ``mobi`` files (they are not related 
-  to `zip` or `epub`)
+  to ``zip`` or ``epub``)
   
 - Use `ebook-convert`_ (from *calibre*) to extract text and pipe it to ``grep``
 
