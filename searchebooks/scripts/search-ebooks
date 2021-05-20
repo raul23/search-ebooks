@@ -1,11 +1,42 @@
 #!/usr/bin/env python
 import argparse
+import re
 from pathlib import Path
 
-
 import searchebooks
+from pyebooktools.convert_to_txt import convert
+from pyebooktools.configs import default_config
 
 DEFAULT_EBOOK_FORMATS = ['djvu', 'epub', 'html', 'pdf', 'txt']
+CACHE_FOLDER = default_config.cache_folder
+CACHE_SIZE_LIMIT = default_config.cache_size_limit
+EVICTION_POLICY = default_config.eviction_policy
+USE_CACHE = default_config.use_cache
+
+
+def get_files(input_data):
+    # NOTE: only pdf files supported
+    # TODO: important, use get_mime_type?
+    files = []
+    input_data = Path(input_data)
+    if input_data.is_file():
+        ext = input_data.suffix.split('.')[-1]
+        if ext in DEFAULT_EBOOK_FORMATS:
+            files = [input_data]
+        else:
+            # TODO: important, logger
+            pass
+    else:
+        # TODO: important, use get_mime_type for each file found?
+        # you can have a pdf file with the wrong ext?
+        for fp in input_data.rglob('*'):
+            ext = fp.suffix.split('.')[-1]
+            if ext in DEFAULT_EBOOK_FORMATS:
+                files.append(fp)
+        # TODO: important sort within glob?
+        # logger.debug("Files sorted {}".format("in desc" if reverse else "in asc"))
+        # files.sort(key=lambda x: x.name, reverse=self.reverse)
+    return files
 
 
 def check_formats():
@@ -50,10 +81,28 @@ def setup_argparser():
     parser.add_argument(
         '-r', '--regex', action='store_true',
         help='Regex')
+    # =====
+    # Cache
+    # =====
+    cache_group = parser.add_argument_group(title='Cache options')
+    cache_group.add_argument(
+        '--use-cache', action='store_true', help='Use cache')
+    cache_group.add_argument(
+        '--cache-folder', default=CACHE_FOLDER, help='Cache folder')
+    cache_group.add_argument(
+        '--ep', '--eviction-policy', metavar='POLICY',
+        choices=['lrs', 'lrs', 'lfu', 'none'], default=EVICTION_POLICY,
+        help='Eviction policy where lrs=least-recently-stored, '
+             'lrs=least-recently-used, lfu=least-frequently-used, and '
+             'none="never evict keys"')
+    cache_group.add_argument(
+        '--csl', '--cache-size-limit', default=CACHE_SIZE_LIMIT, type=int,
+        help='Size limit in gigabytes (GB)')
     # ===========
     # Search text
     # ===========
-    search_text_group = parser.add_argument_group(title='Search text of ebooks')
+    search_text_group = parser.add_argument_group(
+        title='Search through text of ebooks')
     search_text_group.add_argument(
         '--query', dest='search_query', metavar='QUERY', required=True,
         help='Search query')
@@ -66,6 +115,10 @@ def setup_argparser():
         choices=['djvutxt', 'calibre'], default='djvutxt',
         help='Search method for djvu files')
     search_text_group.add_argument(
+        '--msm', '--msword-search-method', metavar='METHOD',
+        choices=['catdoc', 'textutil', 'calibre'], default='textutil',
+        help='Search method for djvu files')
+    search_text_group.add_argument(
         '--esm', '--epub-search-method', metavar='METHOD',
         choices=['zipgrep', 'calibre'], default='zipgrep',
         help='Search method for epub files')
@@ -76,7 +129,8 @@ def setup_argparser():
     # ===============
     # Search metadata
     # ===============
-    search_metadata_group = parser.add_argument_group(title='Search metadata of ebooks')
+    search_metadata_group = parser.add_argument_group(
+        title='Search through metadata of ebooks')
     search_metadata_group.add_argument(
         '-a', '--authors', help='Authors')
     search_metadata_group.add_argument(
@@ -116,13 +170,19 @@ def setup_argparser():
 def main():
     parser = setup_argparser()
     args = parser.parse_args()
+    files = get_files(args.input_data)
     import ipdb
     ipdb.set_trace()
-    for fp in Path(args.folder_to_search).rglob('*'):
-        ext = fp.suffix.split('.')[-1]
-        if ext in args.ebook_formats:
-            print(fp.name)
-
+    for fp in files:
+        text = convert(fp, **args.__dict__)
+        if args.case_sensitive:
+            text = text.lower()
+        if args.regex:
+            matches = re.finditer(args.query, text, re.MULTILINE)
+            for match in matches:
+                pass
+        else:
+            text.find
     return 0
 
 
