@@ -36,7 +36,7 @@ Search ``epub`` files
   
   Or for a single file:
   
-  .. code-block:: terminal
+  .. code-block:: bash
   
      find test.epub -exec zipgrep pattern {} \;
 
