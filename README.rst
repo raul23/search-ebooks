@@ -26,7 +26,7 @@ Search ``epub`` files
   
   To print only the filenames (not the matching lines):
   
-  .. code:: python
+  .. code:: bash
   
      find . -name '*.epub'  -exec zipgrep -q {pattern} {} \; -print
      
