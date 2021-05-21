@@ -204,7 +204,7 @@ def main():
             # TODO: important, use trans
             subtext = subtext.replace('\n', ' ').replace('\x0cix', '').strip()
             # TODO: important, uncomment for interactive
-            # search_result['matches'].append(subtext)
+            search_result['matches'].append(subtext)
         search_results.append(search_result)
         total_seconds += time.time() - start_time
     search_results = sorted(search_results, key=lambda k: len(k['matches']),
