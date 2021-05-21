@@ -267,6 +267,7 @@ def process_file(file_path, args):
             return 1
         else:
             text = result.stdout.decode()
+            # TODO: important, explain remove lines with content.opf
             lines = [l for l in text.splitlines() if not l.count('content.opf')]
             text = '\n'.join(lines)
             matches = re.findall(args.search_query, text, flags)
