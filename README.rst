@@ -28,7 +28,7 @@ Search ``epub`` files
   
   .. code:: bash
   
-     find . -name '*.epub'  -exec zipgrep -q {pattern} {} \; -print
+     find . -name '*.epub'  -exec zipgrep -q pattern {} \; -print
   
   **NOTE:** by using the ``-q, --quiet`` flag, ``zipgrep`` "will only 
   search a file until a match has been found, making searches 
