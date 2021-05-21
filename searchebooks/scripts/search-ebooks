@@ -2,6 +2,8 @@
 import argparse
 import os
 import re
+import shlex
+import subprocess
 import time
 from pathlib import Path
 
@@ -9,7 +11,8 @@ import searchebooks
 from pyebooktools.convert_to_txt import convert
 from pyebooktools.configs import default_config
 from pyebooktools.lib import (
-    BLUE, BOLD, GREEN, NC, RED, VIOLET, YELLOW, color_msg as c)
+    BLUE, BOLD, GREEN, NC, RED, VIOLET, YELLOW, color_msg as c,
+    convert_result_from_shell_cmd)
 
 DEFAULT_EBOOK_FORMATS = ['djvu', 'epub', 'html', 'pdf', 'txt']
 CACHE_FOLDER = os.path.expanduser('~/.search_ebooks')
@@ -247,22 +250,40 @@ def setup_argparser():
 
 
 def process_file(file_path, args):
-    num_results = 0
+    num_matches = 0
     window_length = 200
-    if file_path.suffix.split('.')[-1] not in args.ebook_formats:
+    ext = file_path.suffix.split('.')[-1]
+    if ext not in args.ebook_formats:
         return 1
+    flags = re.MULTILINE if args.case_sensitive else re.MULTILINE | re.IGNORECASE
+    search_result = {'filename': file_path.name, 'folder_path': file_path.parent,
+                     'file_path': file_path, 'matches': []}
+    if ext == 'epub' and args.epub_search_method == 'zipgrep':
+        zipgrep = 'zipgrep' if args.case_sensitive else 'zipgrep -i'
+        cmd = f'find "{file_path}" -exec {zipgrep} {args.search_query} {{}} \\;'
+        cmd_args = shlex.split(cmd)
+        result = subprocess.run(cmd_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if result.stderr:
+            return 1
+        else:
+            text = result.stdout.decode()
+            lines = [l for l in text.splitlines() if not l.count('content.opf')]
+            text = '\n'.join(lines)
+            matches = re.findall(args.search_query, text, flags)
+            # TODO: important, uncomment for interactive
+            # text = re.sub(f"({args.search_query})", f"{GREEN}{BOLD}\\1{NC}", text, flags=flags)
+            search_result['matches'] = len(matches)
+            return search_result
     text = convert(file_path, **args.__dict__)
     if text == 1:
         return 1
-    if args.case_sensitive:
-        flags = re.MULTILINE
-    else:
-        flags = re.MULTILINE | re.IGNORECASE
+    matches = re.findall(args.search_query, text, flags)
+    search_result['matches'] = len(matches)
+    # TODO: important, uncomment for interactive
+    """
     matches = re.finditer(args.search_query, text, flags)
-    search_result = {'filename': file_path.name, 'folder_path': file_path.parent,
-                     'file_path': file_path, 'matches': []}
     for match in matches:
-        num_results += 1
+        num_matches += 1
         start, end = match.span()
         length = end - start
         if start < window_length / 2:
@@ -273,8 +294,9 @@ def process_file(file_path, args):
                          subtext, flags=flags)
         # TODO: important, use trans
         subtext = subtext.replace('\n', ' ').replace('\x0cix', '').strip()
-        # TODO: important, uncomment for interactive
         search_result['matches'].append(subtext)
+    search_result['matches'] = num_matches
+    """
     return search_result
 
 
@@ -291,7 +313,8 @@ def main():
     def process_result(start_t, num_res, total_secs):
         if search_result != 1:
             search_results.append(search_result)
-            num_res += len(search_result['matches'])
+            # num_res += len(search_result['matches'])
+            num_res += search_result['matches']
         total_secs += time.time() - start_t
         return num_res, total_secs
 
@@ -302,19 +325,22 @@ def main():
                                                     total_seconds)
     else:
         for fp in input_data.rglob('*'):
-            # print(fp)
+            print(fp)
             start_time = time.time()
             search_result = process_file(fp, args)
             num_results, total_seconds = process_result(start_time, num_results,
                                                         total_seconds)
-        search_results = sorted(search_results, key=lambda k: len(k['matches']),
+        # search_results = sorted(search_results, key=lambda k: len(k['matches']),
+        #                         reverse=True)
+        search_results = sorted(search_results, key=lambda k: k['matches'],
                                 reverse=True)
     print(f'{YELLOW}Total of {num_results} matches ({round(total_seconds, 3)} '
           f'seconds){NC}\n')
     for i, result in enumerate(search_results, start=1):
         print(f"{i}.\t{BLUE}{result['filename']}{NC}"
               f"\n\t{VIOLET}Folder path:{NC} {result['folder_path']}"
-              f"\n\t{VIOLET}Number of matches:{NC} {len(result['matches'])}\n")
+              f"\n\t{VIOLET}Number of matches:{NC} {result['matches']}\n")
+    # f"\n\t{VIOLET}Number of matches:{NC} {len(result['matches'])}\n")
     return 0
 
 
