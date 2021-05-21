@@ -1,14 +1,17 @@
 #!/usr/bin/env python
 import argparse
+import os
 import re
+import time
 from pathlib import Path
 
 import searchebooks
 from pyebooktools.convert_to_txt import convert
 from pyebooktools.configs import default_config
+from pyebooktools.lib import BOLD, GREEN, NC, RED, YELLOW
 
 DEFAULT_EBOOK_FORMATS = ['djvu', 'epub', 'html', 'pdf', 'txt']
-CACHE_FOLDER = default_config.cache_folder
+CACHE_FOLDER = os.path.expanduser('~/.search_ebooks')
 CACHE_SIZE_LIMIT = default_config.cache_size_limit
 EVICTION_POLICY = default_config.eviction_policy
 USE_CACHE = default_config.use_cache
@@ -78,9 +81,6 @@ def setup_argparser():
     parser.add_argument(
         '-c', '--case-sensitive', action='store_true',
         help='Case sensitive')
-    parser.add_argument(
-        '-r', '--regex', action='store_true',
-        help='Regex')
     # =====
     # Cache
     # =====
@@ -90,14 +90,13 @@ def setup_argparser():
     cache_group.add_argument(
         '--cache-folder', default=CACHE_FOLDER, help='Cache folder')
     cache_group.add_argument(
-        '--ep', '--eviction-policy', metavar='POLICY',
-        choices=['lrs', 'lrs', 'lfu', 'none'], default=EVICTION_POLICY,
-        help='Eviction policy where lrs=least-recently-stored, '
-             'lrs=least-recently-used, lfu=least-frequently-used, and '
-             'none="never evict keys"')
+        '--ep', '--eviction-policy', metavar='POLICY', dest='eviction_policy',
+        choices=['least-recently-stored', '=least-recently-used',
+                 'least-frequently-used', 'none'], default=EVICTION_POLICY,
+        help='Eviction policy where none="never evict keys".')
     cache_group.add_argument(
-        '--csl', '--cache-size-limit', default=CACHE_SIZE_LIMIT, type=int,
-        help='Size limit in gigabytes (GB)')
+        '--csl', '--cache-size-limit', dest='cache_size_limit',
+        default=CACHE_SIZE_LIMIT, type=int, help='Size limit in gigabytes (GB)')
     # ===========
     # Search text
     # ===========
@@ -112,20 +111,20 @@ def setup_argparser():
         help='Ebook formats')
     search_text_group.add_argument(
         '--dsm', '--djvu-search-method', metavar='METHOD',
-        choices=['djvutxt', 'calibre'], default='djvutxt',
-        help='Search method for djvu files')
+        dest='djvu_search_method', choices=['djvutxt', 'calibre'],
+        default='djvutxt', help='Search method for djvu files')
     search_text_group.add_argument(
         '--msm', '--msword-search-method', metavar='METHOD',
-        choices=['catdoc', 'textutil', 'calibre'], default='textutil',
-        help='Search method for djvu files')
+        dest='msword_search_method', choices=['catdoc', 'textutil', 'calibre'],
+        default='textutil', help='Search method for djvu files')
     search_text_group.add_argument(
         '--esm', '--epub-search-method', metavar='METHOD',
-        choices=['zipgrep', 'calibre'], default='zipgrep',
-        help='Search method for epub files')
+        dest='epub_search_method', choices=['zipgrep', 'calibre'],
+        default='zipgrep', help='Search method for epub files')
     search_text_group.add_argument(
         '--psm', '--pdf-search-method', metavar='METHOD',
-        choices=['pdftotext', 'calibre'], default='pdftotext',
-        help='Search method for pdf files')
+        dest='pdf_search_method', choices=['pdftotext', 'calibre'],
+        default='pdftotext', help='Search method for pdf files')
     # ===============
     # Search metadata
     # ===============
@@ -170,21 +169,54 @@ def setup_argparser():
 def main():
     parser = setup_argparser()
     args = parser.parse_args()
+    # TODO: check if can be done before
+    args.cache_size_limit *= 10**9
     files = get_files(args.input_data)
+    search_results = []
+    num_results = 0
+    total_seconds = 0
+    window_length = 200
     import ipdb
-    ipdb.set_trace()
     for fp in files:
+        if fp.suffix.split('.')[-1] not in args.ebook_formats:
+            continue
+        start_time = time.time()
         text = convert(fp, **args.__dict__)
+        if text == 1:
+            continue
         if args.case_sensitive:
-            text = text.lower()
-        if args.regex:
-            matches = re.finditer(args.query, text, re.MULTILINE)
-            for match in matches:
-                pass
+            flags = re.MULTILINE | re.IGNORECASE
         else:
-            text.find
+            flags = re.MULTILINE
+        matches = re.finditer(args.search_query, text, flags)
+        search_result = {'filename': fp.name, 'folder_path': fp.parent,
+                         'file_path': fp, 'matches': []}
+        for match in matches:
+            num_results += 1
+            start, end = match.span()
+            length = end - start
+            if start < window_length/2:
+                subtext = text[start - 0:int(start + length + window_length/2)]
+            else:
+                subtext = text[int(start - window_length / 2):int(start + length + window_length / 2)]
+            subtext = re.sub(f"({args.search_query})", f"{GREEN}{BOLD}\\1{NC}",
+                             subtext, flags=flags)
+            # TODO: important, use trans
+            subtext = subtext.replace('\n', ' ').replace('\x0cix', '').strip()
+            # TODO: important, uncomment for interactive
+            # search_result['matches'].append(subtext)
+        search_results.append(search_result)
+        total_seconds += time.time() - start_time
+    search_results = sorted(search_results, key=lambda k: len(k['matches']),
+                            reverse=True)
+    print(f'{YELLOW}Total of {num_results} matches ({round(total_seconds, 3)} seconds){NC}\n')
+    for i, result in enumerate(search_results, start=1):
+        print(f"{i}.\t{result['filename']}\n\tFolder path: {result['folder_path']}"
+              f"\n\tNumber of matches: {len(result['matches'])}\n")
+    # ipdb.set_trace()
     return 0
 
 
 if __name__ == '__main__':
+    # search-ebooks ~/test/_search_ebooks/search_text/... --use-cache
     retcode = main()
