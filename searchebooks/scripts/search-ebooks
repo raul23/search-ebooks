@@ -8,13 +8,82 @@ from pathlib import Path
 import searchebooks
 from pyebooktools.convert_to_txt import convert
 from pyebooktools.configs import default_config
-from pyebooktools.lib import BLUE, BOLD, GREEN, NC, RED, VIOLET, YELLOW
+from pyebooktools.lib import (
+    BLUE, BOLD, GREEN, NC, RED, VIOLET, YELLOW, color_msg as c)
 
 DEFAULT_EBOOK_FORMATS = ['djvu', 'epub', 'html', 'pdf', 'txt']
 CACHE_FOLDER = os.path.expanduser('~/.search_ebooks')
 CACHE_SIZE_LIMIT = default_config.cache_size_limit
+DJVU_SEARCH_METHOD = 'djvutxt'
+EPUB_SEARCH_METHOD = 'zipgrep'
 EVICTION_POLICY = default_config.eviction_policy
+MSWORD_SEARCH_METHOD = 'textutil'
+PDF_SEARCH_METHOD = 'pdftotext'
 USE_CACHE = default_config.use_cache
+
+
+class ArgumentParser(argparse.ArgumentParser):
+
+    def error(self, message):
+        # self.print_help(sys.stderr)
+        # self.print_usage(sys.stderr)
+        print(self.format_usage().splitlines()[0])
+        self.exit(2, c(f'\nerror: {message}\n', 'r'))
+
+
+# Ref.: https://stackoverflow.com/a/32891625/14664104
+class MyFormatter(argparse.HelpFormatter):
+    """
+    Corrected _max_action_length for the indenting of subactions
+    """
+
+    def add_argument(self, action):
+        if action.help is not argparse.SUPPRESS:
+
+            # find all invocations
+            get_invocation = self._format_action_invocation
+            invocations = [get_invocation(action)]
+            current_indent = self._current_indent
+            for subaction in self._iter_indented_subactions(action):
+                # compensate for the indent that will be added
+                indent_chg = self._current_indent - current_indent
+                added_indent = 'x' * indent_chg
+                invocations.append(added_indent + get_invocation(subaction))
+            # print('inv', invocations)
+
+            # update the maximum item length
+            invocation_length = max([len(s) for s in invocations])
+            action_length = invocation_length + self._current_indent
+            self._action_max_length = max(self._action_max_length,
+                                          action_length)
+
+            # add the item to the list
+            self._add_item(self._format_action, [action])
+
+    # Ref.: https://stackoverflow.com/a/23941599/14664104
+    def _format_action_invocation(self, action):
+        if not action.option_strings:
+            metavar, = self._metavar_formatter(action, action.dest)(1)
+            return metavar
+        else:
+            parts = []
+            # if the Optional doesn't take a value, format is:
+            #    -s, --long
+            if action.nargs == 0:
+                parts.extend(action.option_strings)
+
+            # if the Optional takes a value, format is:
+            #    -s ARGS, --long ARGS
+            # change to
+            #    -s, --long ARGS
+            else:
+                default = action.dest.upper()
+                args_string = self._format_args(action, default)
+                for option_string in action.option_strings:
+                    # parts.append('%s %s' % (option_string, args_string))
+                    parts.append('%s' % option_string)
+                parts[-1] += ' %s'%args_string
+            return ', '.join(parts)
 
 
 def check_formats():
@@ -33,80 +102,114 @@ def check_formats():
     return CheckFromats
 
 
+def get_default_message(default_value):
+    return f' ({GREEN}default: {default_value}{NC})'
+
+
 def setup_argparser():
+    width = os.get_terminal_size().columns - 5
     # Setup the parser
-    parser = argparse.ArgumentParser(
-        description='Search through content and metadata of ebooks.\n\n'
-                    'IMPORTANT: if an argument has spaces, enclose it in '
+    name_input = 'input_data'
+    msg = 'Search through content and metadata of ebooks.'
+    parser = ArgumentParser(
+        description=f'{RED}IMPORTANT{NC}: if an argument has spaces, enclose it in '
                     'quotation marks, e.g. "Book title with spaces"',
+        usage=f'{BLUE}%(prog)s [OPTIONS] {name_input}{NC}\n\n{msg}',
+        add_help=False,
         # ArgumentDefaultsHelpFormatter
         # HelpFormatter
         # RawDescriptionHelpFormatter
-        formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument(
+        formatter_class=lambda prog: MyFormatter(
+            prog, max_help_position=50, width=width))
+    general_group = parser.add_argument_group(
+        title=f'{YELLOW}General options{NC}')
+    general_group.add_argument(
+        '-h', '--help', action='help',
+        help='Show this help message and exit.')
+    general_group.add_argument(
         '-v', '--version', action='version',
-        version=f'%(prog)s v{searchebooks.__version__}')
-    parser.add_argument(
+        version=f'%(prog)s v{searchebooks.__version__}',
+        help="Show program's version number and exit.")
+    general_group.add_argument(
         '-q', '--quiet', action='store_true',
         help='Enable quiet mode, i.e. nothing will be printed.')
-    parser.add_argument(
+    general_group.add_argument(
         '--verbose', action='store_true',
         help='Print various debugging information, e.g. print traceback '
              'when there is an exception.')
-    parser.add_argument(
+    general_group.add_argument(
         '-c', '--case-sensitive', action='store_true',
         help='Case sensitive')
     # =====
     # Cache
     # =====
-    cache_group = parser.add_argument_group(title='Cache options')
+    cache_group = parser.add_argument_group(title=f'{YELLOW}Cache options{NC}')
     cache_group.add_argument(
         '--use-cache', action='store_true', help='Use cache')
     cache_group.add_argument(
         '--cache-folder', default=CACHE_FOLDER, help='Cache folder')
     cache_group.add_argument(
-        '--ep', '--eviction-policy', metavar='POLICY', dest='eviction_policy',
-        choices=['least-recently-stored', '=least-recently-used',
+        '--ep', '--eviction-policy', dest='eviction_policy', metavar='POLICY',
+        choices=['least-recently-stored', 'least-recently-used',
                  'least-frequently-used', 'none'], default=EVICTION_POLICY,
-        help='Eviction policy where none="never evict keys".')
+        help='Eviction policy which can either be: `least-recently-stored`, '
+             '`least-recently-used`,  `least-frequently-used` or '
+             '`none` (never evict keys).' + get_default_message(EVICTION_POLICY))
     cache_group.add_argument(
-        '--csl', '--cache-size-limit', dest='cache_size_limit',
-        default=CACHE_SIZE_LIMIT, type=int, help='Size limit in gigabytes (GB)')
+        '--csl', '--cache-size-limit', metavar='SIZE', dest='cache_size_limit',
+        default=CACHE_SIZE_LIMIT, type=int,
+        help='Size limit in gigabytes (GB)'
+             + get_default_message(CACHE_SIZE_LIMIT))
     cache_group.add_argument(
         '--cc', '--clear-cache', action='store_true', help='Clear cache')
     # ===========
     # Search text
     # ===========
     search_text_group = parser.add_argument_group(
-        title='Search through text of ebooks')
+        title=f'{YELLOW}Search options{NC}')
     search_text_group.add_argument(
         '--query', dest='search_query', metavar='QUERY', required=True,
         help='Search query')
     search_text_group.add_argument(
         '-f', '--ebook-formats', metavar='FORMAT', nargs='+',
         default=DEFAULT_EBOOK_FORMATS, action=check_formats(),
-        help='Ebook formats')
+        help=f'{GREEN}Default{NC} ebook formats: '
+             f'{GREEN}{DEFAULT_EBOOK_FORMATS}{NC}')
+    djvu_search_methods = ['djvutxt', 'calibre']
     search_text_group.add_argument(
         '--dsm', '--djvu-search-method', metavar='METHOD',
-        dest='djvu_search_method', choices=['djvutxt', 'calibre'],
-        default='djvutxt', help='Search method for djvu files')
+        dest='djvu_search_method', choices=djvu_search_methods,
+        default=DJVU_SEARCH_METHOD,
+        help=f'Search method for djvu files: {djvu_search_methods}'
+             + get_default_message(DJVU_SEARCH_METHOD))
+    msword_search_methods = ['catdoc', 'textutil', 'calibre']
     search_text_group.add_argument(
         '--msm', '--msword-search-method', metavar='METHOD',
-        dest='msword_search_method', choices=['catdoc', 'textutil', 'calibre'],
-        default='textutil', help='Search method for doc files')
+        dest='msword_search_method', choices=msword_search_methods,
+        default=MSWORD_SEARCH_METHOD,
+        help=f'Search method for doc files: {msword_search_methods}'
+             + get_default_message(MSWORD_SEARCH_METHOD))
+    epub_search_methods = ['zipgrep', 'calibre']
     search_text_group.add_argument(
         '--esm', '--epub-search-method', metavar='METHOD',
         dest='epub_search_method', choices=['zipgrep', 'calibre'],
-        default='zipgrep', help='Search method for epub files')
+        default=EPUB_SEARCH_METHOD,
+        help=f'Search method for epub files: {epub_search_methods}'
+             + get_default_message(EPUB_SEARCH_METHOD))
+    pdf_search_methods = ['pdftotext', 'calibre']
     search_text_group.add_argument(
         '--psm', '--pdf-search-method', metavar='METHOD',
-        dest='pdf_search_method', choices=['pdftotext', 'calibre'],
-        default='pdftotext', help='Search method for pdf files')
+        dest='pdf_search_method', choices=pdf_search_methods,
+        default='pdftotext',
+        help=f'Search method for pdf files: {PDF_SEARCH_METHOD}'
+             + get_default_message(PDF_SEARCH_METHOD))
     # ===============
     # Search metadata
     # ===============
     search_metadata_group = parser.add_argument_group(
-        title='Search through metadata of ebooks')
+        title=f'{YELLOW}Advanced search options{NC}',
+        description=f'{RED}IMPORTANT:{NC} all the selected fields are linked '
+                    'with AND along with the search query')
     search_metadata_group.add_argument(
         '-a', '--authors', help='Authors')
     search_metadata_group.add_argument(
@@ -136,9 +239,9 @@ def setup_argparser():
     # ==============
     # Input argument
     # ==============
-    input_group = parser.add_argument_group(title='Input argument')
+    input_group = parser.add_argument_group(title=f'{YELLOW}Input argument{NC}')
     input_group.add_argument(
-        'input_data',
+        name_input,
         help='Can either be the path to an ebook or a folder containing ebooks')
     return parser
 
