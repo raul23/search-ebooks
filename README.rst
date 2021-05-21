@@ -26,19 +26,9 @@ Search ``epub`` files
   
   To print only the filenames (not the matching lines):
   
-  .. code-block:: terminal
+  .. code:: terminal
   
      find . -name '*.epub'  -exec zipgrep -q {pattern} {} \; -print
-  
-  .. code:: python
-
-    from ptpython.utils import ptrepr_to_repr
-    from prompt_toolkit.formatted_text import HTML
-
-    @ptrepr_to_repr
-    class MyClass:
-        def __pt_repr__(self):
-            return HTML('<yellow>Hello world!</yellow>')
   
   **NOTE:** by using the ``-q, --quiet`` flag, ``zipgrep`` "will only 
   search a file until a match has been found, making searches 
