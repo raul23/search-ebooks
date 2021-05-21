@@ -20,13 +20,13 @@ Search ``epub`` files
 ---------------------
 - Use ``find`` and ``zipgrep``:
 
-  .. code-block:: terminal
+  .. code-block:: bash
 
      find . -name '*.epub' -exec zipgrep pattern {} \;
   
   To print only the filenames (not the matching lines):
   
-  .. code-block:: terminal
+  .. code:: bash
   
      find . -name '*.epub'  -exec zipgrep -q {pattern} {} \; -print
   
@@ -36,7 +36,7 @@ Search ``epub`` files
   
   Or for a single file:
   
-  .. code-block:: terminal
+  .. code-block:: bash
   
      find test.epub -exec zipgrep pattern {} \;
 
