@@ -93,7 +93,7 @@ def setup_argparser():
     search_text_group.add_argument(
         '--msm', '--msword-search-method', metavar='METHOD',
         dest='msword_search_method', choices=['catdoc', 'textutil', 'calibre'],
-        default='textutil', help='Search method for djvu files')
+        default='textutil', help='Search method for doc files')
     search_text_group.add_argument(
         '--esm', '--epub-search-method', metavar='METHOD',
         dest='epub_search_method', choices=['zipgrep', 'calibre'],
