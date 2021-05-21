@@ -152,9 +152,9 @@ def process_file(file_path, args):
     if text == 1:
         return 1
     if args.case_sensitive:
-        flags = re.MULTILINE | re.IGNORECASE
-    else:
         flags = re.MULTILINE
+    else:
+        flags = re.MULTILINE | re.IGNORECASE
     matches = re.finditer(args.search_query, text, flags)
     search_result = {'filename': file_path.name, 'folder_path': file_path.parent,
                      'file_path': file_path, 'matches': []}
