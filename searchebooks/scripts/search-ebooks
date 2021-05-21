@@ -8,38 +8,13 @@ from pathlib import Path
 import searchebooks
 from pyebooktools.convert_to_txt import convert
 from pyebooktools.configs import default_config
-from pyebooktools.lib import BOLD, GREEN, NC, RED, YELLOW
+from pyebooktools.lib import BLUE, BOLD, GREEN, NC, RED, VIOLET, YELLOW
 
 DEFAULT_EBOOK_FORMATS = ['djvu', 'epub', 'html', 'pdf', 'txt']
 CACHE_FOLDER = os.path.expanduser('~/.search_ebooks')
 CACHE_SIZE_LIMIT = default_config.cache_size_limit
 EVICTION_POLICY = default_config.eviction_policy
 USE_CACHE = default_config.use_cache
-
-
-def get_files(input_data):
-    # NOTE: only pdf files supported
-    # TODO: important, use get_mime_type?
-    files = []
-    input_data = Path(input_data)
-    if input_data.is_file():
-        ext = input_data.suffix.split('.')[-1]
-        if ext in DEFAULT_EBOOK_FORMATS:
-            files = [input_data]
-        else:
-            # TODO: important, logger
-            pass
-    else:
-        # TODO: important, use get_mime_type for each file found?
-        # you can have a pdf file with the wrong ext?
-        for fp in input_data.rglob('*'):
-            ext = fp.suffix.split('.')[-1]
-            if ext in DEFAULT_EBOOK_FORMATS:
-                files.append(fp)
-        # TODO: important sort within glob?
-        # logger.debug("Files sorted {}".format("in desc" if reverse else "in asc"))
-        # files.sort(key=lambda x: x.name, reverse=self.reverse)
-    return files
 
 
 def check_formats():
@@ -97,6 +72,8 @@ def setup_argparser():
     cache_group.add_argument(
         '--csl', '--cache-size-limit', dest='cache_size_limit',
         default=CACHE_SIZE_LIMIT, type=int, help='Size limit in gigabytes (GB)')
+    cache_group.add_argument(
+        '--cc', '--clear-cache', action='store_true', help='Clear cache')
     # ===========
     # Search text
     # ===========
@@ -166,54 +143,75 @@ def setup_argparser():
     return parser
 
 
+def process_file(file_path, args):
+    num_results = 0
+    window_length = 200
+    if file_path.suffix.split('.')[-1] not in args.ebook_formats:
+        return 1
+    text = convert(file_path, **args.__dict__)
+    if text == 1:
+        return 1
+    if args.case_sensitive:
+        flags = re.MULTILINE | re.IGNORECASE
+    else:
+        flags = re.MULTILINE
+    matches = re.finditer(args.search_query, text, flags)
+    search_result = {'filename': file_path.name, 'folder_path': file_path.parent,
+                     'file_path': file_path, 'matches': []}
+    for match in matches:
+        num_results += 1
+        start, end = match.span()
+        length = end - start
+        if start < window_length / 2:
+            subtext = text[start - 0:int(start + length + window_length / 2)]
+        else:
+            subtext = text[int(start - window_length / 2):int(start + length + window_length / 2)]
+        subtext = re.sub(f"({args.search_query})", f"{GREEN}{BOLD}\\1{NC}",
+                         subtext, flags=flags)
+        # TODO: important, use trans
+        subtext = subtext.replace('\n', ' ').replace('\x0cix', '').strip()
+        # TODO: important, uncomment for interactive
+        search_result['matches'].append(subtext)
+    return search_result
+
+
 def main():
     parser = setup_argparser()
     args = parser.parse_args()
     # TODO: check if can be done before
     args.cache_size_limit *= 10**9
-    files = get_files(args.input_data)
     search_results = []
     num_results = 0
     total_seconds = 0
-    window_length = 200
-    import ipdb
-    for fp in files:
-        if fp.suffix.split('.')[-1] not in args.ebook_formats:
-            continue
+    input_data = Path(args.input_data)
+
+    def process_result(start_t, num_res, total_secs):
+        if search_result != 1:
+            search_results.append(search_result)
+            num_res += len(search_result['matches'])
+        total_secs += time.time() - start_t
+        return num_res, total_secs
+
+    if input_data.is_file():
         start_time = time.time()
-        text = convert(fp, **args.__dict__)
-        if text == 1:
-            continue
-        if args.case_sensitive:
-            flags = re.MULTILINE | re.IGNORECASE
-        else:
-            flags = re.MULTILINE
-        matches = re.finditer(args.search_query, text, flags)
-        search_result = {'filename': fp.name, 'folder_path': fp.parent,
-                         'file_path': fp, 'matches': []}
-        for match in matches:
-            num_results += 1
-            start, end = match.span()
-            length = end - start
-            if start < window_length/2:
-                subtext = text[start - 0:int(start + length + window_length/2)]
-            else:
-                subtext = text[int(start - window_length / 2):int(start + length + window_length / 2)]
-            subtext = re.sub(f"({args.search_query})", f"{GREEN}{BOLD}\\1{NC}",
-                             subtext, flags=flags)
-            # TODO: important, use trans
-            subtext = subtext.replace('\n', ' ').replace('\x0cix', '').strip()
-            # TODO: important, uncomment for interactive
-            search_result['matches'].append(subtext)
-        search_results.append(search_result)
-        total_seconds += time.time() - start_time
-    search_results = sorted(search_results, key=lambda k: len(k['matches']),
-                            reverse=True)
-    print(f'{YELLOW}Total of {num_results} matches ({round(total_seconds, 3)} seconds){NC}\n')
+        search_result = process_file(input_data, args)
+        num_results, total_seconds = process_result(start_time, num_results,
+                                                    total_seconds)
+    else:
+        for fp in input_data.rglob('*'):
+            # print(fp)
+            start_time = time.time()
+            search_result = process_file(fp, args)
+            num_results, total_seconds = process_result(start_time, num_results,
+                                                        total_seconds)
+        search_results = sorted(search_results, key=lambda k: len(k['matches']),
+                                reverse=True)
+    print(f'{YELLOW}Total of {num_results} matches ({round(total_seconds, 3)} '
+          f'seconds){NC}\n')
     for i, result in enumerate(search_results, start=1):
-        print(f"{i}.\t{result['filename']}\n\tFolder path: {result['folder_path']}"
-              f"\n\tNumber of matches: {len(result['matches'])}\n")
-    # ipdb.set_trace()
+        print(f"{i}.\t{BLUE}{result['filename']}{NC}"
+              f"\n\t{VIOLET}Folder path:{NC} {result['folder_path']}"
+              f"\n\t{VIOLET}Number of matches:{NC} {len(result['matches'])}\n")
     return 0
 
 
