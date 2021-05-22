@@ -1,27 +1,35 @@
 #!/usr/bin/env python
 import argparse
 import os
-import re
-import shlex
-import subprocess
-import time
-from pathlib import Path
 
 import searchebooks
-from pyebooktools.convert_to_txt import convert
-from pyebooktools.configs import default_config
 from pyebooktools.lib import (
-    BLUE, GREEN, NC, RED, VIOLET, YELLOW, color_msg as c)
+    BLUE, GREEN, NC, RED, YELLOW, color_msg as c)
+from pyebooktools.utils.genutils import (
+    get_config_dict, namespace_to_dict, override_config_with_args, setup_log)
+from pyebooktools.utils.logutils import init_log
+from searchebooks.configs import default_config as default_cfg, __path__
+from searchebooks.search_ebooks import searcher
 
+logger = init_log(__name__, __file__)
+
+# =====================
+# Default config values
+# =====================
 DEFAULT_EBOOK_FORMATS = ['djvu', 'epub', 'html', 'pdf', 'txt']
-CACHE_FOLDER = os.path.expanduser('~/.search_ebooks')
-CACHE_SIZE_LIMIT = default_config.cache_size_limit
-DJVU_SEARCH_METHOD = 'djvutxt'
-EPUB_SEARCH_METHOD = 'zipgrep'
-EVICTION_POLICY = default_config.eviction_policy
-MSWORD_SEARCH_METHOD = 'textutil'
-PDF_SEARCH_METHOD = 'pdftotext'
-USE_CACHE = default_config.use_cache
+EBOOK_FORMATS = default_cfg.ebook_formats
+CACHE_FOLDER = default_cfg.cache_folder
+CACHE_SIZE_LIMIT = default_cfg.cache_size_limit
+DJVU_SEARCH_METHOD = default_cfg.djvu_search_method
+DJVU_SEARCH_METHODS = ['djvutxt', 'calibre']
+EPUB_SEARCH_METHOD = default_cfg.epub_search_method
+EPUB_SEARCH_METHODS = ['zipgrep', 'calibre']
+EVICTION_POLICY = default_cfg.eviction_policy
+MSWORD_SEARCH_METHOD = default_cfg.msword_search_method
+MSWORD_SEARCH_METHODS = ['catdoc', 'textutil', 'calibre']
+PDF_SEARCH_METHOD = default_cfg.pdf_search_method
+PDF_SEARCH_METHODS = ['pdftotext', 'calibre']
+USE_CACHE = default_cfg.use_cache
 
 
 class ArgumentParser(argparse.ArgumentParser):
@@ -108,6 +116,32 @@ def get_default_message(default_value):
     return f' ({GREEN}default: {default_value}{NC})'
 
 
+def process_returned_values(returned_values):
+    def log_opts_overriden(opts_overriden, msg, log_level='debug'):
+        nb_items = len(opts_overriden)
+        for i, (cfg_name, old_v, new_v) in enumerate(opts_overriden):
+            msg += f'\t {cfg_name}: {old_v} --> {new_v}'
+            if i + 1 < nb_items:
+                msg += "\n"
+        getattr(logger, log_level)(msg)
+
+    # Process 1st returned values: default args overriden by config options
+    if returned_values.default_args_overriden:
+        msg = 'Default arguments overridden by config options:\n'
+        log_opts_overriden(returned_values.default_args_overriden, msg)
+    # Process 2nd returned values: config options overriden by args
+    if returned_values.config_opts_overridden:
+        msg = 'Config options overridden by command-line arguments:\n'
+        log_opts_overriden(returned_values.config_opts_overridden, msg, 'debug')
+    # Process 3rd returned values: arguments not found in config file
+    """
+    if args_not_found_in_config:
+        msg = 'Command-line arguments not found in config file: ' \
+              f'\n\t{args_not_found_in_config}'
+        logger.debug(msg)
+    """
+
+
 def setup_argparser():
     width = os.get_terminal_size().columns - 5
     # Setup the parser
@@ -148,9 +182,10 @@ def setup_argparser():
     # =====
     cache_group = parser.add_argument_group(title=f'{YELLOW}Cache options{NC}')
     cache_group.add_argument(
-        '--use-cache', action='store_true', help='Use cache')
+        '--use-cache', action='store_true', help='Use cache.')
     cache_group.add_argument(
-        '--cache-folder', default=CACHE_FOLDER, help='Cache folder')
+        '--cache-folder', default=CACHE_FOLDER,
+        help='Cache folder.' + get_default_message(CACHE_FOLDER))
     cache_group.add_argument(
         '--ep', '--eviction-policy', dest='eviction_policy', metavar='POLICY',
         choices=['least-recently-stored', 'least-recently-used',
@@ -161,10 +196,11 @@ def setup_argparser():
     cache_group.add_argument(
         '--csl', '--cache-size-limit', metavar='SIZE', dest='cache_size_limit',
         default=CACHE_SIZE_LIMIT, type=int,
-        help='Size limit in gigabytes (GB)'
+        help='Size limit in gigabytes (GB).'
              + get_default_message(CACHE_SIZE_LIMIT))
     cache_group.add_argument(
-        '--cc', '--clear-cache', action='store_true', help='Clear cache')
+        '--cc', '--clear-cache', dest='clear_cache', action='store_true',
+        help='Clear cache.')
     # ===========
     # Search text
     # ===========
@@ -172,40 +208,37 @@ def setup_argparser():
         title=f'{YELLOW}Search options{NC}')
     search_text_group.add_argument(
         '--query', dest='search_query', metavar='QUERY', required=True,
-        help='Search query')
+        help='Search query which can also be a regex.')
     search_text_group.add_argument(
         '-f', '--ebook-formats', metavar='FORMAT', nargs='+',
-        default=DEFAULT_EBOOK_FORMATS, action=check_formats(),
-        help=f'{GREEN}Default{NC} ebook formats: '
-             f'{GREEN}{DEFAULT_EBOOK_FORMATS}{NC}')
-    djvu_search_methods = ['djvutxt', 'calibre']
+        default=EBOOK_FORMATS, action=check_formats(),
+        choices=DEFAULT_EBOOK_FORMATS,
+        help=f'Choice many from: {DEFAULT_EBOOK_FORMATS}.'
+             + get_default_message(EBOOK_FORMATS))
     search_text_group.add_argument(
         '--dsm', '--djvu-search-method', metavar='METHOD',
-        dest='djvu_search_method', choices=djvu_search_methods,
+        dest='djvu_search_method', choices=DJVU_SEARCH_METHODS,
         default=DJVU_SEARCH_METHOD,
-        help=f'Search method for djvu files: {djvu_search_methods}'
-             + get_default_message(DJVU_SEARCH_METHOD))
-    msword_search_methods = ['catdoc', 'textutil', 'calibre']
+        help='Search method for djvu files. Choose one from: '
+             f'{DJVU_SEARCH_METHODS}.' + get_default_message(DJVU_SEARCH_METHOD))
     search_text_group.add_argument(
         '--msm', '--msword-search-method', metavar='METHOD',
-        dest='msword_search_method', choices=msword_search_methods,
+        dest='msword_search_method', choices=MSWORD_SEARCH_METHODS,
         default=MSWORD_SEARCH_METHOD,
-        help=f'Search method for doc files: {msword_search_methods}'
-             + get_default_message(MSWORD_SEARCH_METHOD))
-    epub_search_methods = ['zipgrep', 'calibre']
+        help='Search method for doc files. Choose one from '
+             f'{MSWORD_SEARCH_METHODS}.' + get_default_message(MSWORD_SEARCH_METHOD))
     search_text_group.add_argument(
         '--esm', '--epub-search-method', metavar='METHOD',
-        dest='epub_search_method', choices=['zipgrep', 'calibre'],
+        dest='epub_search_method', choices=EPUB_SEARCH_METHOD,
         default=EPUB_SEARCH_METHOD,
-        help=f'Search method for epub files: {epub_search_methods}'
-             + get_default_message(EPUB_SEARCH_METHOD))
-    pdf_search_methods = ['pdftotext', 'calibre']
+        help='Search method for epub files. Choose one from: '
+             f'{EPUB_SEARCH_METHODS}.' + get_default_message(EPUB_SEARCH_METHOD))
     search_text_group.add_argument(
         '--psm', '--pdf-search-method', metavar='METHOD',
-        dest='pdf_search_method', choices=pdf_search_methods,
-        default='pdftotext',
-        help=f'Search method for pdf files: {PDF_SEARCH_METHOD}'
-             + get_default_message(PDF_SEARCH_METHOD))
+        dest='pdf_search_method', choices=PDF_SEARCH_METHODS,
+        default=PDF_SEARCH_METHOD,
+        help='Search method for pdf files. Choose one from: '
+             f'{PDF_SEARCH_METHOD}.' + get_default_message(PDF_SEARCH_METHOD))
     # ===============
     # Search metadata
     # ===============
@@ -226,7 +259,7 @@ def setup_argparser():
     search_metadata_group.add_argument(
         '--identifiers', help='Identifiers')
     search_metadata_group.add_argument(
-        '-i', '--isbn', help='ISBN')
+        '--isbn', help='ISBN')
     search_metadata_group.add_argument(
         '-l', '--language', help='Language')
     search_metadata_group.add_argument(
@@ -245,104 +278,35 @@ def setup_argparser():
     input_group = parser.add_argument_group(title=f'{YELLOW}Input argument{NC}')
     input_group.add_argument(
         name_input,
-        help='Can either be the path to an ebook or a folder containing ebooks')
+        help='Can either be the path to an ebook or a folder containing ebooks.')
     return parser
 
 
-def process_file(file_path, args):
-    num_matches = 0
-    window_length = 200
-    ext = file_path.suffix.split('.')[-1]
-    if ext not in args.ebook_formats:
-        return 1
-    flags = re.MULTILINE | re.IGNORECASE if args.ignore_case else re.MULTILINE
-    search_result = {'filename': file_path.name, 'folder_path': file_path.parent,
-                     'file_path': file_path, 'matches': []}
-    if ext == 'epub' and args.epub_search_method == 'zipgrep':
-        zipgrep = 'zipgrep -i' if args.ignore_case else 'zipgrep'
-        cmd = f'find "{file_path}" -exec {zipgrep} {args.search_query} {{}} \\;'
-        cmd_args = shlex.split(cmd)
-        result = subprocess.run(cmd_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        if result.stderr:
-            return 1
-        else:
-            text = result.stdout.decode()
-            # TODO: important, explain remove lines with content.opf
-            lines = [l for l in text.splitlines() if not l.count('content.opf')]
-            text = '\n'.join(lines)
-            matches = re.findall(args.search_query, text, flags)
-            # TODO: important, uncomment for interactive
-            # text = re.sub(f"({args.search_query})", f"{GREEN}{BOLD}\\1{NC}", text, flags=flags)
-            search_result['matches'] = len(matches)
-            return search_result
-    text = convert(file_path, **args.__dict__)
-    if text == 1:
-        return 1
-    matches = re.findall(args.search_query, text, flags)
-    search_result['matches'] = len(matches)
-    # TODO: important, uncomment for interactive
-    """
-    matches = re.finditer(args.search_query, text, flags)
-    for match in matches:
-        num_matches += 1
-        start, end = match.span()
-        length = end - start
-        if start < window_length / 2:
-            subtext = text[start - 0:int(start + length + window_length / 2)]
-        else:
-            subtext = text[int(start - window_length / 2):int(start + length + window_length / 2)]
-        subtext = re.sub(f"({args.search_query})", f"{GREEN}{BOLD}\\1{NC}",
-                         subtext, flags=flags)
-        # TODO: important, use trans
-        subtext = subtext.replace('\n', ' ').replace('\x0cix', '').strip()
-        search_result['matches'].append(subtext)
-    search_result['matches'] = num_matches
-    """
-    return search_result
-
-
 def main():
-    parser = setup_argparser()
-    args = parser.parse_args()
-    # TODO: check if can be done before
-    args.cache_size_limit *= 10**9
-    search_results = []
-    num_results = 0
-    total_seconds = 0
-    input_data = Path(args.input_data)
-
-    def process_result(start_t, num_res, total_secs):
-        if search_result != 1:
-            search_results.append(search_result)
-            # num_res += len(search_result['matches'])
-            num_res += search_result['matches']
-        total_secs += time.time() - start_t
-        return num_res, total_secs
-
-    if input_data.is_file():
-        start_time = time.time()
-        search_result = process_file(input_data, args)
-        num_results, total_seconds = process_result(start_time, num_results,
-                                                    total_seconds)
+    try:
+        parser = setup_argparser()
+        args = parser.parse_args()
+        # Get main cfg dict
+        # TODO: important, check if an option is defined more than once
+        configs_dirpath = __path__[0]
+        main_cfg = argparse.Namespace(**get_config_dict('main', configs_dirpath))
+        returned_values = override_config_with_args(main_cfg, parser, default_cfg)
+        # TODO: check if can be done before
+        main_cfg.cache_size_limit *= 10 ** 9
+        setup_log(package='searchebooks', configs_dirpath=configs_dirpath,
+                  quiet=main_cfg.quiet,
+                  verbose=main_cfg.verbose,
+                  logging_level=main_cfg.logging_level,
+                  logging_formatter=main_cfg.logging_formatter)
+        # Override main configuration from file with command-line arguments
+        process_returned_values(returned_values)
+    except AssertionError as e:
+        # TODO (IMPORTANT): use same logic as in Darth-Vader-RPi
+        # TODO: add KeyboardInterruptError
+        logger.error(e)
+        return 1
     else:
-        for fp in input_data.rglob('*'):
-            print(fp)
-            start_time = time.time()
-            search_result = process_file(fp, args)
-            num_results, total_seconds = process_result(start_time, num_results,
-                                                        total_seconds)
-        # search_results = sorted(search_results, key=lambda k: len(k['matches']),
-        #                         reverse=True)
-        search_results = sorted(search_results, key=lambda k: k['matches'],
-                                reverse=True)
-    print(f'{YELLOW}Total of {num_results} matches ({round(total_seconds, 3)} '
-          f'seconds){NC}\n')
-    for i, result in enumerate(search_results, start=1):
-        print(f"{i}.\t{BLUE}{result['filename']}{NC}"
-              f"\n\t{VIOLET}Folder path:{NC} {result['folder_path']}"
-              f"\n\t{VIOLET}Number of matches:{NC} {result['matches']}\n")
-    # f"\n\t{VIOLET}Number of matches:{NC} {len(result['matches'])}\n")
-    return 0
+        return searcher.search(**namespace_to_dict(main_cfg))
 
 
 if __name__ == '__main__':
