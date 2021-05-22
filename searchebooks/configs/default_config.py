@@ -13,7 +13,7 @@ ignore_case = False
 
 # 1.2 Options for OCR
 # ===================
-ocr_enabled = False
+ocr_enabled = 'false'
 ocr_only_first_last_pages = (7, 3)
 ocr_command = 'tesseract_wrapper'
 
@@ -37,6 +37,7 @@ clear_cache = False
 # =================
 # 3. Search options
 # =================
+search_query = None
 ebook_formats = ['djvu', 'epub', 'html', 'pdf', 'txt']
 djvu_search_method = 'djvutxt'
 msword_search_method = 'textutil'
