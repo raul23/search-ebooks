@@ -11,8 +11,7 @@ import searchebooks
 from pyebooktools.convert_to_txt import convert
 from pyebooktools.configs import default_config
 from pyebooktools.lib import (
-    BLUE, BOLD, GREEN, NC, RED, VIOLET, YELLOW, color_msg as c,
-    convert_result_from_shell_cmd)
+    BLUE, GREEN, NC, RED, VIOLET, YELLOW, color_msg as c)
 
 DEFAULT_EBOOK_FORMATS = ['djvu', 'epub', 'html', 'pdf', 'txt']
 CACHE_FOLDER = os.path.expanduser('~/.search_ebooks')
@@ -141,8 +140,9 @@ def setup_argparser():
         help='Print various debugging information, e.g. print traceback '
              'when there is an exception.')
     general_group.add_argument(
-        '-c', '--case-sensitive', action='store_true',
-        help='Case sensitive')
+        '-i', '--ignore-case', action='store_true',
+        help='Perform case insensitive matching. By default, %(prog)s is case '
+             'sensitive.')
     # =====
     # Cache
     # =====
@@ -255,11 +255,11 @@ def process_file(file_path, args):
     ext = file_path.suffix.split('.')[-1]
     if ext not in args.ebook_formats:
         return 1
-    flags = re.MULTILINE if args.case_sensitive else re.MULTILINE | re.IGNORECASE
+    flags = re.MULTILINE | re.IGNORECASE if args.ignore_case else re.MULTILINE
     search_result = {'filename': file_path.name, 'folder_path': file_path.parent,
                      'file_path': file_path, 'matches': []}
     if ext == 'epub' and args.epub_search_method == 'zipgrep':
-        zipgrep = 'zipgrep' if args.case_sensitive else 'zipgrep -i'
+        zipgrep = 'zipgrep -i' if args.ignore_case else 'zipgrep'
         cmd = f'find "{file_path}" -exec {zipgrep} {args.search_query} {{}} \\;'
         cmd_args = shlex.split(cmd)
         result = subprocess.run(cmd_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
