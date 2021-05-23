@@ -92,7 +92,9 @@ PDF files into ``txt``:
 
   ``-f pdf`` is used to only process PDF files since the ``~/ebooks/`` folder might
   have all kinds of ebook files (e.g. ``djvu`` and ``epub``).
-   
+
+|
+
 **Output:** ``pdftotext`` and cache
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/pdftotext_with_cache.png
