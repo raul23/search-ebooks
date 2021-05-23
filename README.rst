@@ -28,10 +28,6 @@ Without cache
 ^^^^^^^^^^^^^
 Searching content of PDF files with calibre's ``ebook-convert``
 ---------------------------------------------------------------
-With cache
-^^^^^^^^^^
-Without cache
-^^^^^^^^^^^^^
 
 Examples
 ========
