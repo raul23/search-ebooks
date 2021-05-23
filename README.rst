@@ -29,8 +29,8 @@ Python dependencies
 
 Other dependencies
 -------------------
-* As explained in the documentation for `pyebooktools`_, you need recent 
-  versions of:
+As explained in the documentation for `pyebooktools`_, you need recent 
+versions of:
   
   * `calibre`_ for converting ebook files to ``.txt``
   * `Tesseract`_ for running OCR on books - version 4 gives better results even
