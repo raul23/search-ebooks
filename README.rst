@@ -49,7 +49,8 @@ Using cache, we are able to decrease the search time by **4.7**
 
 With cache
 ^^^^^^^^^^
-This is the command which makes use of ``pdftotext`` and cache:
+This is the command which makes use of ``pdftotext`` for searching and cache to save the converted
+PDF files into ``txt``:
 
 .. code:: bash
 
@@ -64,7 +65,7 @@ This is the command which makes use of ``pdftotext`` and cache:
 
 Without cache
 ^^^^^^^^^^^^^
-This is the command which makes use of ``pdftotext`` but doesn't use cache:
+This is the command which makes use of ``pdftotext`` for searching but doesn't use cache:
 
 .. code:: bash
 
