@@ -50,7 +50,7 @@ This is the command which makes use of cache:
 
    $ search-ebooks ~/ebooks/ --query "\bhold\b" -f pdf --use-cache
    
-**Output:**
+**Output:** ``pdftotext`` and with cache
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/pdftotext_with_cache.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/pdftotext_with_cache.png
@@ -63,7 +63,7 @@ Without cache
 
    $ search-ebooks ~/ebooks/ --query "\bhold\b" -f pdf
    
-**Output:**
+**Output:** ``pdftotext`` and without cache
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/pdftotext_without_cache.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/pdftotext_without_cache.png
