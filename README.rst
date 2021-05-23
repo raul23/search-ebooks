@@ -13,4 +13,5 @@ ebooks.
 
 Results
 =======
-I compared
+Searching content of PDF files with ``pdftotext``
+-------------------------------------------------
