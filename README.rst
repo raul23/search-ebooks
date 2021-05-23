@@ -20,7 +20,7 @@ Dependencies
 ============
 * **Platforms:** macOS [soon linux]
 * **Python**: >= 3.6
-* ``diskcache`` >= 5.2.1 for caching persistently the converted files into ``txt``
+* ``diskcache`` >= 5.2.1 for caching persistently the converted files into ``.txt``
 
 Cache
 =====
@@ -30,14 +30,14 @@ it is a document with hundreds of pages. `DiskCache`_, a disk and file backed
 cache library, is used by the ``search-ebooks`` script.
 
 A file-based cache library was choosen instead of a memory-based 
-cache like `Redis`_ because the converted files (``txt``) needed to be 
+cache like `Redis`_ because the converted files (``.txt``) needed to be 
 persistent to speed up subsequent searches and since we are storing huge
 quantities of data (e.g. we can have thousands of ebooks to search from), 
 a memory-based cache might not be suited. In order to avoid using too much 
 disk space, you can set the cache size which by default it is set to 1 GB.
 
-As an example to see how much disk space you might need to cache 1000 ``txt``
-files all at once, let's say that on average each ``txt`` file uses
+As an example to see how much disk space you might need to cache 1000 ``.txt``
+files all at once, let's say that on average each ``.txt`` file uses
 approximately 700 KB which roughly corresponds to a PDF file with 350 pages. 
 Thus, you will need a cache size of at least 700 MB.
 
@@ -59,11 +59,11 @@ in the text content, then the ``hold`` query would do the work.
 
 Searching content of PDF files with ``pdftotext``
 -------------------------------------------------
-We will use the `pdftotext`_ utility to convert PDF files to ``txt`` in order
+We will use the `pdftotext`_ utility to convert PDF files to ``.txt`` in order
 to search through content for a given search query.
 
 By default, the ``seach-ebooks`` script uses ``pdftotext`` since it is way
-faster than *calibre*\'s `ebook-convert`_ to convert files to ``txt``.
+faster than *calibre*\'s `ebook-convert`_ to convert files to ``.txt``.
 
 The ``pdftotext``'s results are given for two cases: with and without cache.
 
@@ -82,7 +82,7 @@ Using cache, we are able to decrease the search time by **4.7**
 With cache
 ^^^^^^^^^^
 This is the command which makes use of ``pdftotext`` to search and cache to save the converted
-PDF files into ``txt``:
+PDF files into ``.txt``:
 
 .. code:: bash
 
@@ -91,9 +91,9 @@ PDF files into ``txt``:
 `:information_source:`
 
   - ``-f pdf`` is used to only process PDF files since the ``~/ebooks/`` folder might
-    have all kinds of ebook files (e.g. ``djvu`` and ``epub``).
+    have all kinds of ebook files (e.g. ``.djvu`` and ``.epub``).
   - By default, the search uses the ``pdftotext`` utility to convert the PDF files
-    to ``txt`` and then search them for the given query.
+    to ``.txt`` and then search them for the given query.
 
 |
 
@@ -130,7 +130,7 @@ This is the command which makes use of *calibre*\'s ``ebook-convert`` to search 
 `:information_source:`
 
   ``psm calibre`` specifies to use *calibre*\'s `ebook-convert`_ to convert
-  PDF files to ``txt`` (instead of ``pdftotext``) and then search them for the
+  PDF files to ``.txt`` (instead of ``pdftotext``) and then search them for the
   given query.
  
 |
@@ -139,12 +139,12 @@ This is the command which makes use of *calibre*\'s ``ebook-convert`` to search 
 
   However, ``ebook-convert`` is too slow when converting PDF files to ``txt``.
   Also, ``ebook-convert`` will try to convert scanned ebooks that only contain images 
-  and after a long time waiting for the result, it will output a small ``txt`` file 
+  and after a long time waiting for the result, it will output a small ``.txt`` file 
   that doesn't contain any of the file content. On the other hand, ``pdftotext`` will
-  quickly warn you that the scanned ebook couldn't be converted to ``txt``.
+  quickly warn you that the scanned ebook couldn't be converted to ``.txt``.
   
   Thus, ``pdftotext`` is used by default with the ``search-ebooks`` script
-  to convert PDF files to ``txt`` and search them for the given query.
+  to convert PDF files to ``.txt`` and search them for the given query.
 
 Examples
 ========
