@@ -59,7 +59,7 @@ you need recent versions of:
   
 And optionally, you might need:
 
-  * **Highly recommended** `poppler`_, `catdoc`_ and `DjVuLibre`_ 
+  * (**Highly recommended**) `poppler`_, `catdoc`_ and `DjVuLibre`_ 
     can be installed for faster than calibre's conversion of ``.pdf``, ``.doc`` 
     and ``.djvu`` files respectively to ``.txt``.
 
