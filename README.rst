@@ -18,7 +18,7 @@ different types of ebooks.
 
 Tests
 =====
-Search through content of eight PDF ebooks for the word **hold**
+Search through content of eight PDF files for the word **hold**
 which is accomplished with the regex ``\bhold\b``. Thus for
 example, we want *hold* but not *holdings*.
 
