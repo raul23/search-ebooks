@@ -22,7 +22,8 @@ Searching content of PDF files with ``pdftotext``
 -------------------------------------------------
 Summary of results
 ^^^^^^^^^^^^^^^^^^
-Search through content of PDF ebooks for the query ``\bhold\b``
+Search through content of PDF ebooks for the word `hold`
+which is accomplished with the regex ``\bhold\b``
 
 +-----------------------------+----------------+
 |             Case            | Time (seconds) |
