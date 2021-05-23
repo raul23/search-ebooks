@@ -18,9 +18,25 @@ different types of ebooks.
    
 Dependencies
 ============
+Python dependencies
+-------------------
 * **Platforms:** macOS [soon linux]
 * **Python**: >= 3.6
-* ``diskcache`` >= 5.2.1 for caching persistently the converted files into ``.txt``
+* `diskcache`_ >= 5.2.1 for caching persistently the converted files into ``.txt``
+* `pyebooktools`_ >= 0.1.0 for 
+
+Other dependencies
+-------------------
+* As explained in the documentation for `pyebooktools`_, you need recent 
+  versions of:
+  
+  * `calibre`_ for converting ebook files to ``.txt``
+  * `Tesseract`_ for running OCR on books - version 4 gives better results even
+    though it's still in alpha. OCR is disabled by default and another engine
+    can be configured if preferred.
+  * **Optionally but highly recommeded** `poppler`_, `catdoc`_ and `DjVuLibre`_ 
+    can be installed for faster than calibre's conversion of ``.pdf``, ``.doc`` 
+    and ``.djvu`` files respectively to ``.txt``.
 
 Cache
 =====
@@ -173,5 +189,6 @@ the `LICENSE`_ file in the repository.
 .. _LICENSE: ./LICENSE
 .. _Memcached: http://memcached.org/
 .. _pdftotext: https://www.xpdfreader.com/pdftotext-man.html
+.. _pyebooktools: https://github.com/raul23/pyebooktools/blob/master/README.rst#other-dependencies
 .. _Redis: https://redis.io/
 .. _TkInter: https://wiki.python.org/moin/TkInter
