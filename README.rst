@@ -197,12 +197,15 @@ Starting from first priority tasks:
    
    **Status:** working on it
 
-2. Test on linux
-3. Create a `docker`_ image for this project
-4. Add tests on `Travis CI`_
-5. Eventually add documentation on `Read the Docs`_
-6. Add support for multiprocessing
-7. Implement a GUI, specially to make navigation of search results easier 
+2. Add support for `Lucene`_ as a powerful search backend since it has
+   "indexing and search features, as well as spellchecking, hit 
+   highlighting and advanced analysis/tokenization capabilities".
+3. Test on linux
+4. Create a `docker`_ image for this project
+5. Add tests on `Travis CI`_
+6. Eventually add documentation on `Read the Docs`_
+7. Add support for multiprocessing
+8. Implement a GUI, specially to make navigation of search results easier 
    since you can have hundreds of matches for a given search query
   
    Though, for the moment not sure which GUI library to choose from 
@@ -226,6 +229,7 @@ the `LICENSE`_ file in the repository.
 .. _Kivy: https://kivy.org/
 .. _lib.py: https://github.com/raul23/pyebooktools/blob/master/pyebooktools/lib.py
 .. _LICENSE: ./LICENSE
+.. _Lucene: https://lucene.apache.org/
 .. _Memcached: http://memcached.org/
 .. _pdftotext: https://www.xpdfreader.com/pdftotext-man.html
 .. _poppler: https://poppler.freedesktop.org/
