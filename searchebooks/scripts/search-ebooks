@@ -2,6 +2,8 @@
 import argparse
 import os
 
+from diskcache import Cache
+
 import searchebooks
 from pyebooktools.lib import (
     BLUE, GREEN, NC, RED, YELLOW, color_msg as c)
@@ -199,7 +201,7 @@ def setup_argparser():
         help='Size limit in gigabytes (GB).'
              + get_default_message(CACHE_SIZE_LIMIT))
     cache_group.add_argument(
-        '--cc', '--clear-cache', dest='clear_cache', action='store_true',
+        '-c', '--clear-cache', dest='clear_cache', action='store_true',
         help='Clear cache.')
     # ===========
     # Search text
@@ -213,7 +215,7 @@ def setup_argparser():
         '-f', '--ebook-formats', metavar='FORMAT', nargs='+',
         default=EBOOK_FORMATS, action=check_formats(),
         choices=DEFAULT_EBOOK_FORMATS,
-        help=f'Choice many from: {DEFAULT_EBOOK_FORMATS}.'
+        help=f'Choice one or more from: {DEFAULT_EBOOK_FORMATS}.'
              + get_default_message(EBOOK_FORMATS))
     search_text_group.add_argument(
         '--dsm', '--djvu-search-method', metavar='METHOD',
@@ -244,8 +246,8 @@ def setup_argparser():
     # ===============
     search_metadata_group = parser.add_argument_group(
         title=f'{YELLOW}Advanced search options{NC}',
-        description=f'{RED}IMPORTANT:{NC} all the selected fields are linked '
-                    'with AND along with the search query')
+        description=f'{RED}IMPORTANT:{NC} all the selected fields and the '
+                    'search query are linked with ANDs between each other')
     search_metadata_group.add_argument(
         '-a', '--authors', help='Authors')
     search_metadata_group.add_argument(
@@ -290,6 +292,7 @@ def main():
         # TODO: important, check if an option is defined more than once
         configs_dirpath = __path__[0]
         main_cfg = argparse.Namespace(**get_config_dict('main', configs_dirpath))
+        # Override main configuration from file with command-line arguments
         returned_values = override_config_with_args(main_cfg, parser, default_cfg)
         # TODO: check if can be done before
         main_cfg.cache_size_limit *= 10 ** 9
@@ -298,15 +301,23 @@ def main():
                   verbose=main_cfg.verbose,
                   logging_level=main_cfg.logging_level,
                   logging_formatter=main_cfg.logging_formatter)
-        # Override main configuration from file with command-line arguments
         process_returned_values(returned_values)
+        # Setup cache
+        cache = Cache(directory=main_cfg.cache_folder,
+                      eviction_policy=main_cfg.eviction_policy,
+                      size_limit=main_cfg.cache_size_limit)
+        if args.clear_cache:
+            result = cache.clear()
+            if result:
+                logger.info('Cache cleared!')
+            else:
+                logger.debug('Cache was already empty!')
+        return searcher.search(cache=cache, **namespace_to_dict(main_cfg))
     except AssertionError as e:
         # TODO (IMPORTANT): use same logic as in Darth-Vader-RPi
         # TODO: add KeyboardInterruptError
         logger.error(e)
         return 1
-    else:
-        return searcher.search(**namespace_to_dict(main_cfg))
 
 
 if __name__ == '__main__':
