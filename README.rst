@@ -18,6 +18,14 @@ ebooks.
 
 Results
 =======
++-------------------------+----------------+
+|           Case          | Time (seconds) |
++=========================+================+
+| pdftotext with cache    | 1.036          |
++-------------------------+----------------+
+| pdftotext without cache | 4.304          |
++-------------------------+----------------+
+
 Summary of results
 ------------------
 Searching content of PDF files with ``pdftotext``
