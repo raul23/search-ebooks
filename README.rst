@@ -16,8 +16,8 @@ different types of ebooks.
    :local:
    :backlinks: top
 
-Results
-=======
+Tests
+=====
 Searching content of PDF files with ``pdftotext``
 -------------------------------------------------
 Summary of results
