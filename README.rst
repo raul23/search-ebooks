@@ -112,7 +112,11 @@ This is the command which makes use of ``pdftotext`` to search but doesn't use c
 
 Searching content of PDF files with calibre's ``ebook-convert``
 ---------------------------------------------------------------
-TODO
+This is the command which makes use of *calibre*\'s ``ebook-conver`` to search but doesn't use cache:
+
+.. code:: bash
+
+   $ search-ebooks ~/ebooks/ --query "\bhold\b" -f pdf
 
 Examples
 ========
