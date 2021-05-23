@@ -8,23 +8,24 @@ search-ebooks
     <br> 🚧 &nbsp;&nbsp;&nbsp;<b>Work-In-Progress</b>
   </p>
 
-Command-line program that searches through content and metadata of
-different types of ebooks.
+Command-line program that searches through content and metadata of different
+types of ebooks.
 
-It allows you to choose the search-backend for the different ebook
-formats. By default, these are the search backends for each type of ebooks:
+It allows you to choose the search-backend for the different ebook formats.
+By default, these are the search backends for each type of ebooks:
 
 * ``.djvu``: `djvutxt`_ extracts the text and then it is search on
 * ``.epub``: `zipgrep`_ extracts the text and then it is search on
-* ``.doc`` and other related text files [1]_: `catdoc`_ or `textutil`_ (if on macOS) extracts the text and then it is search on
+* ``.doc`` and other related text files [1]_: `catdoc`_ or `textutil`_
+  (if on macOS) extracts the text and then it is search on
 * ``.pdf``: `pdftotext`_ extracts the text and then it is search on
 
-The other search-backends are based either on *calibre*\'s `ebook-convert`_ or `Lucene`_ (not
-supported yet).
+The other search-backends are based either on *calibre*\'s `ebook-convert`_ or
+`Lucene`_ (not supported yet).
 
-All of the search-backends makes use of a file-based `cache`_ to save the converted
-ebook files to ``.txt`` and hence speed up the searching by a lot (depending 
-on the number of files searched, it can even be 20 times faster!).
+All of the search-backends makes use of a file-based `cache`_ to save the
+converted ebook files to ``.txt`` and hence speed up the searching by a lot
+(depending on the number of files searched, it can even be 20 times faster!).
 
 `:warning:`
 
@@ -44,10 +45,11 @@ Python dependencies
 -------------------
 * **Platforms:** macOS [soon linux]
 * **Python**: >= **3.6**
-* `diskcache`_ >= **5.2.1** for caching persistently the converted files into ``.txt``
-* `pyebooktools`_ >= **0.1.0a3** for converting files to ``.txt`` (see `convert_to_txt.py`_)
-  along with its library `lib.py`_ that has useful functions for building 
-  ebook management scripts.
+* `diskcache`_ >= **5.2.1** for caching persistently the converted files into
+  ``.txt``
+* `pyebooktools`_ >= **0.1.0a3** for converting files to ``.txt`` (see
+  `convert_to_txt.py`_) along with its library `lib.py`_ that has useful
+  functions for building ebook management scripts.
 
 Other dependencies
 -------------------
@@ -60,7 +62,7 @@ you need recent versions of:
 And optionally, you might need:
 
 * (**Highly recommended**) `poppler`_, `catdoc`_ and `DjVuLibre`_ 
-  can be installed for faster than calibre's conversion of ``.pdf``, ``.doc`` 
+  can be installed for faster than calibre's conversion of ``.pdf``, ``.doc``
   and ``.djvu`` files respectively to ``.txt``.
   
   `:warning:`
@@ -70,15 +72,15 @@ And optionally, you might need:
 
 .. TODO: add these options
 .. * `Lucene`_ for a powerful search library
-.. * `Tesseract`_ for running OCR on books - version 4 gives better results even
-   though it's still in alpha. OCR is disabled by default and another engine
-   can be configured if preferred.
+.. * `Tesseract`_ for running OCR on books - version 4 gives better results
+   even though it's still in alpha. OCR is disabled by default and another
+   engine can be configured if preferred.
 
 Cache
 =====
 Cache is used to save the converted ebook files into ``.txt`` to avoid
 re-converting them which is a very time consuming process, specially if
-it is a document with hundreds of pages. `DiskCache`_, a disk and file backed 
+it is a document with hundreds of pages. `DiskCache`_, a disk and file backed
 cache library, is used by the ``search-ebooks`` script.
 
 A file-based cache library was choosen instead of a memory-based 
@@ -88,8 +90,8 @@ quantities of data (e.g. we can have thousands of ebooks to search from),
 a memory-based cache might not be suited. In order to avoid using too much 
 disk space, you can set the cache size which by default it is set to 1 GB.
 
-As an example to see how much disk space you might need to cache one thousand ``.txt``
-files all at once, let's say that on average each ``.txt`` file uses
+As an example to see how much disk space you might need to cache one thousand
+``.txt`` files all at once, let's say that on average each ``.txt`` file uses
 approximately 700 KB which roughly corresponds to a file with 350 pages. 
 Thus, you will need a cache size of at least 700 MB.
 
@@ -102,15 +104,15 @@ See `DiskCache Cache Benchmarks`_ for comparaisons to `Memcached`_ and
 
 Tests
 =====
-Search through the content of eight PDF files for the word **hold**
-which is accomplished with the regex ``\bhold\b``. Thus for
-example, we want *hold* but not *holdings* nor *behold*.
+Search through the content of eight PDF files for the word **hold** which is
+accomplished with the regex ``\bhold\b``. Thus for example, we want *hold* but
+not *holdings* nor *behold*.
 
-If we wanted all occurrences of **hold** no matter where it appears 
-in the text content, then the ``hold`` query would do the work.
+If we wanted all occurrences of **hold** no matter where it appears in the text
+content, then the ``hold`` query would do the work.
 
-This is the ``~/ebooks/`` folder that contains the files which we
-will search from:
+This is the ``~/ebooks/`` folder that contains the files which we will search
+from:
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/list_of_ebooks.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/list_of_ebooks.png
@@ -121,8 +123,8 @@ will search from:
 
   * The folder contains ebooks of different types but we will only
     search the PDF files.
-  * Of the total eight PDF files, two are scanned ebooks that contain only images: 
-    *Les Misérables by Victor Hugo.pdf* and *The Republic by Plato.pdf*.
+  * Of the total eight PDF files, two are scanned ebooks that contain only
+    images: *Les Misérables by Victor Hugo.pdf* and *The Republic by Plato.pdf*.
 
 Searching content of PDF files with ``pdftotext``
 -------------------------------------------------
@@ -148,8 +150,8 @@ Using cache, the search is **4.7** times quicker than without cache:
 
 ``pdftotext`` with cache
 ^^^^^^^^^^^^^^^^^^^^^^^^
-This is the command which makes use of ``pdftotext`` to search and cache to save the converted
-PDF files into ``.txt``:
+This is the command which makes use of ``pdftotext`` to search and cache to
+save the converted PDF files into ``.txt``:
 
 .. code:: bash
 
@@ -157,10 +159,10 @@ PDF files into ``.txt``:
    
 `:information_source:`
 
-  - ``-f pdf`` is used to only process PDF files since the ``~/ebooks/`` folder might
-    have all kinds of ebook files (e.g. ``.djvu`` and ``.epub``).
-  - By default, the search uses the ``pdftotext`` utility to convert the PDF files
-    to ``.txt`` and then search them for the given query.
+  - ``-f pdf`` is used to only process PDF files since the ``~/ebooks/`` folder
+    might have all kinds of ebook files (e.g. ``.djvu`` and ``.epub``).
+  - By default, the search uses the ``pdftotext`` utility to convert the PDF
+    files to ``.txt`` and then search them for the given query.
 
 |
 
@@ -173,12 +175,13 @@ PDF files into ``.txt``:
 
 `:information_source:`
 
-  Two PDF files were not included in the search results because they
-  were scanned ebooks that only contain images.
+  Two PDF files were not included in the search results because they were
+  scanned ebooks that only contain images.
 
 ``pdftotext`` without cache
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This is the command which makes use of ``pdftotext`` to search but doesn't use cache:
+This is the command which makes use of ``pdftotext`` to search but doesn't use
+cache:
 
 .. code:: bash
 
@@ -193,7 +196,8 @@ This is the command which makes use of ``pdftotext`` to search but doesn't use c
 
 Searching content of PDF files with calibre's ``ebook-convert``
 ---------------------------------------------------------------
-This is the command which makes use of *calibre*\'s ``ebook-convert`` to search but doesn't use cache:
+This is the command which makes use of *calibre*\'s ``ebook-convert`` to search
+but doesn't use cache:
 
 .. code:: bash
 
@@ -209,14 +213,15 @@ This is the command which makes use of *calibre*\'s ``ebook-convert`` to search 
 
 `:warning:`
 
-  However, ``ebook-convert`` is too slow when converting PDF files to ``.txt``.
-  Also, ``ebook-convert`` will try to convert scanned ebooks that only contain images 
-  and after a long time waiting for the result, it will output a small ``.txt`` file 
-  that doesn't contain any of the file content. On the other hand, ``pdftotext`` will
-  quickly warn you that the scanned ebook couldn't be converted to ``.txt``.
+  However, ``ebook-convert`` is too slow when converting PDF files to
+  ``.txt``. Also, ``ebook-convert`` will try to convert scanned ebooks that
+  only contain images and after a long time waiting for the result, it will
+  output a small ``.txt`` file that doesn't contain any of the file content. On
+  the other hand, ``pdftotext`` will quickly warn you that the scanned ebook
+  couldn't be converted to ``.txt``.
   
-  Thus, ``pdftotext`` is used by default with the ``search-ebooks`` script
-  to convert PDF files to ``.txt`` and search them for the given query.
+  Thus, ``pdftotext`` is used by default with the ``search-ebooks`` script to
+  convert PDF files to ``.txt`` and search them for the given query.
 
 Examples
 ========
@@ -237,11 +242,11 @@ Starting from first priority tasks:
 3. Add instructions on how to install the ``searchebooks`` package
 
 4. Add support for `Lucene`_ as a search backend since it has
-   "powerful indexing and search features, as well as spellchecking, hit 
+   "powerful indexing and search features, as well as spellchecking, hit
    highlighting and advanced analysis/tokenization capabilities".
    
-   `PyLucene`_ will be used to access ``Lucene``\'s text indexing 
-   and searching capabilities from Python
+   `PyLucene`_ will be used to access ``Lucene``\'s text indexing and searching
+   capabilities from Python
    
 5. Test on linux
 6. Create a `docker`_ image for this project
@@ -256,8 +261,8 @@ Starting from first priority tasks:
 
 License
 =======
-This program is licensed under the GNU General Public License v3.0. For more details see 
-the `LICENSE`_ file in the repository.
+This program is licensed under the GNU General Public License v3.0. For more
+details see the `LICENSE`_ file in the repository.
 
 References
 ==========
