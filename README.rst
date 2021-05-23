@@ -76,6 +76,9 @@ example, we want *hold* but not *holdings* nor *behold*.
 If we wanted all occurrences of **hold** no matter where it appears 
 in the text content, then the ``hold`` query would do the work.
 
+This is the ``~/ebooks/`` folder that contains the files which we
+will search from:
+
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/list_of_ebooks.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/list_of_ebooks.png
    :align: left
@@ -83,7 +86,9 @@ in the text content, then the ``hold`` query would do the work.
 
 `:information_source:`
 
-  Two PDF files are scanned ebooks that contain only images: 
+  * The folder contains ebooks of different types but we will only
+    search the PDF files.
+  * Two PDF files are scanned ebooks that contain only images: 
   ``Les Misérables by Victor Hugo.pdf`` and ``The Republic by Plato.pdf``.
 
 Searching content of PDF files with ``pdftotext``
