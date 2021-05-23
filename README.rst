@@ -54,6 +54,11 @@ a memory-based cache might not be suited. In order to avoid using up all
 your disk space, you can set the cache size which by default it is
 set to 1 GB.
 
+As an example to see how much disk space you might need to cache 1000 ``txt``
+files all at once, let's say that on average each ``txt`` file uses
+approximately 700 KB which represents an ebook with 350 pages. Thus, you will
+need a cache size of 700 MB.
+
 Also `DiskCache`_ has its own interesting features compared to other file-based 
 cache libraries such as being thread-safe and process-safe and supporting 
 multiple eviction policies. See `Features`_ for a more complete list.
