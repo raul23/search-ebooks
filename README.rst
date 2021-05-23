@@ -233,6 +233,8 @@ Starting from first priority tasks:
 2. Add tests and examples for searching metadata of ebooks
    
    **Status:** working on it
+   
+3. Add instructions on how to install the ``searchebooks`` package
 
 3. Add support for `Lucene`_ as a search backend since it has
    "powerful indexing and search features, as well as spellchecking, hit 
