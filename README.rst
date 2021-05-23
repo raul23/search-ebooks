@@ -48,10 +48,15 @@ cache library, is used by the ``search-ebooks`` script.
 
 A file-based cache library was choosen instead of a memory-based 
 cache like `Redis`_ because the converted files (``txt``) needed to be 
-persistent to speed up subsequent searches. Also `DiskCache`_ has its own 
-interesting features compared to other file-based cache libraries such as
-being thread-safe and process-safe and supporting multiple eviction policies.
-See `Features`_ for a more complete list.
+persistent to speed up subsequent searches and since we are storing huge
+quantities of data (e.g. we can have thousands of ebooks to search from), 
+a memory-based cache might not be suited. In order to avoid using up all 
+your disk space, you can set the cache size which by default it is
+set to 1 GB.
+
+Also `DiskCache`_ has its own interesting features compared to other file-based 
+cache libraries such as being thread-safe and process-safe and supporting 
+multiple eviction policies. See `Features`_ for a more complete list.
 
 See `DiskCache Cache Benchmarks`_ for comparaisons to `Memcached`_ and 
 `Redis`_.
