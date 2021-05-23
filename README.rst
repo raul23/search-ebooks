@@ -22,6 +22,13 @@ formats. By default, these are the search backends for each type of ebooks:
 The other search backends are based either on *calibre*\'s `ebook-convert`_ or `Lucene`_ (not
 supported yet).
 
+`:warning:`
+
+  * For the moment, the ``search-ebooks`` script is only tested on **macOS**.
+    It will be tested also on linux.
+  * **More to come!** Check the `Roadmap <#roadmap>`_ to know what is coming
+    soon.
+
 .. contents:: **Contents**
    :depth: 2
    :local:
