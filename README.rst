@@ -18,14 +18,22 @@ different types of ebooks.
 
 Tests
 =====
-Search through content of 8 PDF ebooks for the word **hold**
+Search through content of eight PDF ebooks for the word **hold**
 which is accomplished with the regex ``\bhold\b``. Thus for
 example, we want *hold* but not *holdings*.
 
 Searching content of PDF files with ``pdftotext``
 -------------------------------------------------
+We will use the ``pdftotext`` utility to convert PDF files to ``txt`` in order
+to search through content for a given pattern.
+
+By default, the ``seach-ebooks`` script uses ``pdftotext`` since it is way
+faster than *calibre*\'s ``ebook-convert`` to convert files to ``txt``.
+
 Summary of results
 ^^^^^^^^^^^^^^^^^^
+Using cache, we are able to decrease the search time by 4.7
+
 +-----------------------------+----------------+
 |             Case            | Time (seconds) |
 +=============================+================+
@@ -36,6 +44,8 @@ Summary of results
 
 With cache
 ^^^^^^^^^^
+This is the command which makes use of cache:
+
 .. code:: bash
 
    $ search-ebooks ~/ebooks/ --query "\bhold\b" -f pdf --use-cache
