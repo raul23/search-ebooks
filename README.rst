@@ -24,7 +24,7 @@ Dependencies
 
 Cache
 =====
-Cache is used to save the converted ebook files into ``txt`` to avoid
+Cache is used to save the converted ebook files into ``.txt`` to avoid
 re-converting them which is a very time consuming process, specially if
 it is a document with hundreds of pages. `DiskCache`_, a disk and file backed 
 cache library, is used by the ``search-ebooks`` script.
