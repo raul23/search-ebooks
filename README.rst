@@ -103,7 +103,7 @@ The ``pdftotext``'s results are given for two cases: with and without cache.
 
 Summary of results for ``pdftotext``-based search
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Using cache, the search time is **4.7** times less than without cache:
+Using cache, the search is **4.7** times quicker than without cache:
 
 +-----------------------------+----------------+
 |             Case            | Time (seconds) |
