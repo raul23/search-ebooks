@@ -67,8 +67,8 @@ faster than *calibre*\'s ``ebook-convert`` to convert files to ``txt``.
 
 The ``pdftotext``'s results are given for two cases: with and without cache.
 
-Summary of results
-^^^^^^^^^^^^^^^^^^
+Summary of results for ``pdftotext``-based search
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Using cache, we are able to decrease the search time by **4.7**
 
 +-----------------------------+----------------+
