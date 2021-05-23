@@ -59,13 +59,15 @@ you need recent versions of:
   
 And optionally, you might need:
 
-  * `Lucene`_ for a powerful search library
-  * `Tesseract`_ for running OCR on books - version 4 gives better results even
-    though it's still in alpha. OCR is disabled by default and another engine
-    can be configured if preferred.
   * **Highly recommended** `poppler`_, `catdoc`_ and `DjVuLibre`_ 
     can be installed for faster than calibre's conversion of ``.pdf``, ``.doc`` 
     and ``.djvu`` files respectively to ``.txt``.
+
+.. TODO: add these options
+.. * `Lucene`_ for a powerful search library
+.. * `Tesseract`_ for running OCR on books - version 4 gives better results even
+   though it's still in alpha. OCR is disabled by default and another engine
+   can be configured if preferred.
 
 Cache
 =====
