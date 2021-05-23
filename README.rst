@@ -29,8 +29,9 @@ Python dependencies
 
 Other dependencies
 -------------------
-As explained in the documentation for `pyebooktools`_, you need recent 
-versions of:
+As explained in the documentation for 
+`pyebooktools <https://github.com/raul23/pyebooktools#other-dependencies>`__, 
+you need recent versions of:
   
   * `calibre`_ for converting ebook files to ``.txt``
   * `Tesseract`_ for running OCR on books - version 4 gives better results even
@@ -204,7 +205,7 @@ the `LICENSE`_ file in the repository.
 .. _Memcached: http://memcached.org/
 .. _pdftotext: https://www.xpdfreader.com/pdftotext-man.html
 .. _poppler: https://poppler.freedesktop.org/
-.. _pyebooktools: https://github.com/raul23/pyebooktools/blob/master/README.rst#other-dependencies
+.. _pyebooktools: https://github.com/raul23/pyebooktools
 .. _Read the Docs: https://readthedocs.org/
 .. _Redis: https://redis.io/
 .. _Tesseract: https://github.com/tesseract-ocr/tesseract
