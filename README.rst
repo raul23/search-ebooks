@@ -15,6 +15,12 @@ different types of ebooks.
    :depth: 2
    :local:
    :backlinks: top
+   
+Dependencies
+============
+* **Platforms:** macOS [soon linux]
+* **Python**: >= 3.6
+* ``diskcache`` >= 4.4 for parsing Calibre's ``metadata.opf`` files.
 
 Tests
 =====
@@ -39,6 +45,11 @@ Cache is used to save the converted PDF files into ``txt`` so that we avoid
 re-converting PDF files which is a very time consuming process, specially if
 it is a document with hundreds of pages. `DiskCache`_, a disk and file backed 
 cache library, is used by the ``search-ebooks`` script.
+
+A file-based cache library was choosen instead of a memory-based 
+cache like `Redis`_ because the converted files (``txt``) needed to be 
+persistent to speed up searching and hence avoid re-converting
+the PDF files again in future searching.
 
 Summary of results
 ^^^^^^^^^^^^^^^^^^
@@ -101,4 +112,4 @@ the `LICENSE`_ file in the repository.
 .. URLs
 .. _DiskCache: http://www.grantjenks.com/docs/diskcache/
 .. _LICENSE: ./LICENSE
-
+.. _Redis: https://redis.io/
