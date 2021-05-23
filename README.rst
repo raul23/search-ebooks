@@ -32,7 +32,7 @@ faster than *calibre*\'s ``ebook-convert`` to convert files to ``txt``.
 
 Summary of results
 ^^^^^^^^^^^^^^^^^^
-Using cache, we are able to decrease the search time by 4.7
+Using cache, we are able to decrease the search time by **4.7**
 
 +-----------------------------+----------------+
 |             Case            | Time (seconds) |
