@@ -79,7 +79,7 @@ disk space, you can set the cache size which by default it is set to 1 GB.
 
 As an example to see how much disk space you might need to cache one thousand ``.txt``
 files all at once, let's say that on average each ``.txt`` file uses
-approximately 700 KB which roughly corresponds to a PDF file with 350 pages. 
+approximately 700 KB which roughly corresponds to a file with 350 pages. 
 Thus, you will need a cache size of at least 700 MB.
 
 Also `DiskCache`_ has its own interesting features compared to other file-based 
