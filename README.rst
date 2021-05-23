@@ -118,6 +118,16 @@ This is the command which makes use of *calibre*\'s ``ebook-convert`` to search 
 
    $ search-ebooks ~/ebooks/ --query "\bhold\b" -f pdf --psm calibre
 
+`:warning:`
+
+  However, *calibre*\'s `ebook-convert`_ is too slow when converting PDF files to ``txt``
+  Also, ``ebook-convert`` will try to convert scanned ebooks that only contain images 
+  and after a long time waiting for the result, it will output a small ``txt`` file 
+  that doesn't contain any of the file content.
+  
+  Thus, by default, ``pdftotext`` is used by the ``search-ebooks`` script
+  to convert PDF files to ``txt`` and search them for the given query.
+
 Examples
 ========
 TODO
@@ -139,6 +149,7 @@ the `LICENSE`_ file in the repository.
 .. URLs
 .. _DiskCache: http://www.grantjenks.com/docs/diskcache/
 .. _DiskCache Cache Benchmarks: http://www.grantjenks.com/docs/diskcache/cache-benchmarks.html
+.. _ebook-convert: https://manual.calibre-ebook.com/generated/en/ebook-convert.html
 .. _Features: http://www.grantjenks.com/docs/diskcache/index.html#features
 .. _Kivy: https://kivy.org/
 .. _LICENSE: ./LICENSE
