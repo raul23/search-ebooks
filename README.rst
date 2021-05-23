@@ -9,7 +9,7 @@ search-ebooks
   </p>
 
 Command-line program that searches through content and metadata of
-ebooks.
+different types of ebooks.
 
 .. contents:: **Contents**
    :depth: 3
