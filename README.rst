@@ -22,6 +22,9 @@ formats. By default, these are the search backends for each type of ebooks:
 The other search backends are based either on *calibre*\'s `ebook-convert`_ or `Lucene`_ (not
 supported yet).
 
+All of the search-backends makes use of a file-based `cache`_ to save the converted
+ebook files to ``.txt``.
+
 `:warning:`
 
   * For the moment, the ``search-ebooks`` script is only tested on **macOS**.
@@ -278,3 +281,6 @@ References
 .. _TkInter: https://wiki.python.org/moin/TkInter
 .. _Travis CI: https://travis-ci.com/
 .. _zipgrep: https://linux.die.net/man/1/zipgrep
+
+.. Local URLs
+.. _cache: #cache
