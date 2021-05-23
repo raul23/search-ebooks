@@ -48,8 +48,10 @@ cache library, is used by the ``search-ebooks`` script.
 
 A file-based cache library was choosen instead of a memory-based 
 cache like `Redis`_ because the converted files (``txt``) needed to be 
-persistent to speed up searching and hence avoid re-converting
-the PDF files again in future searching.
+persistent to speed up subsequent searches.
+
+See `DiskCache Cache Benchmarks`_ for comparaisons to `Memcached`_ and 
+`Redis`_.
 
 Summary of results
 ^^^^^^^^^^^^^^^^^^
@@ -112,4 +114,5 @@ the `LICENSE`_ file in the repository.
 .. URLs
 .. _DiskCache: http://www.grantjenks.com/docs/diskcache/
 .. _LICENSE: ./LICENSE
+.. _Memcached: http://memcached.org/
 .. _Redis: https://redis.io/
