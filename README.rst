@@ -181,14 +181,19 @@ This program is licensed under the GNU General Public License v3.0. For more det
 the `LICENSE`_ file in the repository.
 
 .. URLs
+.. _calibre: https://calibre-ebook.com/
+.. _catdoc: http://www.wagner.pp.ru/~vitus/software/catdoc/
 .. _DiskCache: http://www.grantjenks.com/docs/diskcache/
 .. _DiskCache Cache Benchmarks: http://www.grantjenks.com/docs/diskcache/cache-benchmarks.html
+.. _DjVuLibre: http://djvu.sourceforge.net/
 .. _ebook-convert: https://manual.calibre-ebook.com/generated/en/ebook-convert.html
 .. _Features: http://www.grantjenks.com/docs/diskcache/index.html#features
 .. _Kivy: https://kivy.org/
 .. _LICENSE: ./LICENSE
 .. _Memcached: http://memcached.org/
 .. _pdftotext: https://www.xpdfreader.com/pdftotext-man.html
+.. _poppler: https://poppler.freedesktop.org/
 .. _pyebooktools: https://github.com/raul23/pyebooktools/blob/master/README.rst#other-dependencies
 .. _Redis: https://redis.io/
+.. _Tesseract: https://github.com/tesseract-ocr/tesseract
 .. _TkInter: https://wiki.python.org/moin/TkInter
