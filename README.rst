@@ -123,9 +123,10 @@ This is the command which makes use of *calibre*\'s ``ebook-convert`` to search 
   However, *calibre*\'s `ebook-convert`_ is too slow when converting PDF files to ``txt``
   Also, ``ebook-convert`` will try to convert scanned ebooks that only contain images 
   and after a long time waiting for the result, it will output a small ``txt`` file 
-  that doesn't contain any of the file content.
+  that doesn't contain any of the file content. On the other hand, ``pdftotext`` will
+  quickly warn you that the scanned ebook couldn't be converted to ``txt``.
   
-  Thus, by default, ``pdftotext`` is used by the ``search-ebooks`` script
+  Thus, ``pdftotext`` is used by default with the ``search-ebooks`` script
   to convert PDF files to ``txt`` and search them for the given query.
 
 Examples
