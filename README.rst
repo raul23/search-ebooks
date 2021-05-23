@@ -5,7 +5,7 @@ README
 .. raw:: html
 
   <p align="center">
-    <b>search-ebooks</b>
+    <b style="font-size:30px">search-ebooks</b>
     <br> 🚧 &nbsp;&nbsp;&nbsp;<b>Work-In-Progress</b>
   </p>
 
