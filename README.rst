@@ -200,6 +200,10 @@ Starting from first priority tasks:
 2. Add support for `Lucene`_ as a search backend since it has
    "powerful indexing and search features, as well as spellchecking, hit 
    highlighting and advanced analysis/tokenization capabilities".
+   
+   `PyLucene`_ will be used to access ``Lucene``\'s text indexing 
+   and searching capabilities from Python
+   
 3. Test on linux
 4. Create a `docker`_ image for this project
 5. Add tests on `Travis CI`_
@@ -234,6 +238,7 @@ the `LICENSE`_ file in the repository.
 .. _pdftotext: https://www.xpdfreader.com/pdftotext-man.html
 .. _poppler: https://poppler.freedesktop.org/
 .. _pyebooktools: https://github.com/raul23/pyebooktools
+.. _PyLucene: https://lucene.apache.org/pylucene/
 .. _Read the Docs: https://readthedocs.org/
 .. _Redis: https://redis.io/
 .. _Tesseract: https://github.com/tesseract-ocr/tesseract
