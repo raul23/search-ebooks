@@ -125,7 +125,7 @@ Roadmap
   since you can have hundreds of matches for a given search query
   
   Though, for the moment not sure which GUI library to choose from 
-  (e.g. `Kivy`_, `TkInter`_).
+  (e.g. `Kivy`_, `TkInter`_)
 
 License
 =======
