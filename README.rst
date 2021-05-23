@@ -92,7 +92,7 @@ PDF files into ``txt``:
 
   - ``-f pdf`` is used to only process PDF files since the ``~/ebooks/`` folder might
     have all kinds of ebook files (e.g. ``djvu`` and ``epub``).
-  - By default, the search uses ``pdftotext`` utility to convert the PDF files
+  - By default, the search uses the ``pdftotext`` utility to convert the PDF files
     to ``txt`` and then search them for the given query.
 
 |
