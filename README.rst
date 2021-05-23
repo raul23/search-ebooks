@@ -22,25 +22,8 @@ Dependencies
 * **Python**: >= 3.6
 * ``diskcache`` >= 5.2.1 for caching persistently the converted files into ``txt``
 
-Tests
+Cache
 =====
-Search through the content of eight PDF files for the word **hold**
-which is accomplished with the regex ``\bhold\b``. Thus for
-example, we want *hold* but not *holdings* nor *behold*.
-
-If we wanted all occurrences of **hold** no matter where it appears 
-in the text content, then the ``hold`` search query would do the work.
-
-Searching content of PDF files with ``pdftotext``
--------------------------------------------------
-We will use the ``pdftotext`` utility to convert PDF files to ``txt`` in order
-to search through content for a given search query.
-
-By default, the ``seach-ebooks`` script uses ``pdftotext`` since it is way
-faster than *calibre*\'s ``ebook-convert`` to convert files to ``txt``.
-
-The ``pdftotext``'s results are given for two cases: with and without cache.
-
 Cache is used to save the converted PDF files into ``txt`` so that we avoid
 re-converting PDF files which is a very time consuming process, specially if
 it is a document with hundreds of pages. `DiskCache`_, a disk and file backed 
@@ -65,6 +48,25 @@ multiple eviction policies. See `Features`_ for a more complete list.
 
 See `DiskCache Cache Benchmarks`_ for comparaisons to `Memcached`_ and 
 `Redis`_.
+
+Tests
+=====
+Search through the content of eight PDF files for the word **hold**
+which is accomplished with the regex ``\bhold\b``. Thus for
+example, we want *hold* but not *holdings* nor *behold*.
+
+If we wanted all occurrences of **hold** no matter where it appears 
+in the text content, then the ``hold`` search query would do the work.
+
+Searching content of PDF files with ``pdftotext``
+-------------------------------------------------
+We will use the ``pdftotext`` utility to convert PDF files to ``txt`` in order
+to search through content for a given search query.
+
+By default, the ``seach-ebooks`` script uses ``pdftotext`` since it is way
+faster than *calibre*\'s ``ebook-convert`` to convert files to ``txt``.
+
+The ``pdftotext``'s results are given for two cases: with and without cache.
 
 Summary of results
 ^^^^^^^^^^^^^^^^^^
