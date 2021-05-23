@@ -36,6 +36,16 @@ Summary of results
 
 With cache
 ^^^^^^^^^^
+.. code:: bash
+
+   $ search-ebooks ~/ebooks/ --query "\bhold\b" -f pdf --use-cache
+   
+**Output:**
+.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/pdftotext_with_cache.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/pdftotext_with_cache.png
+   :align: left
+   :alt: ``pdftotext`` with cache
+
 Without cache
 ^^^^^^^^^^^^^
 Searching content of PDF files with calibre's ``ebook-convert``
