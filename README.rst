@@ -193,12 +193,16 @@ Roadmap
 =======
 Starting from first priority tasks:
 
-1. Test on linux
-2. Create a `docker`_ image for this project
-3. Add tests on `Travis CI`_
-4. Eventually add documentation on `Read the Docs`_
-5. Add support for multiprocessing
-6. Implement a GUI, specially to make navigation of search results easier 
+1. Add tests and examples for searching metadata of ebooks
+   
+   **Status:** working on it
+
+2. Test on linux
+3. Create a `docker`_ image for this project
+4. Add tests on `Travis CI`_
+5. Eventually add documentation on `Read the Docs`_
+6. Add support for multiprocessing
+7. Implement a GUI, specially to make navigation of search results easier 
    since you can have hundreds of matches for a given search query
   
    Though, for the moment not sure which GUI library to choose from 
