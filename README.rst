@@ -55,7 +55,7 @@ which is accomplished with the regex ``\bhold\b``. Thus for
 example, we want *hold* but not *holdings* nor *behold*.
 
 If we wanted all occurrences of **hold** no matter where it appears 
-in the text content, then the ``hold`` search query would do the work.
+in the text content, then the ``hold`` query would do the work.
 
 Searching content of PDF files with ``pdftotext``
 -------------------------------------------------
