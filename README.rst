@@ -11,6 +11,11 @@ search-ebooks
 Command-line program that searches through content and metadata of
 ebooks.
 
+.. contents:: **Contents**
+   :depth: 3
+   :local:
+   :backlinks: top
+
 Results
 =======
 Summary of results
@@ -27,3 +32,6 @@ With cache
 ^^^^^^^^^^
 Without cache
 ^^^^^^^^^^^^^
+
+Examples
+========
