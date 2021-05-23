@@ -76,6 +76,16 @@ example, we want *hold* but not *holdings* nor *behold*.
 If we wanted all occurrences of **hold** no matter where it appears 
 in the text content, then the ``hold`` query would do the work.
 
+.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/list_of_ebooks.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/list_of_ebooks.png
+   :align: left
+   :alt: List of ebooks to search from
+
+`:information_source:`
+
+  Two PDF files are scanned ebooks that contain only images: 
+  ``Les Misérables by Victor Hugo.pdf`` and ``The Republic by Plato.pdf``.
+
 Searching content of PDF files with ``pdftotext``
 -------------------------------------------------
 We will use the `pdftotext`_ utility to convert PDF files to ``.txt`` in order
