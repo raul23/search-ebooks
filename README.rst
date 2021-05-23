@@ -42,9 +42,9 @@ Using cache, we are able to decrease the search time by **4.7**
 +-----------------------------+----------------+
 |             Case            | Time (seconds) |
 +=============================+================+
-| ``pdftotext`` with cache    | **1.036**      |
+| ``pdftotext`` with cache    | **1.146**      |
 +-----------------------------+----------------+
-| ``pdftotext`` without cache | 4.304          |
+| ``pdftotext`` without cache | 5.389          |
 +-----------------------------+----------------+
 
 With cache
