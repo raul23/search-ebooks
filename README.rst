@@ -237,7 +237,7 @@ the `LICENSE`_ file in the repository.
 
 References
 ==========
-.. [1] ``txt``, ``html``, ``rtf``, ``rtfd``, ``doc``, ``wordml`, or ``webarchive``
+.. [1] ``txt``, ``html``, ``rtf``, ``rtfd``, ``doc``, ``wordml``, or ``webarchive``
 
 .. URLs
 .. _calibre: https://calibre-ebook.com/
