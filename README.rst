@@ -123,13 +123,12 @@ PDF files into ``.txt``:
    :align: left
    :alt: ``pdftotext`` with cache
 
-|
-
 `:information_source:`
 
   Two files were not included in the search results because they were skipped since they
   were scanned ebooks that only contain images.
 
+|
 
 ``pdftotext`` without cache
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
