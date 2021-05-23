@@ -236,23 +236,23 @@ Starting from first priority tasks:
    
 3. Add instructions on how to install the ``searchebooks`` package
 
-3. Add support for `Lucene`_ as a search backend since it has
+4. Add support for `Lucene`_ as a search backend since it has
    "powerful indexing and search features, as well as spellchecking, hit 
    highlighting and advanced analysis/tokenization capabilities".
    
    `PyLucene`_ will be used to access ``Lucene``\'s text indexing 
    and searching capabilities from Python
    
-4. Test on linux
-5. Create a `docker`_ image for this project
-6. Add tests on `Travis CI`_
-7. Eventually add documentation on `Read the Docs`_
-8. Add support for multiprocessing
-9. Implement a GUI, specially to make navigation of search results easier 
-   since you can have thousands of matches for a given search query
+5. Test on linux
+6. Create a `docker`_ image for this project
+7. Add tests on `Travis CI`_
+8. Eventually add documentation on `Read the Docs`_
+9. Add support for multiprocessing
+10. Implement a GUI, specially to make navigation of search results easier 
+    since you can have thousands of matches for a given search query
   
-   Though, for the moment not sure which GUI library to choose from 
-   (e.g. `Kivy`_, `TkInter`_)
+    Though, for the moment not sure which GUI library to choose from 
+    (e.g. `Kivy`_, `TkInter`_)
 
 License
 =======
