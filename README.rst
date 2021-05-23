@@ -18,8 +18,10 @@ different types of ebooks.
 
 Results
 =======
+Searching content of PDF files with ``pdftotext``
+-------------------------------------------------
 Summary of results
-------------------
+^^^^^^^^^^^^^^^^^^
 Search through content of PDF ebooks for the query ``\bhold\b``
 
 +-----------------------------+----------------+
@@ -30,8 +32,6 @@ Search through content of PDF ebooks for the query ``\bhold\b``
 | ``pdftotext`` without cache | 5.389          |
 +-----------------------------+----------------+
 
-Searching content of PDF files with ``pdftotext``
--------------------------------------------------
 With cache
 ^^^^^^^^^^
 Without cache
