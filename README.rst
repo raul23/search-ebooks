@@ -93,6 +93,12 @@ Roadmap
 =======
 * Add support for multiprocessing
 
+License
+=======
+This program is licensed under the GNU General Public License v3.0. For more details see 
+the `LICENSE`_ file in the repository.
+
 .. URLs
 .. _DiskCache: http://www.grantjenks.com/docs/diskcache/
+.. _LICENSE: ./LICENSE
 
