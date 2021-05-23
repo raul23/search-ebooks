@@ -18,6 +18,8 @@ different types of ebooks.
 
 Results
 =======
+Summary of results
+------------------
 +-----------------------------+----------------+
 |             Case            | Time (seconds) |
 +=============================+================+
@@ -26,8 +28,6 @@ Results
 | ``pdftotext`` without cache | 5.389          |
 +-----------------------------+----------------+
 
-Summary of results
-------------------
 Searching content of PDF files with ``pdftotext``
 -------------------------------------------------
 With cache
