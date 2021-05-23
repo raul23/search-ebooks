@@ -194,6 +194,9 @@ Roadmap
 Starting from first priority tasks:
 
 1. Add many tests with more ebooks (in the thousands maybe)
+
+   **Status:** working on it
+
 2. Add tests and examples for searching metadata of ebooks
    
    **Status:** working on it
