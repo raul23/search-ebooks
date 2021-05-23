@@ -36,7 +36,7 @@ versions of:
   * `Tesseract`_ for running OCR on books - version 4 gives better results even
     though it's still in alpha. OCR is disabled by default and another engine
     can be configured if preferred.
-  * **Optionally but highly recommeded** `poppler`_, `catdoc`_ and `DjVuLibre`_ 
+  * **Optionally but highly recommended** `poppler`_, `catdoc`_ and `DjVuLibre`_ 
     can be installed for faster than calibre's conversion of ``.pdf``, ``.doc`` 
     and ``.djvu`` files respectively to ``.txt``.
 
@@ -170,12 +170,18 @@ TODO
 
 Roadmap
 =======
-* Add support for multiprocessing
-* Implement a GUI, specially to make navigation of search results easier 
-  since you can have hundreds of matches for a given search query
+Starting from first priority tasks:
+
+1. Test on linux
+2. Create a `docker`_ image for this project
+3. Add tests on `Travis CI`_
+4. Eventually add documentation on `Read the Docs`_
+5. Add support for multiprocessing
+6. Implement a GUI, specially to make navigation of search results easier 
+   since you can have hundreds of matches for a given search query
   
-  Though, for the moment not sure which GUI library to choose from 
-  (e.g. `Kivy`_, `TkInter`_)
+   Though, for the moment not sure which GUI library to choose from 
+   (e.g. `Kivy`_, `TkInter`_)
 
 License
 =======
@@ -189,6 +195,7 @@ the `LICENSE`_ file in the repository.
 .. _DiskCache: http://www.grantjenks.com/docs/diskcache/
 .. _DiskCache Cache Benchmarks: http://www.grantjenks.com/docs/diskcache/cache-benchmarks.html
 .. _DjVuLibre: http://djvu.sourceforge.net/
+.. _docker: https://docs.docker.com/
 .. _ebook-convert: https://manual.calibre-ebook.com/generated/en/ebook-convert.html
 .. _Features: http://www.grantjenks.com/docs/diskcache/index.html#features
 .. _Kivy: https://kivy.org/
@@ -198,6 +205,8 @@ the `LICENSE`_ file in the repository.
 .. _pdftotext: https://www.xpdfreader.com/pdftotext-man.html
 .. _poppler: https://poppler.freedesktop.org/
 .. _pyebooktools: https://github.com/raul23/pyebooktools/blob/master/README.rst#other-dependencies
+.. _Read the Docs: https://readthedocs.org/
 .. _Redis: https://redis.io/
 .. _Tesseract: https://github.com/tesseract-ocr/tesseract
 .. _TkInter: https://wiki.python.org/moin/TkInter
+.. _Travis CI: https://travis-ci.com/
