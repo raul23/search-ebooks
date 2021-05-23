@@ -239,6 +239,7 @@ the `LICENSE`_ file in the repository.
 .. _DiskCache: http://www.grantjenks.com/docs/diskcache/
 .. _DiskCache Cache Benchmarks: http://www.grantjenks.com/docs/diskcache/cache-benchmarks.html
 .. _DjVuLibre: http://djvu.sourceforge.net/
+.. _djvutxt: http://djvu.sourceforge.net/doc/man/djvutxt.html
 .. _docker: https://docs.docker.com/
 .. _ebook-convert: https://manual.calibre-ebook.com/generated/en/ebook-convert.html
 .. _Features: http://www.grantjenks.com/docs/diskcache/index.html#features
