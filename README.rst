@@ -16,7 +16,7 @@ formats. By default, these are the search backends for each type of ebooks:
 
 * ``.djvu``: `djvutxt`_ extracts the text and then it is search on
 * ``.epub``: `zipgrep`_ extracts the text and then it is search on
-* ``.doc``: `catdoc`_ or `textutil`_ (if on macOS) extracts the text and then it is search on
+* ``.doc`` and `other related text files`_: `catdoc`_ or `textutil`_ (if on macOS) extracts the text and then it is search on
 * ``.pdf``: `pdftotext`_ extracts the text and then it is search on
 
 The other search backends are *calibre*\'s `ebook-convert`_ and `Lucene`_ (not
@@ -251,6 +251,7 @@ the `LICENSE`_ file in the repository.
 .. _LICENSE: ./LICENSE
 .. _Lucene: https://lucene.apache.org/
 .. _Memcached: http://memcached.org/
+.. _other related text files: https://ss64.com/osx/textutil.html
 .. _pdftotext: https://www.xpdfreader.com/pdftotext-man.html
 .. _poppler: https://poppler.freedesktop.org/
 .. _pyebooktools: https://github.com/raul23/pyebooktools
