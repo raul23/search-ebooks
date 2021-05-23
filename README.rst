@@ -101,6 +101,7 @@ This is the command which makes use of ``pdftotext`` to search but doesn't use c
 
 Searching content of PDF files with calibre's ``ebook-convert``
 ---------------------------------------------------------------
+TODO
 
 Examples
 ========
@@ -109,6 +110,10 @@ TODO
 Roadmap
 =======
 * Add support for multiprocessing
+* Implement a GUI, specially to make navigation of search results easier 
+  since you can have hundreds of matches for a given search query
+  
+  Though, not sure which GUI library to choose from (e.g. `Kivy`_, `TkInter`_)
 
 License
 =======
@@ -119,6 +124,8 @@ the `LICENSE`_ file in the repository.
 .. _DiskCache: http://www.grantjenks.com/docs/diskcache/
 .. _DiskCache Cache Benchmarks: http://www.grantjenks.com/docs/diskcache/cache-benchmarks.html
 .. _Features: http://www.grantjenks.com/docs/diskcache/index.html#features
+.. _Kivy: https://kivy.org/
 .. _LICENSE: ./LICENSE
 .. _Memcached: http://memcached.org/
 .. _Redis: https://redis.io/
+.. _TkInter: https://wiki.python.org/moin/TkInter
