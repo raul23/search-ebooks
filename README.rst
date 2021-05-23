@@ -59,7 +59,7 @@ in the text content, then the ``hold`` search query would do the work.
 
 Searching content of PDF files with ``pdftotext``
 -------------------------------------------------
-We will use the ``pdftotext`` utility to convert PDF files to ``txt`` in order
+We will use the `pdftotext`_ utility to convert PDF files to ``txt`` in order
 to search through content for a given search query.
 
 By default, the ``seach-ebooks`` script uses ``pdftotext`` since it is way
@@ -90,8 +90,10 @@ PDF files into ``txt``:
    
 `:information_source:`
 
-  ``-f pdf`` is used to only process PDF files since the ``~/ebooks/`` folder might
-  have all kinds of ebook files (e.g. ``djvu`` and ``epub``).
+  - ``-f pdf`` is used to only process PDF files since the ``~/ebooks/`` folder might
+    have all kinds of ebook files (e.g. ``djvu`` and ``epub``).
+  - By default, the search uses ``pdftotext`` utility to convert the PDF files
+    to ``txt`` and then search them for the given query.
 
 |
 
@@ -124,6 +126,14 @@ This is the command which makes use of *calibre*\'s ``ebook-convert`` to search 
 .. code:: bash
 
    $ search-ebooks ~/ebooks/ --query "\bhold\b" -f pdf --psm calibre
+ 
+`:information_source:`
+
+  ``psm calibre`` specifies to use *calibre*\'s ``ebook-convert`` to convert
+  PDF files to ``txt`` (instead of ``pdftotext``) and then search them for the
+  given query.
+ 
+|
 
 `:warning:`
 
@@ -162,5 +172,6 @@ the `LICENSE`_ file in the repository.
 .. _Kivy: https://kivy.org/
 .. _LICENSE: ./LICENSE
 .. _Memcached: http://memcached.org/
+.. _pdftotext: https://www.xpdfreader.com/pdftotext-man.html
 .. _Redis: https://redis.io/
 .. _TkInter: https://wiki.python.org/moin/TkInter
