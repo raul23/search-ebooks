@@ -63,8 +63,10 @@ And optionally, you might need:
   can be installed for faster than calibre's conversion of ``.pdf``, ``.doc`` 
   and ``.djvu`` files respectively to ``.txt``.
   
-  NOTE: on macOS, you don't need ``catdoc`` since `textutil`_ is already
-  present
+  `:warning:`
+   
+    On macOS, you don't need ``catdoc`` since `textutil`_ is already
+    present
 
 .. TODO: add these options
 .. * `Lucene`_ for a powerful search library
