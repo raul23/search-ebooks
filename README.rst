@@ -11,6 +11,14 @@ search-ebooks
 Command-line program that searches through content and metadata of
 different types of ebooks.
 
+It allows you to choose the search backend to use for the different ebook
+formats. By default, these are the search backends for each type of ebooks:
+
+* ``.djvu``: `djvutxt`_ extracts the text and then it is search on
+* ``.epub``: `zipgrep`_ extracts the text and then it is search on
+* ``.doc``: `catdoc`_ or `textutil`_ (if on macOS) extracts the text and then it is search on
+* ``.pdf``: `pdftotext`_ extracts the text and then it is search on
+
 .. contents:: **Contents**
    :depth: 2
    :local:
@@ -246,5 +254,7 @@ the `LICENSE`_ file in the repository.
 .. _Read the Docs: https://readthedocs.org/
 .. _Redis: https://redis.io/
 .. _Tesseract: https://github.com/tesseract-ocr/tesseract
+.. _textutil: https://ss64.com/osx/textutil.html
 .. _TkInter: https://wiki.python.org/moin/TkInter
 .. _Travis CI: https://travis-ci.com/
+.. _zipgrep: https://linux.die.net/man/1/zipgrep
