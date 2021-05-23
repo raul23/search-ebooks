@@ -24,7 +24,7 @@ Python dependencies
 * **Python**: >= **3.6**
 * `diskcache`_ >= **5.2.1** for caching persistently the converted files into ``.txt``
 * `pyebooktools`_ >= **0.1.0a3** for converting files to ``.txt`` (see `convert_to_txt.py`_)
-  along with its library module `lib.py`_ that has useful functions for building 
+  along with its library `lib.py`_ that has useful functions for building 
   ebook management scripts.
 
 Other dependencies
