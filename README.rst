@@ -83,3 +83,7 @@ Searching content of PDF files with calibre's ``ebook-convert``
 
 Examples
 ========
+
+Roadmap
+=======
+* Add support for multiprocessing
