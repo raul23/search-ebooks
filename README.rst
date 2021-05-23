@@ -20,6 +20,8 @@ Results
 =======
 Summary of results
 ------------------
+Search through text content of PDF ebooksfor the query ``\bhold\b``
+
 +-----------------------------+----------------+
 |             Case            | Time (seconds) |
 +=============================+================+
