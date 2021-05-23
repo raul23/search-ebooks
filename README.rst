@@ -51,7 +51,7 @@ cache like `Redis`_ because the converted files (``txt``) needed to be
 persistent to speed up subsequent searches. Also `DiskCache`_ has its own 
 interesting features compared to other file-based cache libraries such as
 being thread-safe and process-safe and supporting multiple eviction policies.
-See `Features`_ for a complete list.
+See `Features`_ for a more complete list.
 
 See `DiskCache Cache Benchmarks`_ for comparaisons to `Memcached`_ and 
 `Redis`_.
