@@ -12,19 +12,19 @@ Command-line program that searches through content and metadata of
 different types of ebooks.
 
 .. contents:: **Contents**
-   :depth: 3
+   :depth: 2
    :local:
    :backlinks: top
 
 Tests
 =====
+Search through content of 8 PDF ebooks for the word *hold*
+which is accomplished with the regex ``\bhold\b``
+
 Searching content of PDF files with ``pdftotext``
 -------------------------------------------------
 Summary of results
 ^^^^^^^^^^^^^^^^^^
-Search through content of 8 PDF ebooks for the word *hold*
-which is accomplished with the regex ``\bhold\b``
-
 +-----------------------------+----------------+
 |             Case            | Time (seconds) |
 +=============================+================+
