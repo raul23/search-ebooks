@@ -120,7 +120,7 @@ This is the command which makes use of *calibre*\'s ``ebook-convert`` to search 
 
 `:warning:`
 
-  However, *calibre*\'s `ebook-convert`_ is too slow when converting PDF files to ``txt``
+  However, *calibre*\'s `ebook-convert`_ is too slow when converting PDF files to ``txt``.
   Also, ``ebook-convert`` will try to convert scanned ebooks that only contain images 
   and after a long time waiting for the result, it will output a small ``txt`` file 
   that doesn't contain any of the file content. On the other hand, ``pdftotext`` will
