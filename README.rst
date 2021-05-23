@@ -229,7 +229,7 @@ Starting from first priority tasks:
 7. Eventually add documentation on `Read the Docs`_
 8. Add support for multiprocessing
 9. Implement a GUI, specially to make navigation of search results easier 
-   since you can have hundreds of matches for a given search query
+   since you can have thousands of matches for a given search query
   
    Though, for the moment not sure which GUI library to choose from 
    (e.g. `Kivy`_, `TkInter`_)
