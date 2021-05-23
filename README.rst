@@ -20,7 +20,7 @@ Dependencies
 ============
 * **Platforms:** macOS [soon linux]
 * **Python**: >= 3.6
-* ``diskcache`` >= 4.4 for parsing Calibre's ``metadata.opf`` files.
+* ``diskcache`` >= 5.2.1 for caching persistently the converted files into ``txt``
 
 Tests
 =====
