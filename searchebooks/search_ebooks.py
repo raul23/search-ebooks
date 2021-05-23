@@ -6,7 +6,7 @@ from pathlib import Path
 
 from pyebooktools.convert_to_txt import convert
 from searchebooks.configs import default_config as default_cfg
-from pyebooktools.lib import (BLUE, NC, VIOLET, YELLOW)
+from pyebooktools.lib import (BLUE, BOLD, GREEN, NC, VIOLET, YELLOW)
 
 
 class SearchEbooks:
@@ -45,6 +45,8 @@ class SearchEbooks:
         self.title = default_cfg.title
 
     def _search_file_txt_content(self, file_path):
+        num_matches = 0
+        window_length = 200
         ext = file_path.suffix.split('.')[-1]
         flags = re.MULTILINE | re.IGNORECASE if self.ignore_case else re.MULTILINE
         search_result = {'filename': file_path.name,
@@ -80,7 +82,9 @@ class SearchEbooks:
         search_result['matches'] = len(matches)
         # TODO: important, uncomment for interactive
         """
-        matches = re.finditer(args.search_query, text, flags)
+        import ipdb
+        ipdb.set_trace()
+        matches = re.finditer(self.search_query, text, flags)
         for match in matches:
             num_matches += 1
             start, end = match.span()
@@ -89,21 +93,22 @@ class SearchEbooks:
                 subtext = text[start - 0:int(start + length + window_length / 2)]
             else:
                 subtext = text[int(start - window_length / 2):int(start + length + window_length / 2)]
-            subtext = re.sub(f"({args.search_query})", f"{GREEN}{BOLD}\\1{NC}",
+            subtext = re.sub(f"({self.search_query})", f"{GREEN}{BOLD}\\1{NC}",
                              subtext, flags=flags)
             # TODO: important, use trans
-            subtext = subtext.replace('\n', ' ').replace('\x0cix', '').strip()
-            search_result['matches'].append(subtext)
-        search_result['matches'] = num_matches
+            subtext = subtext.replace('\n', ' ').replace('\x0c', '').strip()
+            ipdb.set_trace()
+            # search_result['matches'].append(subtext)
+        # search_result['matches'] = num_matches
+        ipdb.set_trace()
         """
+
         return search_result
 
     def _search_file_metadata(self, file_path):
         pass
 
     def _search_file(self, file_path):
-        # num_matches = 0
-        # window_length = 200
         search_result = None
         if file_path.suffix.split('.')[-1] not in self.ebook_formats:
             return 1
@@ -138,7 +143,7 @@ class SearchEbooks:
                 start_time, num_results, total_seconds)
         else:
             for fp in input_data.rglob('*'):
-                print(fp)
+                # print(fp)
                 start_time = time.time()
                 search_result = self._search_file(fp)
                 num_results, total_seconds = process_result(
@@ -152,7 +157,8 @@ class SearchEbooks:
               f'({round(total_seconds, 3)} seconds){NC}\n')
         for i, result in enumerate(search_results, start=1):
             print(f"{i}.\t{BLUE}{result['filename']}{NC}"
-                  f"\n\t{VIOLET}Folder path:{NC} {result['folder_path']}"
+                  # f"\n\t{VIOLET}Folder path:{NC} {result['folder_path']}"
+                  f"\n\t{VIOLET}Folder path:{NC} /Users/test/ebooks"
                   f"\n\t{VIOLET}Number of matches:{NC} {result['matches']}\n")
         # f"\n\t{VIOLET}Number of matches:{NC} {len(result['matches'])}\n")
         return 0
