@@ -20,7 +20,7 @@ Tests
 =====
 Search through the content of eight PDF files for the word **hold**
 which is accomplished with the regex ``\bhold\b``. Thus for
-example, we want *hold* but not *holdings*.
+example, we want *hold* but not *holdings* nor *behold*.
 
 Searching content of PDF files with ``pdftotext``
 -------------------------------------------------
