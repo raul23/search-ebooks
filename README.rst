@@ -82,7 +82,7 @@ files all at once, let's say that on average each ``.txt`` file uses
 approximately 700 KB which roughly corresponds to a file with 350 pages. 
 Thus, you will need a cache size of at least 700 MB.
 
-Also `DiskCache`_ has its own interesting features compared to other file-based 
+Also `DiskCache`_ has interesting features compared to other file-based 
 cache libraries such as being thread-safe and process-safe and supporting 
 multiple eviction policies. See `Features`_ for a more complete list.
 
