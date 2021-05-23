@@ -16,10 +16,8 @@ formats. By default, these are the search backends for each type of ebooks:
 
 * ``.djvu``: `djvutxt`_ extracts the text and then it is search on
 * ``.epub``: `zipgrep`_ extracts the text and then it is search on
-* ``.doc`` and other related text files [1]: `catdoc`_ or `textutil`_ (if on macOS) extracts the text and then it is search on
+* ``.doc`` and other related text files [1]_: `catdoc`_ or `textutil`_ (if on macOS) extracts the text and then it is search on
 * ``.pdf``: `pdftotext`_ extracts the text and then it is search on
-
-[1]: ``txt``, ``html``, ``rtf``, ``rtfd``, ``doc``, ``wordml`, or ``webarchive`` [TEXTFMT]_
 
 The other search backends are *calibre*\'s `ebook-convert`_ and `Lucene`_ (not
 supported yet).
@@ -239,7 +237,7 @@ the `LICENSE`_ file in the repository.
 
 References
 ==========
-.. [TEXTFMT] https://ss64.com/osx/textutil.html
+..[1] ``txt``, ``html``, ``rtf``, ``rtfd``, ``doc``, ``wordml`, or ``webarchive``
 
 .. URLs
 .. _calibre: https://calibre-ebook.com/
