@@ -24,7 +24,7 @@ supported yet).
 
 All of the search-backends makes use of a file-based `cache`_ to save the converted
 ebook files to ``.txt`` and hence speed up the searching by a lot (depending 
-on the number of files searched, it can be even 20 times faster).
+on the number of files searched, it can even be 20 times faster).
 
 `:warning:`
 
