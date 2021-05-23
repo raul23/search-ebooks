@@ -31,6 +31,7 @@ By default, the ``seach-ebooks`` script uses ``pdftotext`` since it is way
 faster than *calibre*\'s ``ebook-convert`` to convert files to ``txt``.
 
 The ``pdftotext``'s results are given for two cases: with and without cache.
+
 Cache is used to save the converted PDF files into ``txt`` so that we avoid
 re-converting PDF files which is a very time consuming process, specially if
 it is a huge document. `DiskCache`_, a disk and file backed cache library, is 
