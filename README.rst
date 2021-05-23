@@ -168,7 +168,7 @@ This is the command which makes use of *calibre*\'s ``ebook-convert`` to search 
  
 `:information_source:`
 
-  ``psm calibre`` specifies to use *calibre*\'s `ebook-convert`_ to convert
+  ``--psm calibre`` specifies to use *calibre*\'s `ebook-convert`_ to convert
   PDF files to ``.txt`` (instead of ``pdftotext``) and then search them for the
   given query.
  
