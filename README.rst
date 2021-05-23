@@ -197,8 +197,8 @@ Starting from first priority tasks:
    
    **Status:** working on it
 
-2. Add support for `Lucene`_ as a powerful search backend since it has
-   "indexing and search features, as well as spellchecking, hit 
+2. Add support for `Lucene`_ as a search backend since it has
+   "powerful indexing and search features, as well as spellchecking, hit 
    highlighting and advanced analysis/tokenization capabilities".
 3. Test on linux
 4. Create a `docker`_ image for this project
