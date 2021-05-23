@@ -11,7 +11,7 @@ search-ebooks
 Command-line program that searches through content and metadata of
 different types of ebooks.
 
-It allows you to choose the search backend for the different ebook
+It allows you to choose the search-backend for the different ebook
 formats. By default, these are the search backends for each type of ebooks:
 
 * ``.djvu``: `djvutxt`_ extracts the text and then it is search on
@@ -19,7 +19,7 @@ formats. By default, these are the search backends for each type of ebooks:
 * ``.doc`` and other related text files [1]_: `catdoc`_ or `textutil`_ (if on macOS) extracts the text and then it is search on
 * ``.pdf``: `pdftotext`_ extracts the text and then it is search on
 
-The other search backends are based either on *calibre*\'s `ebook-convert`_ or `Lucene`_ (not
+The other search-backends are based either on *calibre*\'s `ebook-convert`_ or `Lucene`_ (not
 supported yet).
 
 All of the search-backends makes use of a file-based `cache`_ to save the converted
