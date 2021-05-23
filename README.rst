@@ -23,7 +23,9 @@ Python dependencies
 * **Platforms:** macOS [soon linux]
 * **Python**: >= 3.6
 * `diskcache`_ >= 5.2.1 for caching persistently the converted files into ``.txt``
-* `pyebooktools`_ >= 0.1.0 for 
+* `pyebooktools`_ >= 0.1.0 for converting files to ``.txt`` (see `convert_to_txt.py`_)
+  along with its library module `lib.py`_ that has useful functions for building 
+  ebook management scripts.
 
 Other dependencies
 -------------------
@@ -183,12 +185,14 @@ the `LICENSE`_ file in the repository.
 .. URLs
 .. _calibre: https://calibre-ebook.com/
 .. _catdoc: http://www.wagner.pp.ru/~vitus/software/catdoc/
+.. _convert_to_txt.py: https://github.com/raul23/pyebooktools/blob/master/pyebooktools/convert_to_txt.py
 .. _DiskCache: http://www.grantjenks.com/docs/diskcache/
 .. _DiskCache Cache Benchmarks: http://www.grantjenks.com/docs/diskcache/cache-benchmarks.html
 .. _DjVuLibre: http://djvu.sourceforge.net/
 .. _ebook-convert: https://manual.calibre-ebook.com/generated/en/ebook-convert.html
 .. _Features: http://www.grantjenks.com/docs/diskcache/index.html#features
 .. _Kivy: https://kivy.org/
+.. _lib.py: https://github.com/raul23/pyebooktools/blob/master/pyebooktools/lib.py
 .. _LICENSE: ./LICENSE
 .. _Memcached: http://memcached.org/
 .. _pdftotext: https://www.xpdfreader.com/pdftotext-man.html
