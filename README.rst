@@ -19,7 +19,7 @@ formats. By default, these are the search backends for each type of ebooks:
 * ``.doc`` and other related text files [1]_: `catdoc`_ or `textutil`_ (if on macOS) extracts the text and then it is search on
 * ``.pdf``: `pdftotext`_ extracts the text and then it is search on
 
-The other two search backends are based on *calibre*\'s `ebook-convert`_ and `Lucene`_ (not
+The other search backends are either based on *calibre*\'s `ebook-convert`_ or `Lucene`_ (not
 supported yet).
 
 .. contents:: **Contents**
