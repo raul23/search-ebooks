@@ -49,7 +49,7 @@ Using cache, we are able to decrease the search time by **4.7**
 
 With cache
 ^^^^^^^^^^
-This is the command which makes use of cache:
+This is the command which makes use of ``pdftotext`` and cache:
 
 .. code:: bash
 
@@ -64,6 +64,8 @@ This is the command which makes use of cache:
 
 Without cache
 ^^^^^^^^^^^^^
+This is the command which makes use of ``pdftotext`` but doesn't use cache:
+
 .. code:: bash
 
    $ search-ebooks ~/ebooks/ --query "\bhold\b" -f pdf
