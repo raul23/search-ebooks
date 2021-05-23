@@ -45,7 +45,8 @@ As explained in the documentation for
 you need recent versions of:
   
   * `calibre`_ for converting ebook files to ``.txt``
-  * `Tesseract`_ for running OCR on books - version 4 gives better results even
+  * **Optionally** `Lucene`_ for a powerful search library
+  * **Optionally** `Tesseract`_ for running OCR on books - version 4 gives better results even
     though it's still in alpha. OCR is disabled by default and another engine
     can be configured if preferred.
   * **Optionally but highly recommended** `poppler`_, `catdoc`_ and `DjVuLibre`_ 
