@@ -33,7 +33,8 @@ faster than *calibre*\'s ``ebook-convert`` to convert files to ``txt``.
 The ``pdftotext``'s results are given for two cases: with and without cache.
 Cache is used to save the converted PDF files into ``txt`` so that we avoid
 re-converting PDF files which is a very time consuming process, specially if
-it is a huge document. 
+it is a huge document. `DiskCache`_, a disk and file backed cache library, is 
+used by the ``search-ebooks`` script.
 
 Summary of results
 ^^^^^^^^^^^^^^^^^^
@@ -87,3 +88,7 @@ Examples
 Roadmap
 =======
 * Add support for multiprocessing
+
+.. URLs
+.. _DiskCache: http://www.grantjenks.com/docs/diskcache/
+
