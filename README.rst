@@ -56,7 +56,7 @@ PDF files into ``txt``:
 
    $ search-ebooks ~/ebooks/ --query "\bhold\b" -f pdf --use-cache
    
-**Output:** ``pdftotext`` and with cache
+**Output:** ``pdftotext`` and cache
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/pdftotext_with_cache.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/pdftotext_with_cache.png
@@ -71,7 +71,7 @@ This is the command which makes use of ``pdftotext`` for searching but doesn't u
 
    $ search-ebooks ~/ebooks/ --query "\bhold\b" -f pdf
    
-**Output:** ``pdftotext`` and without cache
+**Output:** ``pdftotext`` and no cache
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/pdftotext_without_cache.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/pdftotext_without_cache.png
