@@ -140,7 +140,7 @@ PDF files into ``.txt``:
 
 `:information_source:`
 
-  Two files were not included in the search results because they were skipped since they
+  Two PDF files were not included in the search results because they
   were scanned ebooks that only contain images.
 
 ``pdftotext`` without cache
