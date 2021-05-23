@@ -22,6 +22,9 @@ Search through the content of eight PDF files for the word **hold**
 which is accomplished with the regex ``\bhold\b``. Thus for
 example, we want *hold* but not *holdings* nor *behold*.
 
+If we wanted all occurrences of **hold** not matter where it appears 
+in the text content, then the ``hold`` pattern would do the work.
+
 Searching content of PDF files with ``pdftotext``
 -------------------------------------------------
 We will use the ``pdftotext`` utility to convert PDF files to ``txt`` in order
