@@ -113,6 +113,7 @@ the `LICENSE`_ file in the repository.
 
 .. URLs
 .. _DiskCache: http://www.grantjenks.com/docs/diskcache/
+.. _DiskCache Cache Benchmarks: http://www.grantjenks.com/docs/diskcache/cache-benchmarks.html
 .. _LICENSE: ./LICENSE
 .. _Memcached: http://memcached.org/
 .. _Redis: https://redis.io/
