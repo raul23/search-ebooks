@@ -63,7 +63,7 @@ We will use the `pdftotext`_ utility to convert PDF files to ``txt`` in order
 to search through content for a given search query.
 
 By default, the ``seach-ebooks`` script uses ``pdftotext`` since it is way
-faster than *calibre*\'s ``ebook-convert`` to convert files to ``txt``.
+faster than *calibre*\'s `ebook-convert`_ to convert files to ``txt``.
 
 The ``pdftotext``'s results are given for two cases: with and without cache.
 
@@ -129,7 +129,7 @@ This is the command which makes use of *calibre*\'s ``ebook-convert`` to search 
  
 `:information_source:`
 
-  ``psm calibre`` specifies to use *calibre*\'s ``ebook-convert`` to convert
+  ``psm calibre`` specifies to use *calibre*\'s `ebook-convert`_ to convert
   PDF files to ``txt`` (instead of ``pdftotext``) and then search them for the
   given query.
  
@@ -137,7 +137,7 @@ This is the command which makes use of *calibre*\'s ``ebook-convert`` to search 
 
 `:warning:`
 
-  However, *calibre*\'s `ebook-convert`_ is too slow when converting PDF files to ``txt``.
+  However, ``ebook-convert`` is too slow when converting PDF files to ``txt``.
   Also, ``ebook-convert`` will try to convert scanned ebooks that only contain images 
   and after a long time waiting for the result, it will output a small ``txt`` file 
   that doesn't contain any of the file content. On the other hand, ``pdftotext`` will
