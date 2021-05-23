@@ -43,8 +43,8 @@ Other dependencies
 As explained in the documentation for 
 `pyebooktools <https://github.com/raul23/pyebooktools#other-dependencies>`__, 
 you need recent versions of:
-  
-  * `calibre`_ for converting ebook files to ``.txt``
+
+* `calibre`_ for converting ebook files to ``.txt``
   
 And optionally, you might need:
 
