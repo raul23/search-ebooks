@@ -89,7 +89,7 @@ will search from:
   * The folder contains ebooks of different types but we will only
     search the PDF files.
   * Two PDF files are scanned ebooks that contain only images: 
-  ``Les Misérables by Victor Hugo.pdf`` and ``The Republic by Plato.pdf``.
+    *Les Misérables by Victor Hugo.pdf* and *The Republic by Plato.pdf*.
 
 Searching content of PDF files with ``pdftotext``
 -------------------------------------------------
