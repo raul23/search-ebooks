@@ -28,9 +28,9 @@ By default, these are the search-backends for each type of ebooks:
 
 `:information_source:`
 
-  * Each of the utilities mentioned in the **Search-backend** columns are used to 
+  * Each of the utilities mentioned in the **Search-backend** columns is used to 
     extract the text before it is search on. However, ``.epub`` files must
-    first be uncompressed by ``zipgrep`` before it is search on.
+    first be uncompressed by ``zipgrep``.
   * `Lucene`_ is not supported yet
 
 |
