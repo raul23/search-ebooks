@@ -38,7 +38,7 @@ Search ``epub`` files
 
   .. code-block:: bash
 
-     find test.epub -exec zipgrep pattern {} \;
+     zipgrep pattern test.epub
 
   **NOTE:** ``zipgrep`` doesn't work on ``mobi`` files (they are not related
   to ``zip`` or ``epub``)
