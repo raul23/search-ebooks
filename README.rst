@@ -40,6 +40,8 @@ converted ebook files to ``.txt`` and hence speed up the searching by a lot.
 Depending on the number of files searched, the searching can even be 20 times
 faster with cache than without it.
 
+|
+
 `:warning:`
 
   * For the moment, the ``search-ebooks`` script is only tested on **macOS**.
