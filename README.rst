@@ -11,8 +11,8 @@ search-ebooks
 Command-line program that searches through content and metadata of different
 types of ebooks.
 
-It allows you to choose the search-backend for the different ebook formats.
-By default, these are the search backends for each type of ebooks:
+It allows you to choose the search methods for the different ebook formats.
+By default, these are the search-backends for each type of ebooks:
 
 +---------------+--------------------------------------------+-------------------+-------------------+
 | File type     | Search-backend #1                          | Search-backend #2 | Search-backend #3 |
