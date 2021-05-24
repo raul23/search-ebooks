@@ -24,8 +24,9 @@ The other search-backends are based either on *calibre*\'s `ebook-convert`_ or
 `Lucene`_ (not supported yet).
 
 All of the search-backends makes use of a file-based `cache`_ to save the
-converted ebook files to ``.txt`` and hence speed up the searching by a lot
-(depending on the number of files searched, it can even be 20 times faster!).
+converted ebook files to ``.txt`` and hence speed up the searching by a lot. 
+Depending on the number of files searched, using cache can even be 20 times
+faster than without cache.
 
 `:warning:`
 
