@@ -14,21 +14,21 @@ types of ebooks.
 It allows you to choose the search-backend for the different ebook formats.
 By default, these are the search backends for each type of ebooks:
 
-+---------------+--------------------------------------------+-------------------------------+-------------------+
-| File type     | Search-backend #1                          | Search-backend #2             | Search-backend #3 |
-+===============+============================================+===============================+===================+
-| ``.djvu``     | `djvutxt`_ extracts the text and           | *calibre*\'s `ebook-convert`_ | `Lucene`_         |
-|               | then it is search on                       |                               |                   |
-+---------------+--------------------------------------------+-------------------------------+-------------------+
-| ``.epub``     | ``find`` and `zipgrep`_ are used           | *calibre*\'s `ebook-convert`_ | `Lucene`_         |
-|               | to search these types of files             |                               |                   |
-+---------------+--------------------------------------------+-------------------------------+-------------------+
-| ``.doc`` [1]_ | `catdoc`_ or `textutil`_ (if on macOS)     | *calibre*\'s `ebook-convert`_ | `Lucene`_         |
-|               | extracts the text and then it is search on |                               |                   |
-+---------------+--------------------------------------------+-------------------------------+-------------------+
-| ``.pdf``      | `pdftotext`_ extracts the text and         | *calibre*\'s `ebook-convert`_ | `Lucene`_         |
-|               | then it is search on                       |                               |                   |
-+---------------+--------------------------------------------+-------------------------------+-------------------+
++---------------+--------------------------------------------+-------------------+-------------------+
+| File type     | Search-backend #1                          | Search-backend #2 | Search-backend #3 |
++===============+============================================+===================+===================+
+| ``.djvu``     | `djvutxt`_ extracts the text and           | `ebook-convert`_  | `Lucene`_         |
+|               | then it is search on                       |                   |                   |
++---------------+--------------------------------------------+-------------------+-------------------+
+| ``.epub``     | ``find`` and `zipgrep`_ are used           | `ebook-convert`_  | `Lucene`_         |
+|               | to search these types of files             |                   |                   |
++---------------+--------------------------------------------+-------------------+-------------------+
+| ``.doc`` [1]_ | `catdoc`_ or `textutil`_ (if on macOS)     | `ebook-convert`_  | `Lucene`_         |
+|               | extracts the text and then it is search on |                   |                   |
++---------------+--------------------------------------------+-------------------+-------------------+
+| ``.pdf``      | `pdftotext`_ extracts the text and         | `ebook-convert`_  | `Lucene`_         |
+|               | then it is search on                       |                   |                   |
++---------------+--------------------------------------------+-------------------+-------------------+
 
 `:information_source:`
 
