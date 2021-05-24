@@ -28,8 +28,8 @@ These are the search-backends for each type of ebooks:
 
 `:information_source:`
 
-  * By default, the search methods from the **Search-backend #1** are used
-    since they are quicker to extract text than *calibre*
+  * By default, the search methods from the **Search-backend #1** column 
+    are used since they are quicker to extract text than *calibre*
   * Each of the utilities mentioned in the **Search-backend** columns is used to 
     extract the text before it is search on. However, ``.epub`` files must
     first be uncompressed by ``zipgrep`` since they are zipped HTML files.
