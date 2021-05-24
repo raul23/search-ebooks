@@ -15,7 +15,7 @@ It allows you to choose the search methods for the different ebook formats.
 These are the search-backends for each type of ebooks:
 
 +---------------+-----------------------------------------+-------------------+-------------------+
-| File type     | Search-backend #1 (default)             | Search-backend #2 | Search-backend #3 |
+| File type     | Search-backend #1 (**default**)         | Search-backend #2 | Search-backend #3 |
 +===============+=========================================+===================+===================+
 | ``.djvu``     | `djvutxt`_                              | `ebook-convert`_  | `Lucene`_         |
 +---------------+-----------------------------------------+                   |                   |
