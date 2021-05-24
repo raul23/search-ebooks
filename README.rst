@@ -35,7 +35,7 @@ By default, these are the search-backends for each type of ebooks:
 
 |
 
-All of the search-backends makes use of a file-based `cache`_ to save the
+All of the search-backends make use of a file-based `cache`_ to save the
 converted ebook files to ``.txt`` and hence speed up the searching by a lot. 
 Depending on the number of files searched, the searching can even be 20 times
 faster with cache than without it.
