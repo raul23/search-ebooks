@@ -251,10 +251,10 @@ Starting from first priority tasks:
 5. Test on linux
 6. Create a `docker`_ image for this project
 7. Read also metadata from *calibre*\'s ``metadata.opf`` if found
-7. Add tests on `Travis CI`_
-8. Eventually add documentation on `Read the Docs`_
-9. Add support for multiprocessing
-10. Implement a GUI, specially to make navigation of search results easier 
+8. Add tests on `Travis CI`_
+9. Eventually add documentation on `Read the Docs`_
+10. Add support for multiprocessing
+11. Implement a GUI, specially to make navigation of search results easier 
     since you can have thousands of matches for a given search query
   
     Though, for the moment not sure which GUI library to choose from 
