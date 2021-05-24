@@ -49,6 +49,8 @@ faster with cache than without it.
   * **More to come!** Check the `Roadmap <#roadmap>`_ to know what is coming
     soon.
 
+|
+
 .. contents:: **Contents**
    :depth: 2
    :local:
