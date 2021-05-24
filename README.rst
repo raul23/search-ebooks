@@ -33,6 +33,8 @@ By default, these are the search-backends for each type of ebooks:
     first be uncompressed by ``zipgrep`` before it is search on.
   * `Lucene`_ is not supported yet
 
+|
+
 All of the search-backends makes use of a file-based `cache`_ to save the
 converted ebook files to ``.txt`` and hence speed up the searching by a lot. 
 Depending on the number of files searched, the searching can even be 20 times
