@@ -14,25 +14,23 @@ types of ebooks.
 It allows you to choose the search methods for the different ebook formats.
 By default, these are the search-backends for each type of ebooks:
 
-+---------------+--------------------------------------------+-------------------+-------------------+
-| File type     | Search-backend #1                          | Search-backend #2 | Search-backend #3 |
-+===============+============================================+===================+===================+
-| ``.djvu``     | `djvutxt`_ extracts the text and           | `ebook-convert`_  | `Lucene`_         |
-|               | then it is search on                       |                   |                   |
-+---------------+--------------------------------------------+-------------------+-------------------+
-| ``.epub``     | ``find`` and `zipgrep`_ are used           | `ebook-convert`_  | `Lucene`_         |
-|               | to search these types of files             |                   |                   |
-+---------------+--------------------------------------------+-------------------+-------------------+
-| ``.doc`` [1]_ | `catdoc`_ or `textutil`_ (if on macOS)     | `ebook-convert`_  | `Lucene`_         |
-|               | extracts the text and then it is search on |                   |                   |
-+---------------+--------------------------------------------+-------------------+-------------------+
-| ``.pdf``      | `pdftotext`_ extracts the text and         | `ebook-convert`_  | `Lucene`_         |
-|               | then it is search on                       |                   |                   |
-+---------------+--------------------------------------------+-------------------+-------------------+
++---------------+-----------------------------------------+-------------------+-------------------+
+| File type     | Search-backend #1                       | Search-backend #2 | Search-backend #3 |
++===============+=========================================+===================+===================+
+| ``.djvu``     | `djvutxt`_                              | `ebook-convert`_  | `Lucene`_         |
++---------------+-----------------------------------------+-------------------+-------------------+
+| ``.epub``     | `zipgrep`_                              | `ebook-convert`_  | `Lucene`_         |
++---------------+-----------------------------------------+-------------------+-------------------+
+| ``.doc`` [1]_ | `catdoc`_ or `textutil`_ (if on macOS)  | `ebook-convert`_  | `Lucene`_         |
++---------------+-----------------------------------------+-------------------+-------------------+
+| ``.pdf``      | `pdftotext`_                            | `ebook-convert`_  | `Lucene`_         |
++---------------+-----------------------------------------+-------------------+-------------------+
 
 `:information_source:`
 
-  * *calibre*\'s `ebook-convert`_ extracts the text and then it is search on
+  * Each of the utilities mentioned in the **Search-backend** columns are used to 
+    extract the text before it is search on. However, ``.epub`` files must
+    first be uncompressed by ``zipgrep`` before it is search on.
   * `Lucene`_ is not supported yet
 
 All of the search-backends makes use of a file-based `cache`_ to save the
