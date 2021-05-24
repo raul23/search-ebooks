@@ -257,7 +257,7 @@ Starting from first priority tasks:
 8. Add tests on `Travis CI`_
 9. Eventually add documentation on `Read the Docs`_
 10. Add support for multiprocessing so you can have multiple ebook files
-    being searched on in parallel based on the number of cores
+    being searched in parallel based on the number of cores
 11. Implement a GUI, specially to make navigation of search results easier 
     since you can have thousands of matches for a given search query
   
