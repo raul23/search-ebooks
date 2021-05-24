@@ -250,6 +250,7 @@ Starting from first priority tasks:
    
 5. Test on linux
 6. Create a `docker`_ image for this project
+7. Read also metadata from *calibre*\'s ``metadata.opf`` if found
 7. Add tests on `Travis CI`_
 8. Eventually add documentation on `Read the Docs`_
 9. Add support for multiprocessing
