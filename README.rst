@@ -104,9 +104,9 @@ See `DiskCache Cache Benchmarks`_ for comparaisons to `Memcached`_ and
 
 Tests
 =====
-Search through the content of eight PDF files for the word **hold** which is
-accomplished with the regex ``\bhold\b``. Thus for example, we want *hold* but
-not *holdings* nor *behold*.
+Search through the content of PDF files for the word **hold** which is
+accomplished with the regex ``\bhold\b`` with case-sensitive enabled. 
+Thus for example, we want *hold* but not *holdings* nor *behold*.
 
 If we wanted all occurrences of **hold** no matter where it appears in the text
 content, then the ``hold`` query would do the work.
@@ -161,8 +161,10 @@ save the converted PDF files into ``.txt``:
 
   - ``-f pdf`` is used to only process PDF files since the ``~/ebooks/`` folder
     might have all kinds of ebook files (e.g. ``.djvu`` and ``.epub``).
-  - By default, the search uses the ``pdftotext`` utility to convert the PDF
+  - By default, ``search-ebooks`` uses the ``pdftotext`` utility to convert the PDF
     files to ``.txt`` and then search them for the given query.
+  - By default, ``search-ebooks`` does a case-sensitive search. You can use the
+    ``-i`` flag if you want to ignore case.
 
 |
 
