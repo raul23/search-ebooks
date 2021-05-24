@@ -15,7 +15,7 @@ It allows you to choose the search-backend for the different ebook formats.
 By default, these are the search backends for each type of ebooks:
 
 * ``.djvu``: `djvutxt`_ extracts the text and then it is search on
-* ``.epub``: `zipgrep`_ extracts the text and then it is search on
+* ``.epub``: ``find`` and `zipgrep`_ are used to search ``.epub`` files
 * ``.doc`` and other related text files [1]_: `catdoc`_ or `textutil`_
   (if on macOS) extracts the text and then it is search on
 * ``.pdf``: `pdftotext`_ extracts the text and then it is search on
