@@ -14,14 +14,26 @@ types of ebooks.
 It allows you to choose the search-backend for the different ebook formats.
 By default, these are the search backends for each type of ebooks:
 
-* ``.djvu``: `djvutxt`_ extracts the text and then it is search on
-* ``.epub``: ``find`` and `zipgrep`_ are used to search these types of files
-* ``.doc`` and other related text files [1]_: `catdoc`_ or `textutil`_
-  (if on macOS) extracts the text and then it is search on
-* ``.pdf``: `pdftotext`_ extracts the text and then it is search on
++---------------+--------------------------------------------+-------------------------------+-------------------+
+| File type     | Search-backend #1                          | Search-backend #2             | Search-backend #3 |
++===============+============================================+===============================+===================+
+| ``.djvu``     | `djvutxt`_ extracts the text and           | *calibre*\'s `ebook-convert`_ | `Lucene`_         |
+|               | then it is search on                       |                               |                   |
++---------------+--------------------------------------------+-------------------------------+-------------------+
+| ``.epub``     | ``find`` and `zipgrep`_ are used           | *calibre*\'s `ebook-convert`_ | `Lucene`_         |
+|               | to search these types of files             |                               |                   |
++---------------+--------------------------------------------+-------------------------------+-------------------+
+| ``.doc`` [1]_ | `catdoc`_ or `textutil`_ (if on macOS)     | *calibre*\'s `ebook-convert`_ | `Lucene`_         |
+|               | extracts the text and then it is search on |                               |                   |
++---------------+--------------------------------------------+-------------------------------+-------------------+
+| ``.pdf``      | `pdftotext`_ extracts the text and         | *calibre*\'s `ebook-convert`_ | `Lucene`_         |
+|               | then it is search on                       |                               |                   |
++---------------+--------------------------------------------+-------------------------------+-------------------+
 
-The other search-backends are based either on *calibre*\'s `ebook-convert`_ or
-`Lucene`_ (not supported yet).
+`:information_source:`
+
+  * *calibre*\'s `ebook-convert`_ extracts the text and then it is search on
+  * `Lucene`_ is not supported yet
 
 All of the search-backends makes use of a file-based `cache`_ to save the
 converted ebook files to ``.txt`` and hence speed up the searching by a lot. 
