@@ -254,7 +254,8 @@ We will present search examples that are not trivial in order to show the
 potential of the ``search-ebooks`` script for searching for complex types of 
 query.
 
-In all the examples, this is the list of ebooks we will search from:
+This is the ``~/ebooks/`` folder that contains the files which we will search
+from in the following examples:
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/list_of_ebooks.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/list_of_ebooks.png
