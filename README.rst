@@ -128,8 +128,7 @@ See `DiskCache Cache Benchmarks`_ for comparaisons to `Memcached`_ and
 Examples
 ========
 We will present search examples that are not trivial in order to show the
-potential of the ``search-ebooks`` script for searching for complex types of 
-query.
+potential of the ``search-ebooks`` script for executing complex queries.
 
 This is the ``~/ebooks/`` folder that contains the files which we will search
 from in the following examples:
