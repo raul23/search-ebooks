@@ -188,6 +188,19 @@ We will execute the `previous query`_ but this time we will include the
 scanned file *The Republic by Plato.pdf* in the search by using the ``--ocr``
 flag which will convert the images to text with `Tesseract`_:
 
+.. code:: bash
+
+   $ search-ebooks ~/ebooks/ --query "\bknowledge\b" --filename "Aristotle|Plato" -i --use-cache --ocr
+
+
+`:information_source:`
+ 
+  The ``--ocr`` allows you to search ``.pdf``, ``.djvu`` and image files but it
+  is disabled by default because it is a very slow resource-intensive process.
+  Thus, use it wisely!
+
+TODO
+
 Roadmap
 =======
 Starting from first priority tasks:
