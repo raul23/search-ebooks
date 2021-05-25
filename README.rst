@@ -144,7 +144,7 @@ from in the following examples:
 
 `:information_source:`
 
-  Of the total eight PDF files, two are scanned ebooks that contain only
+  Of the total eight PDF files, two are files that contain only
   images: *Les Misérables by Victor Hugo.pdf* and *The Republic by Plato.pdf*.
 
 Search ebooks whose filenames satisfy a given pattern
@@ -179,14 +179,14 @@ case:
     and hence the word 'knowledge' might come from the introduction (written by 
     another author) or the translator's footnotes.
   * As explained previously, *The Republic by Plato.pdf* is not included in
-    the matches because it is a scanned ebook with images only and since
+    the matches because it is a file with images only and since
     we didn't use the ``--ocr`` flag, the file couldn't be converted to ``.txt``.
 
-Search scanned ebooks 
----------------------
+Search documents with images 
+----------------------------
 We will execute the `previous query`_ but this time we will include the
-scanned file *The Republic by Plato.pdf* in the search by using the ``--ocr``
-flag which will convert the images to text with `Tesseract`_:
+file *The Republic by Plato.pdf* (which contain images) in the search by 
+using the ``--ocr`` flag which will convert the images to text with `Tesseract`_:
 
 .. code:: bash
 
