@@ -12,7 +12,7 @@ search-ebooks
 and metadata of different types of ebooks.
 
 It allows you to choose the search methods for the different ebook formats.
-These are the search-backends for each type of ebooks:
+These are the supported search-backends for each type of ebooks:
 
 +---------------+-----------------------------------------+-------------------+-------------------+
 | File type     | Search-backend #1 (default)             | Search-backend #2 | Search-backend #3 |
