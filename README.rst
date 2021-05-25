@@ -151,12 +151,14 @@ case:
 
 .. code:: bash
 
-   $ search-ebooks ~/ebooks/ --query knowledge --filename "Aristotle|Plato" -i --use-cache
+   $ search-ebooks ~/ebooks/ --query "\bknowledge\b" --filename "Aristotle|Plato" -i --use-cache
 
 `:information_source:`
 
-  Since we already converted the files to ``.txt`` in previous runs,
-  we make use of the cache with the ``--use-cache`` flag.
+  * ``\bknowledge\b`` restricts exactly the search to the word "knowledge". 
+    Thus, words like 'acknowledge' or 'knowledgeable' are rejected.
+  * Since we already converted the files to ``.txt`` in previous runs,
+    we make use of the cache with the ``--use-cache`` flag.
 
 **Output:**
 
@@ -164,6 +166,10 @@ case:
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_filenames_contain.png
    :align: left
    :alt: Output for example: filenames satisfy a given pattern
+
+`:information_source:`
+
+  
 
 Roadmap
 =======
