@@ -13,7 +13,23 @@ and metadata of different types of ebooks. It is based on the `pyebooktools`_
 Python package for the conversion of ebooks to ``.txt`` in order to then
 search on them.
 
-It allows you to choose the search methods for the different ebook formats.
+`:warning:`
+
+  * For the moment, the ``search-ebooks`` script is only tested on **macOS**.
+    It will be tested also on linux.
+  * **More to come!** Check the `Roadmap <#roadmap>`_ to know what is coming
+    soon.
+
+|
+
+.. contents:: **Contents**
+   :depth: 2
+   :local:
+   :backlinks: top
+   
+Introduction
+============
+``search-ebooks`` allows you to choose the search methods for the different ebook formats.
 These are the supported search-backends for each type of ebooks:
 
 +---------------+-----------------------------------------+-------------------+-------------------+
@@ -49,22 +65,6 @@ of searching with cache and no cache).
 The only search method that doesn't make use of the cache is the one based on
 ``zipgrep`` because it doesn't return the whole extracted text, but only the 
 lines of the text that matched the given search query.
-
-|
-
-`:warning:`
-
-  * For the moment, the ``search-ebooks`` script is only tested on **macOS**.
-    It will be tested also on linux.
-  * **More to come!** Check the `Roadmap <#roadmap>`_ to know what is coming
-    soon.
-
-|
-
-.. contents:: **Contents**
-   :depth: 2
-   :local:
-   :backlinks: top
    
 Dependencies
 ============
