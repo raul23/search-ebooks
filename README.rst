@@ -156,7 +156,7 @@ case:
 
 `:information_source:`
 
-  Since we already converted the files to ``.txt`` in the previous runs,
+  Since we already converted the files to ``.txt`` in previous runs,
   we make use of the cache with the ``--use-cache`` flag.
 
 **Output:**
