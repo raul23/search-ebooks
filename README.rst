@@ -48,7 +48,8 @@ These are the supported (right now and in the future) search-backends for each t
 
   * By default, the search methods from the **Search-backend #1** column 
     are used since they are quicker to extract text than *calibre*\'s
-    ``ebook-convert``.
+    ``ebook-convert``. But if they are not installed, then the searching
+    relies on ``ebook-convert`` for converting the documents o ``.txt``
   * The utilities mentioned in the **Search-backend** columns are used to 
     extract the text before it is search on. However, ``.epub`` files must
     first be uncompressed by ``zipgrep`` since they are zipped HTML files.
