@@ -125,6 +125,10 @@ multiple eviction policies. See `Features`_ for a more complete list.
 See `DiskCache Cache Benchmarks`_ for comparaisons to `Memcached`_ and 
 `Redis`_.
 
+Tips
+====
+TODO
+
 Examples
 ========
 We will present search examples that are not trivial in order to show the
@@ -170,7 +174,7 @@ case:
 
 `:information_source:`
 
-  
+  TODO
 
 Roadmap
 =======
