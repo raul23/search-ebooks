@@ -156,6 +156,11 @@ case:
 
 **Output:**
 
+.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_filenames_contain.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_filenames_contain.png
+   :align: left
+   :alt: Output for example: filenames satisfy a given pattern
+
 Roadmap
 =======
 Starting from first priority tasks:
