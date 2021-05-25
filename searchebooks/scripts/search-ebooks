@@ -209,7 +209,7 @@ def setup_argparser():
     search_text_group = parser.add_argument_group(
         title=f'{YELLOW}Search options{NC}')
     search_text_group.add_argument(
-        '--query', dest='search_query', metavar='QUERY', required=True,
+        '--query', dest='search_query', metavar='QUERY',
         help='Search query which can also be a regex.')
     search_text_group.add_argument(
         '-f', '--ebook-formats', metavar='FORMAT', nargs='+',
@@ -231,7 +231,7 @@ def setup_argparser():
              f'{MSWORD_SEARCH_METHODS}.' + get_default_message(MSWORD_SEARCH_METHOD))
     search_text_group.add_argument(
         '--esm', '--epub-search-method', metavar='METHOD',
-        dest='epub_search_method', choices=EPUB_SEARCH_METHOD,
+        dest='epub_search_method', choices=EPUB_SEARCH_METHODS,
         default=EPUB_SEARCH_METHOD,
         help='Search method for epub files. Choose one from: '
              f'{EPUB_SEARCH_METHODS}.' + get_default_message(EPUB_SEARCH_METHOD))
@@ -248,6 +248,7 @@ def setup_argparser():
         title=f'{YELLOW}Advanced search options{NC}',
         description=f'{RED}IMPORTANT:{NC} all the selected fields and the '
                     'search query are linked with ANDs between each other')
+    # TODO: add pages field
     search_metadata_group.add_argument(
         '-a', '--authors', help='Authors')
     search_metadata_group.add_argument(
@@ -256,14 +257,21 @@ def setup_argparser():
         '--category', help='Category')
     search_metadata_group.add_argument(
         '--comments', help='Comments')
+    # TODO: important, date or published?
+    """
     search_metadata_group.add_argument(
         '-d', '--date', help='Published date')
+    """
+    search_metadata_group.add_argument(
+        '--filename', help='Filename')
     search_metadata_group.add_argument(
         '--identifiers', help='Identifiers')
     search_metadata_group.add_argument(
         '--isbn', help='ISBN')
     search_metadata_group.add_argument(
         '-l', '--language', help='Language')
+    search_metadata_group.add_argument(
+        '--published', help='Published date')
     search_metadata_group.add_argument(
         '-p', '--publisher', help='Publisher')
     search_metadata_group.add_argument(
