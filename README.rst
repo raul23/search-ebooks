@@ -155,8 +155,9 @@ case:
 
 `:information_source:`
 
-  * ``\bknowledge\b`` restricts exactly the search to the word "knowledge". 
-    Thus, words like 'acknowledge' or 'knowledgeable' are rejected.
+  * ``\bknowledge\b`` matches exactly the word 'knowledge', i.e. it performs a 
+    `“whole words only” search`_. Thus, words like 'acknowledge' or 'knowledgeable' 
+    are rejected.
   * Since we already converted the files to ``.txt`` in previous runs,
     we make use of the cache with the ``--use-cache`` flag.
 
@@ -215,6 +216,7 @@ References
 .. [1] ``txt``, ``html``, ``rtf``, ``rtfd``, ``doc``, ``wordml``, or ``webarchive``. See `<https://ss64.com/osx/textutil.html>`__
 
 .. URLs
+.. _“whole words only” search: https://www.regular-expressions.info/wordboundaries.html
 .. _calibre: https://calibre-ebook.com/
 .. _catdoc: http://www.wagner.pp.ru/~vitus/software/catdoc/
 .. _convert_to_txt.py: https://github.com/raul23/pyebooktools/blob/master/pyebooktools/convert_to_txt.py
