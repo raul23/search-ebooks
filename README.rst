@@ -164,7 +164,7 @@ Starting from first priority tasks:
 
    **Status:** working on it
 
-2. Add tests and examples for searching metadata of ebooks
+2. Add examples for searching text content and metadata of ebooks
    
    **Status:** working on it
    
