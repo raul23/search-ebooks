@@ -52,10 +52,9 @@ These are the supported (right now and in the future) search-backends for each t
   * The utilities mentioned in the **Search-backend** columns are used to 
     extract the text before it is search on. However, ``.epub`` files must
     first be uncompressed by ``zipgrep`` since they are zipped HTML files.
-  * `Lucene`_ is not supported yet. But eventually, I will add support
-    for `Lucene`_ as a search backend since it has "powerful indexing and 
-    search features, as well as spellchecking, hit highlighting and 
-    advanced analysis/tokenization capabilities".
+  * Eventually, I will add support for `Lucene`_ as a search backend since it 
+    has "powerful indexing and search features, as well as spellchecking, hit 
+    highlighting and advanced analysis/tokenization capabilities".
 
 |
 
