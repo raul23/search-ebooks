@@ -270,7 +270,14 @@ case:
 
 .. code:: bash
 
-   $ search-ebooks ~/ebooks/ --query knowledge --filename "Aristotle|Plato" --use-cache -i
+   $ search-ebooks ~/ebooks/ --query knowledge --filename "Aristotle|Plato" -i --use-cache
+
+`:information_source:`
+
+  Since we already converted the files to ``.txt`` in the previous tests,
+  we make use of the cache with the ``--use-cache`` flag.
+
+**Output:**
 
 Roadmap
 =======
