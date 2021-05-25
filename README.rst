@@ -182,6 +182,12 @@ case:
     the matches because it is a scanned ebook with images only and since
     we didn't use the ``--ocr`` flag, the file couldn't be converted to ``.txt``.
 
+Search scanned ebooks 
+=====================
+We will execute the `previous query`_ but this time we will include the the
+scanned file *The Republic by Plato.pdf* in the search by using the ``--ocr``
+flag which will convert the images to text with `Tesseract`_:
+
 Roadmap
 =======
 Starting from first priority tasks:
@@ -257,3 +263,4 @@ References
 
 .. Local URLs
 .. _cache: #cache
+.. _previous query: #search-ebooks-whose-filenames-satisfy-a-given-pattern
