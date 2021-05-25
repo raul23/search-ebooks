@@ -88,7 +88,7 @@ As explained in the documentation for
 `pyebooktools <https://github.com/raul23/pyebooktools#other-dependencies>`__, 
 you need recent version of:
 
-* `calibre`_ for converting ebook files to ``.txt`` and get metadata from ebooks
+* `calibre`_ to convert ebook files to ``.txt`` and get metadata from ebooks
   
 And optionally, you might need:
 
