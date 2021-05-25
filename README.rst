@@ -8,7 +8,7 @@ search-ebooks
     <br> 🚧 &nbsp;&nbsp;&nbsp;<b>Work-In-Progress</b>
   </p>
 
-``search-ebboks`` is a command-line program that searches through content
+`search-ebooks`_ is a command-line program that searches through content
 and metadata of different types of ebooks.
 
 It allows you to choose the search methods for the different ebook formats.
@@ -278,3 +278,4 @@ References
 .. Local URLs
 .. _cache: #cache
 .. _previous query: #search-ebooks-whose-filenames-satisfy-a-given-pattern
+.. _search-ebooks: ./searchebooks/search_ebooks.py
