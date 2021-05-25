@@ -8,24 +8,45 @@ search-ebooks
     <br> 🚧 &nbsp;&nbsp;&nbsp;<b>Work-In-Progress</b>
   </p>
 
-Command-line program that searches through content and metadata of different
-types of ebooks.
+``search-ebboks`` is a command-line program that searches through content 
+and metadata of different types of ebooks.
 
-It allows you to choose the search-backend for the different ebook formats.
-By default, these are the search backends for each type of ebooks:
+It allows you to choose the search methods for the different ebook formats.
+These are the supported search-backends for each type of ebooks:
 
-* ``.djvu``: `djvutxt`_ extracts the text and then it is search on
-* ``.epub``: `zipgrep`_ extracts the text and then it is search on
-* ``.doc`` and other related text files [1]_: `catdoc`_ or `textutil`_
-  (if on macOS) extracts the text and then it is search on
-* ``.pdf``: `pdftotext`_ extracts the text and then it is search on
++---------------+-----------------------------------------+-------------------+-------------------+
+| File type     | Search-backend #1 (default)             | Search-backend #2 | Search-backend #3 |
++===============+=========================================+===================+===================+
+| ``.djvu``     | `djvutxt`_                              | `ebook-convert`_  | `Lucene`_         |
++---------------+-----------------------------------------+                   |                   |
+| ``.epub``     | `zipgrep`_                              |                   |                   |
++---------------+-----------------------------------------+                   |                   |
+| ``.doc`` [1]_ | `catdoc`_ or `textutil`_ (if on macOS)  |                   |                   |
++---------------+-----------------------------------------+                   |                   |
+| ``.pdf``      | `pdftotext`_                            |                   |                   |
++---------------+-----------------------------------------+-------------------+-------------------+
 
-The other search-backends are based either on *calibre*\'s `ebook-convert`_ or
-`Lucene`_ (not supported yet).
+`:information_source:`
 
-All of the search-backends makes use of a file-based `cache`_ to save the
-converted ebook files to ``.txt`` and hence speed up the searching by a lot
-(depending on the number of files searched, it can even be 20 times faster!).
+  * By default, the search methods from the **Search-backend #1** column 
+    are used since they are quicker to extract text than *calibre*
+  * The utilities mentioned in the **Search-backend** columns are used to 
+    extract the text before it is search on. However, ``.epub`` files must
+    first be uncompressed by ``zipgrep`` since they are zipped HTML files.
+  * `Lucene`_ is not supported yet
+
+|
+
+All the utilities that extract text make use of a file-based `cache`_ to save the
+converted ebook files to ``.txt`` and hence speed up the searching by a lot. 
+Depending on the number of files searched, the searching can even be 20 times
+faster with cache than without it.
+
+The only search method that doesn't make use of the cache is the one based on
+``zipgrep`` because it doesn't return the whole extracted text, but only the 
+lines of the text that matched the given search query.
+
+|
 
 `:warning:`
 
@@ -33,6 +54,8 @@ converted ebook files to ``.txt`` and hence speed up the searching by a lot
     It will be tested also on linux.
   * **More to come!** Check the `Roadmap <#roadmap>`_ to know what is coming
     soon.
+
+|
 
 .. contents:: **Contents**
    :depth: 2
@@ -104,9 +127,9 @@ See `DiskCache Cache Benchmarks`_ for comparaisons to `Memcached`_ and
 
 Tests
 =====
-Search through the content of eight PDF files for the word **hold** which is
-accomplished with the regex ``\bhold\b``. Thus for example, we want *hold* but
-not *holdings* nor *behold*.
+Search through the content of PDF files for the word **hold** which is
+accomplished with the regex ``\bhold\b`` with case-sensitive enabled. 
+Thus for example, we want *hold* but not *holdings* nor *behold*.
 
 If we wanted all occurrences of **hold** no matter where it appears in the text
 content, then the ``hold`` query would do the work.
@@ -161,8 +184,10 @@ save the converted PDF files into ``.txt``:
 
   - ``-f pdf`` is used to only process PDF files since the ``~/ebooks/`` folder
     might have all kinds of ebook files (e.g. ``.djvu`` and ``.epub``).
-  - By default, the search uses the ``pdftotext`` utility to convert the PDF
+  - By default, ``search-ebooks`` uses the ``pdftotext`` utility to convert the PDF
     files to ``.txt`` and then search them for the given query.
+  - By default, ``search-ebooks`` does a case-sensitive search. You can use the
+    ``-i`` flag if you want to ignore case.
 
 |
 
@@ -250,10 +275,12 @@ Starting from first priority tasks:
    
 5. Test on linux
 6. Create a `docker`_ image for this project
-7. Add tests on `Travis CI`_
-8. Eventually add documentation on `Read the Docs`_
-9. Add support for multiprocessing
-10. Implement a GUI, specially to make navigation of search results easier 
+7. Read also metadata from *calibre*\'s ``metadata.opf`` if found
+8. Add tests on `Travis CI`_
+9. Eventually add documentation on `Read the Docs`_
+10. Add support for multiprocessing so you can have multiple ebook files
+    being searched in parallel based on the number of cores
+11. Implement a GUI, specially to make navigation of search results easier 
     since you can have thousands of matches for a given search query
   
     Though, for the moment not sure which GUI library to choose from 
