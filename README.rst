@@ -160,7 +160,7 @@ Roadmap
 =======
 Starting from first priority tasks:
 
-1. Add many tests with more ebooks (in the thousands maybe)
+1. Add many tests with many ebooks (in the thousands maybe)
 
    **Status:** working on it
 
