@@ -185,7 +185,7 @@ case:
 Search documents with images 
 ----------------------------
 We will execute the `previous query`_ but this time we will include the
-file *The Republic by Plato.pdf* (which contain images) in the search by 
+file *The Republic by Plato.pdf* (which contains images) in the search by 
 using the ``--ocr`` flag which will convert the images to text with `Tesseract`_:
 
 .. code:: bash
