@@ -195,7 +195,7 @@ flag which will convert the images to text with `Tesseract`_:
 
 `:information_source:`
  
-  The ``--ocr`` allows you to search ``.pdf``, ``.djvu`` and image files but it
+  The ``--ocr`` flag allows you to search ``.pdf``, ``.djvu`` and image files but it
   is disabled by default because `OCR`_ is a very slow resource-intensive process.
   Thus, use it wisely!
 
