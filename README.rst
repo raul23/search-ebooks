@@ -44,7 +44,7 @@ faster with cache than without it.
 
 The only search method that doesn't make use of the cache is the one based on
 ``zipgrep`` because it doesn't return the whole extracted text, but only the 
-parts of the text that matched the given search query.
+lines of the text that matched the given search query.
 
 |
 
