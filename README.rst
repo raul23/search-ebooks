@@ -176,7 +176,7 @@ case:
 
 **Output:**
 
-.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_filenames_satisfy_pattern.png
+.. :image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_filenames_satisfy_pattern.png
 .. :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_filenames_satisfy_pattern.png
 .. :align: left
 .. :alt: Output for example: filenames satisfy a given pattern
