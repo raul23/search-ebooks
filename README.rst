@@ -8,7 +8,7 @@ search-ebooks
     <br> 🚧 &nbsp;&nbsp;&nbsp;<b>Work-In-Progress</b>
   </p>
 
-``search-ebboks`` is acommand-line program that searches through content 
+``search-ebboks`` is a command-line program that searches through content 
 and metadata of different types of ebooks.
 
 It allows you to choose the search methods for the different ebook formats.
