@@ -52,7 +52,10 @@ These are the supported (right now and in the future) search-backends for each t
   * The utilities mentioned in the **Search-backend** columns are used to 
     extract the text before it is search on. However, ``.epub`` files must
     first be uncompressed by ``zipgrep`` since they are zipped HTML files.
-  * `Lucene`_ is not supported yet.
+  * `Lucene`_ is not supported yet. But eventually, I will add support
+    for `Lucene`_ as a search backend since it has "powerful indexing and 
+    search features, as well as spellchecking, hit highlighting and 
+    advanced analysis/tokenization capabilities".
 
 |
 
@@ -219,9 +222,7 @@ Starting from first priority tasks:
    
 3. Add instructions on how to install the ``searchebooks`` package
 
-4. Add support for `Lucene`_ as a search backend since it has
-   "powerful indexing and search features, as well as spellchecking, hit
-   highlighting and advanced analysis/tokenization capabilities".
+4. Add support for `Lucene`_ as a search backend
    
    `PyLucene`_ will be used to access ``Lucene``\'s text indexing and searching
    capabilities from Python
