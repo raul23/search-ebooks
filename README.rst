@@ -250,7 +250,26 @@ but doesn't use cache:
 
 Examples
 ========
-TODO
+We will present search examples that are not trivial in order to show the
+potential of the ``search-ebooks`` script for searching for complex types of 
+query.
+
+In all the examples, this is the list of ebooks we will search:
+
+.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/list_of_ebooks.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/list_of_ebooks.png
+   :align: left
+   :alt: List of ebooks to search from
+
+Search ebooks whose filenames satisfy a given pattern
+-----------------------------------------------------
+We want to search for the word 'knowledge' but only for those ebooks whose
+filenames contain either 'Aristotle' or 'Plato' and also we want to ignore
+case:
+
+.. code:: bash
+
+   $ search-ebooks ~/ebooks/ --query knowledge --filename "Aristotle|Plato" --use-cache -i
 
 Roadmap
 =======
