@@ -8,7 +8,7 @@ search-ebooks
     <br> 🚧 &nbsp;&nbsp;&nbsp;<b>Work-In-Progress</b>
   </p>
 
-``search-ebboks`` is a command-line program that searches through content 
+``search-ebboks`` is a command-line program that searches through content
 and metadata of different types of ebooks.
 
 It allows you to choose the search methods for the different ebook formats.
@@ -37,10 +37,10 @@ These are the supported search-backends for each type of ebooks:
 
 |
 
-All the utilities that extract text make use of a file-based `cache`_ to save the
-converted ebook files to ``.txt`` and hence speed up the searching by a lot. 
-Depending on the number of files searched, the searching can even be 20 times
-faster with cache than without it.
+All the utilities that extract text make use of a file-based `cache`_ to save
+the converted ebook files to ``.txt`` and hence speed up the searching by a
+lot. Depending on the number of files searched, the searching can even be 20
+times faster with cache than without it.
 
 The only search method that doesn't make use of the cache is the one based on
 ``zipgrep`` because it doesn't return the whole extracted text, but only the 
@@ -184,8 +184,8 @@ save the converted PDF files into ``.txt``:
 
   - ``-f pdf`` is used to only process PDF files since the ``~/ebooks/`` folder
     might have all kinds of ebook files (e.g. ``.djvu`` and ``.epub``).
-  - By default, ``search-ebooks`` uses the ``pdftotext`` utility to convert the PDF
-    files to ``.txt`` and then search them for the given query.
+  - By default, ``search-ebooks`` uses the ``pdftotext`` utility to convert the
+    PDF files to ``.txt`` and then search them for the given query.
   - By default, ``search-ebooks`` does a case-sensitive search. You can use the
     ``-i`` flag if you want to ignore case.
 
