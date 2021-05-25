@@ -96,8 +96,8 @@ And optionally, you might need:
   can be installed for faster than calibre's conversion of ``.pdf``, ``.doc``
   and ``.djvu`` files respectively to ``.txt``.
 * `Tesseract`_ for running OCR on books - version 4 gives better results
-  even though it's still in alpha. OCR is disabled by default and another
-  engine can be configured if preferred.
+  even though it's still in alpha. OCR is disabled by default since it 
+  is a resource-intensive process.
   
   `:warning:`
    
@@ -106,6 +106,7 @@ And optionally, you might need:
 
 .. TODO: add these options
 .. * `Lucene`_ for a powerful search library
+.. (for Tesseract) and another engine can be configured if preferred.
 
 Cache
 =====
