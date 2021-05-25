@@ -37,10 +37,14 @@ These are the search-backends for each type of ebooks:
 
 |
 
-All of the search-backends make use of a file-based `cache`_ to save the
+All the utilities that extract text make use of a file-based `cache`_ to save the
 converted ebook files to ``.txt`` and hence speed up the searching by a lot. 
 Depending on the number of files searched, the searching can even be 20 times
 faster with cache than without it.
+
+The only search method that doesn't make use of the cache is the one based on
+``zipgrep`` because it doesn't return the whole extracted text, but only the 
+parts of the text that matched the given search query.
 
 |
 
