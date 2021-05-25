@@ -139,6 +139,11 @@ from in the following examples:
    :align: left
    :alt: List of ebooks to search from
 
+`:information_source:`
+
+  Of the total eight PDF files, two are scanned ebooks that contain only
+  images: *Les Misérables by Victor Hugo.pdf* and *The Republic by Plato.pdf*.
+
 Search ebooks whose filenames satisfy a given pattern
 -----------------------------------------------------
 We want to search for the word 'knowledge' but only for those ebooks whose
