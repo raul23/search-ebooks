@@ -196,7 +196,7 @@ flag which will convert the images to text with `Tesseract`_:
 `:information_source:`
  
   The ``--ocr`` allows you to search ``.pdf``, ``.djvu`` and image files but it
-  is disabled by default because it is a very slow resource-intensive process.
+  is disabled by default because `OCR`_ is a very slow resource-intensive process.
   Thus, use it wisely!
 
 TODO
@@ -261,6 +261,7 @@ References
 .. _LICENSE: ./LICENSE
 .. _Lucene: https://lucene.apache.org/
 .. _Memcached: http://memcached.org/
+.. _OCR: https://en.wikipedia.org/wiki/Optical_character_recognition
 .. _other related text files: https://ss64.com/osx/textutil.html
 .. _pdftotext: https://www.xpdfreader.com/pdftotext-man.html
 .. _poppler: https://poppler.freedesktop.org/
