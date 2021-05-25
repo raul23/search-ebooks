@@ -151,7 +151,7 @@ case:
 
 `:information_source:`
 
-  Since we already converted the files to ``.txt`` in the previous tests,
+  Since we already converted the files to ``.txt`` in the previous runs,
   we make use of the cache with the ``--use-cache`` flag.
 
 **Output:**
