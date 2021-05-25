@@ -183,7 +183,7 @@ case:
     we didn't use the ``--ocr`` flag, the file couldn't be converted to ``.txt``.
 
 Search scanned ebooks 
-=====================
+---------------------
 We will execute the `previous query`_ but this time we will include the
 scanned file *The Republic by Plato.pdf* in the search by using the ``--ocr``
 flag which will convert the images to text with `Tesseract`_:
