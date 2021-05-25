@@ -97,7 +97,7 @@ And optionally, you might need:
   and ``.djvu`` files respectively to ``.txt``.
 * `Tesseract`_ for running OCR on books - version 4 gives better results
   even though it's still in alpha. OCR is disabled by default since it 
-  is a resource-intensive process.
+  is a slow resource-intensive process.
   
   `:warning:`
    
