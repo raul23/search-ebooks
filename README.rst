@@ -59,7 +59,7 @@ These are the supported search-backends for each type of ebooks:
     regular expressions such as ``\bpattern\b``.
   * The **default** search methods (except for ``.epub``) are used since 
     they are quicker to extract text than *calibre*\'s `ebook-convert`_. But 
-    if the default utilities are not installed, then the searching relies on 
+    if these default utilities are not installed, then the searching relies on 
     ``ebook-convert`` for converting the documents to ``.txt``
   * Eventually, I will add support for `Lucene`_ as a search backend since it 
     has "powerful indexing and search features, as well as spellchecking, hit 
@@ -68,11 +68,12 @@ These are the supported search-backends for each type of ebooks:
 `:warning:`
 
   I didn't set ``epubtxt`` as a default search-backend for ``epub`` files 
-  because it also includes the HTML tags in the extracted text.
+  because it also includes the HTML tags in the extracted text even though 
+  text extraction is faster than with ``ebook-convert``.
   
   Once I clean up the extracted text, I will set ``epubtxt`` as a default
-  search method for ``epub`` files if it is faster than ``ebook-convert``
-  for text conversion.
+  search method for ``epub`` files if it is still faster than ``ebook-convert``
+  for text extraction.
 
 |
 
