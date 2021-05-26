@@ -38,7 +38,7 @@ These are the supported (right now and in the future) search-backends for each t
 | ``.djvu``     | 1. `djvutxt`_ (**default**)                              |
 |               | 2. `ebook-convert`_                                      |
 +---------------+----------------------------------------------------------+
-| ``.epub``     | 1. `epubtxt`_ (**default**)                              |
+| ``.epub``     | 1. ``epubtxt`` (**default**)                             |
 |               | 2. `ebook-convert`_                                      |
 +---------------+----------------------------------------------------------+
 | ``.doc`` [1]_ | 1. `catdoc`_ or `textutil`_ (if on macOS) (**default**)  |
