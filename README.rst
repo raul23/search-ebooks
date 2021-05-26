@@ -53,7 +53,7 @@ These are the supported (right now and in the future) search-backends for each t
   * The utilities mentioned in the **Supported search-backends** column
     are used to extract the text before it is searched on.
   * More specifically, ``epubtxt`` consists in uncompressing first the 
-    ``epub`` file with `unzip`_ since ``epub``s are zipped HTML files. Then, 
+    ``epub`` file with `unzip`_ since ``epub``\s are zipped HTML files. Then, 
     the extracted text is searched on. I tried to use `zipgrep`_ to do
     both the unzipping and searching but I couldn't make it to work with
     regular expressions such as ``\bpattern\b``.
