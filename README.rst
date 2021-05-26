@@ -67,9 +67,9 @@ These are the supported (right now and in the future) search-backends for each t
 
 `:warning:`
 
-  I didn't set ``epubtxt`` as a default search-backend even though it is faster
-  thant ``ebook-convert`` to extract text because it also includes the HTML 
-  tags.
+  I didn't set ``epubtxt`` as a default search-backend for ``epub`` files 
+  because it also includes the HTML tags in the extracted text even though 
+  it is faster than ``ebook-convert`` for the text conversion.
   
   Once I clean up the extracted text, I will set ``epubtxt`` as a default
   search method for ``epub`` files.
