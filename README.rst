@@ -30,7 +30,7 @@ to ``.txt`` in order to then search on them)
 Introduction
 ============
 ``search-ebooks`` allows you to choose the search methods for the different ebook formats.
-These are the supported (right now and in the future) search-backends for each type of ebooks:
+These are the supported search-backends for each type of ebooks:
 
 +---------------+----------------------------------------------------------+
 | File type     | Supported search-backends                                |
