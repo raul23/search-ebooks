@@ -32,23 +32,29 @@ Introduction
 ``search-ebooks`` allows you to choose the search methods for the different ebook formats.
 These are the supported (right now and in the future) search-backends for each type of ebooks:
 
-+---------------+-----------------------------------------+-------------------+---------------------+
-| File type     | Search-backend #1 (default)             | Search-backend #2 | Search-backend #3   |
-+===============+=========================================+===================+=====================+
-| ``.djvu``     | `djvutxt`_                              | `ebook-convert`_  | `Lucene`_           |
-+---------------+-----------------------------------------+                   | (not supported yet) |
-| ``.epub``     | `zipgrep`_                              |                   |                     |
-+---------------+-----------------------------------------+                   |                     |
-| ``.doc`` [1]_ | `catdoc`_ or `textutil`_ (if on macOS)  |                   |                     |
-+---------------+-----------------------------------------+                   |                     |
-| ``.pdf``      | `pdftotext`_                            |                   |                     |
-+---------------+-----------------------------------------+-------------------+---------------------+
++---------------+----------------------------------------------------------+
+| File type     | Supported search-backends                                |
++===============+==========================================================+
+| ``.djvu``     | 1. `djvutxt`_ (**default**)                              |
+|               | 2. `ebook-convert`_                                      |
++---------------+----------------------------------------------------------+
+| ``.epub``     | 1. `epubtxt`_ (**default**)                              |
+|               | 2. `ebook-convert`_                                      |
++---------------+----------------------------------------------------------+
+| ``.doc`` [1]_ | 1. `catdoc`_ or `textutil`_ (if on macOS) (**default**)  |
+|               | 2. `ebook-convert`_                                      |
++---------------+----------------------------------------------------------+
+| ``.pdf``      | 1. `pdftotext`_ (**default**)                            |
+|               | 2. `ebook-convert`_                                      |
++---------------+----------------------------------------------------------+
 
 `:information_source:`
 
-  * The utilities mentioned in the **Search-backend** columns are used to 
-    extract the text before it is search on. However, ``.epub`` files must
-    first be uncompressed by ``zipgrep`` since they are zipped HTML files.
+  * The utilities mentioned in the **Supported search-backends** column
+    are used to extract the text before it is searched on.
+  * More specifically, ``epubtxt`` consists in uncompressing first the 
+    ``epub`` file with `unzip`_ since they are zipped HTML files. Then, 
+    the extracted text is searched on
   * By default, the search methods from the **Search-backend #1** column 
     are used since they are quicker to extract text than *calibre*\'s
     ``ebook-convert``. But if the utilities from this column are not 
@@ -280,6 +286,7 @@ References
 .. _textutil: https://ss64.com/osx/textutil.html
 .. _TkInter: https://wiki.python.org/moin/TkInter
 .. _Travis CI: https://travis-ci.com/
+.. _unzip: https://linux.die.net/man/1/unzip
 .. _zipgrep: https://linux.die.net/man/1/zipgrep
 
 .. Local URLs
