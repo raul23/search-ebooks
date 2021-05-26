@@ -38,8 +38,8 @@ These are the supported (right now and in the future) search-backends for each t
 | ``.djvu``     | 1. `djvutxt`_ (**default**)                              |
 |               | 2. `ebook-convert`_                                      |
 +---------------+----------------------------------------------------------+
-| ``.epub``     | 1. ``epubtxt`` (**default**)                             |
-|               | 2. `ebook-convert`_                                      |
+| ``.epub``     | 1. `ebook-convert`_ (**default**)                        |
+|               | 2. ``epubtxt``                                           |
 +---------------+----------------------------------------------------------+
 | ``.doc`` [1]_ | 1. `catdoc`_ or `textutil`_ (if on macOS) (**default**)  |
 |               | 2. `ebook-convert`_                                      |
@@ -57,13 +57,22 @@ These are the supported (right now and in the future) search-backends for each t
     the extracted text is searched on. I tried to use `zipgrep`_ to do
     both the unzipping and searching but I couldn't make it to work with
     regular expressions such as ``\bpattern\b``.
-  * The **default** search methods are used since they are quicker to 
-    extract text than *calibre*\'s ``ebook-convert``. But if the default 
-    utilities are not installed, then the searching relies on ``ebook-convert`` 
-    for converting the documents to ``.txt``
+  * The **default** search methods (except for ``.epub``) are used since 
+    they are quicker to extract text than *calibre*\'s ``ebook-convert``. But 
+    if the default utilities are not installed, then the searching relies on 
+    ``ebook-convert`` for converting the documents to ``.txt``
   * Eventually, I will add support for `Lucene`_ as a search backend since it 
     has "powerful indexing and search features, as well as spellchecking, hit 
     highlighting and advanced analysis/tokenization capabilities".
+
+`:warning:`
+
+  I didn't set ``epubtxt`` as a default search-backend even though it is faster
+  thant ``ebook-convert`` to extract text because it also includes the HTML 
+  tags.
+  
+  Once I clean up the extracted text, I will set ``epubtxt`` as a default
+  search method for ``epub`` files.
 
 |
 
