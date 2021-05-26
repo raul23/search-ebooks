@@ -54,12 +54,13 @@ These are the supported (right now and in the future) search-backends for each t
     are used to extract the text before it is searched on.
   * More specifically, ``epubtxt`` consists in uncompressing first the 
     ``epub`` file with `unzip`_ since they are zipped HTML files. Then, 
-    the extracted text is searched on
-  * By default, the search methods from the **Search-backend #1** column 
-    are used since they are quicker to extract text than *calibre*\'s
-    ``ebook-convert``. But if the utilities from this column are not 
-    installed, then the searching relies on ``ebook-convert`` for 
-    converting the documents o ``.txt``
+    the extracted text is searched on. I tried to use `zipgrep`_ to do
+    both the unzipping and searching but I couldn't make it to work with
+    regular expressions such as ``\bpattern\b``.
+  * The **default** search methods are used since they are quicker to 
+    extract text than *calibre*\'s ``ebook-convert``. But if the default 
+    utilities are not installed, then the searching relies on ``ebook-convert`` 
+    for converting the documents to ``.txt``
   * Eventually, I will add support for `Lucene`_ as a search backend since it 
     has "powerful indexing and search features, as well as spellchecking, hit 
     highlighting and advanced analysis/tokenization capabilities".
