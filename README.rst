@@ -69,7 +69,7 @@ These are the supported search-backends for each type of ebooks:
 
   I didn't set ``epubtxt`` as a default search-backend for ``epub`` files 
   because it also includes the HTML tags in the extracted text even though 
-  text extraction is faster than with ``ebook-convert``.
+  text extraction is faster than with `ebook-convert`_.
   
   Once I clean up the extracted text, I will set ``epubtxt`` as a default
   search method for ``epub`` files if it is still faster than ``ebook-convert``
