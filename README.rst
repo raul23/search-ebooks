@@ -256,7 +256,7 @@ regular expressions:
 +---------------------------+--------------------------------------------------------------+----------------------------------------------+
 | "starts with" search      | ``^string``: add the caret ``^`` before the string           | ``^Th``:                                     |
 |                           | to match lines that start with the given string              | will find all lines that start with          |
-|                           |                                                              | the characters "Th", e.g. "The" and "This"   |
+|                           |                                                              | the characters "Th"                          |
 +---------------------------+--------------------------------------------------------------+----------------------------------------------+
 | "ends with" search        | ``string$``: add the dollar sign ``$`` at the end of         | ``through the$``:                            |
 |                           | the string to match all lines that start with the given      | will find all lines that end with            |
