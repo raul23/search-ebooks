@@ -222,9 +222,11 @@ using the ``--ocr`` flag which will convert the images to text with `Tesseract`_
 
 `:information_source:`
  
-  The ``--ocr`` flag allows you to search ``.pdf``, ``.djvu`` and image files but it
-  is disabled by default because `OCR`_ is a slow resource-intensive process.
-  Thus, use it wisely!
+  * The ``--ocr`` flag allows you to search ``.pdf``, ``.djvu`` and image files but it
+    is disabled by default because `OCR`_ is a slow resource-intensive process.
+  * Since the file *The Republic by Plato.pdf* was not already processed, the cache 
+    doesn't have its text conversion yet but will have it as soon as the script is
+    finished searching.
 
 **Output:**
 
@@ -232,6 +234,10 @@ using the ``--ocr`` flag which will convert the images to text with `Tesseract`_
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_ocr_images.png
    :align: left
    :alt: Output for example: OCR PDF file with images
+
+`:warning:`
+
+  As you can see from the seach time, OCR is a slow process. Thus, use it wisely!
 
 Roadmap
 =======
