@@ -249,7 +249,7 @@ regular expressions:
 +---------------------------+--------------------------------------------+---------------------------------------------------+
 | Search type               | Regex                                      | Examples                                          |
 +===========================+============================================+===================================================+
-| "full word" search        | ``\bword\b``: surround the word with `\b`_ | ``\bknowledge\b``:                                |
+| "full word" search        | ``\bword\b``: surround the word with `\\b`_ | ``\bknowledge\b``:                                |
 |                           |                                            | will match all lines that                         |
 |                           |                                            | contain exactly the word *knowledge*              |
 |                           |                                            | thus words like *acknowledge* or *knowledgeable*  |
@@ -303,7 +303,7 @@ References
 .. [1] ``txt``, ``html``, ``rtf``, ``rtfd``, ``doc``, ``wordml``, or ``webarchive``. See `<https://ss64.com/osx/textutil.html>`__
 
 .. URLs
-.. _\b: https://www.regular-expressions.info/wordboundaries.html
+.. _\\b: https://www.regular-expressions.info/wordboundaries.html
 .. _“whole words only” search: https://www.regular-expressions.info/wordboundaries.html
 .. _calibre: https://calibre-ebook.com/
 .. _catdoc: http://www.wagner.pp.ru/~vitus/software/catdoc/
