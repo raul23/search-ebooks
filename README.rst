@@ -264,17 +264,20 @@ regular expressions:
 |                           | the string to match all lines that start with the given      | will find all lines that end with            |
 |                           | string                                                       | the words "through the"                      |
 +---------------------------+--------------------------------------------------------------+----------------------------------------------+
-| "contains pattern" search | * ``string``: a regex without tokens will find the           | ``--query "^The|disputed.$" --sr``:          |
-|                           |   string anywhere in the text even if it is part of a word.  | will find all lines that                     |
-|                           | * ``string1|string2``: searches for the literal text         | either start with "The" or end               |
-|                           |   *string1* or *string2*. The vertical bar is called         | with "disputed."                             |
-|                           |   the `alternation operator`_.                               |                                              |
+| "contains pattern" search | * ``string``: a regex without tokens will find the           | * ``--query "^The|disputed.$" --sr``:        |
+|                           |   string anywhere in the text even if it is part of a word.  |   will find all lines that                   |
+|                           | * ``string1|string2``: searches for the literal text         |   either start with "The" or end             |
+|                           |   *string1* or *string2*. The vertical bar is called         |   with "disputed."                           |
+|                           |   the `alternation operator`_.                               | * ``--filename "Aristotle|Plato" --mr``:     |
+|                           |                                                              |   will select those ebooks whose filenames   |
+|                           |                                                              |   contain either "Aristotle" or "Plato"      |
 +---------------------------+--------------------------------------------------------------+----------------------------------------------+
 
 `:information_source:`
 
-  The ``--sr`` flag in the examples is the short version of the ``--search-regex`` flag which
-  allows you to perform regex-based search of ebook's content.
+  The ``--sr`` and ``--mr`` flags in the examples are the short versions of ``--search-regex`` 
+  and ``--metadata-regex`` flags, respectively.  They allow you to perform **regex-based** 
+  search of ebook's content and metadata.
 
 Roadmap
 =======
