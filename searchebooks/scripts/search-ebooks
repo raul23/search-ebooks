@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 import argparse
 import os
+from pathlib import Path
 
 from diskcache import Cache
 
 import searchebooks
 from pyebooktools.lib import (
-    BLUE, GREEN, NC, RED, YELLOW, color_msg as c)
+    BLUE, GREEN, NC, RED, YELLOW, color_msg as c, get_hash)
 from pyebooktools.utils.genutils import (
     get_config_dict, namespace_to_dict, override_config_with_args, setup_log)
 from pyebooktools.utils.logutils import init_log
@@ -25,7 +26,7 @@ CACHE_SIZE_LIMIT = default_cfg.cache_size_limit
 DJVU_SEARCH_METHOD = default_cfg.djvu_search_method
 DJVU_SEARCH_METHODS = ['djvutxt', 'calibre']
 EPUB_SEARCH_METHOD = default_cfg.epub_search_method
-EPUB_SEARCH_METHODS = ['zipgrep', 'calibre']
+EPUB_SEARCH_METHODS = ['epubtxt', 'calibre']
 EVICTION_POLICY = default_cfg.eviction_policy
 MSWORD_SEARCH_METHOD = default_cfg.msword_search_method
 MSWORD_SEARCH_METHODS = ['catdoc', 'textutil', 'calibre']
@@ -203,6 +204,11 @@ def setup_argparser():
     cache_group.add_argument(
         '-c', '--clear-cache', dest='clear_cache', action='store_true',
         help='Clear cache.')
+    cache_group.add_argument(
+        '-r', '--remove-keys', metavar='KEY', dest='remove_keys',
+        nargs='+', default=[],
+        help='Keys to be removed from the cache which can either be the paths '
+             'to the ebook files or their MD5 hash.')
     # ===========
     # Search text
     # ===========
@@ -241,6 +247,11 @@ def setup_argparser():
         default=PDF_SEARCH_METHOD,
         help='Search method for pdf files. Choose one from: '
              f'{PDF_SEARCH_METHOD}.' + get_default_message(PDF_SEARCH_METHOD))
+    search_text_group.add_argument(
+        "--ocr", "--ocr-enabled", dest='ocr_enabled',
+        choices=['always', 'true', 'false'],
+        help='Whether to enable OCR for .pdf, .djvu and image files. It is '
+             'disabled by default.')
     # ===============
     # Search metadata
     # ===============
@@ -319,7 +330,23 @@ def main():
             if result:
                 logger.info('Cache cleared!')
             else:
-                logger.debug('Cache was already empty!')
+                logger.info('Cache was already empty!')
+        if args.remove_keys:
+            for key in args.remove_keys:
+                if Path(key).is_file():
+                    file_path = Path(key)
+                    key = get_hash(file_path)
+                    msg1 = f"File '{file_path.name}' with hash={key} " \
+                           'removed from cache'
+                    msg2 = f"File '{file_path.name}'"
+                else:
+                    msg1 = f'Key={key} removed from cache!'
+                    msg2 = f'Key={key}'
+                result = cache.delete(key)
+                if result:
+                    logger.info(msg1)
+                else:
+                    logger.info(f'{msg2} not found in cache')
         return searcher.search(cache=cache, **namespace_to_dict(main_cfg))
     except AssertionError as e:
         # TODO (IMPORTANT): use same logic as in Darth-Vader-RPi
