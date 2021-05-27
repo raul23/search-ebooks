@@ -41,7 +41,7 @@ search_query = None
 ebook_formats = ['djvu', 'epub', 'html', 'pdf', 'txt']
 djvu_search_method = 'djvutxt'
 msword_search_method = 'textutil'
-epub_search_method = 'zipgrep'
+epub_search_method = 'calibre'
 pdf_search_method = 'pdftotext'
 
 # ==========================
