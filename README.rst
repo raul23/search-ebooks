@@ -277,7 +277,7 @@ regular expressions:
 
   The ``--sr`` and ``--mr`` flags in the examples are the short versions of ``--search-regex`` 
   and ``--metadata-regex`` flags, respectively.  They allow you to perform **regex-based** 
-  search of ebook's content and metadata.
+  search of ebook's content and metadata, respectively.
 
 Roadmap
 =======
