@@ -226,7 +226,12 @@ using the ``--ocr`` flag which will convert the images to text with `Tesseract`_
   is disabled by default because `OCR`_ is a slow resource-intensive process.
   Thus, use it wisely!
 
-TODO
+**Output:**
+
+.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_ocr_images.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_ocr_images.png
+   :align: left
+   :alt: Output for example: OCR PDF file with images
 
 Roadmap
 =======
