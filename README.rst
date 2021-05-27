@@ -271,6 +271,11 @@ regular expressions:
 |                           |   the `alternation operator`_.                               |                                              |
 +---------------------------+--------------------------------------------------------------+----------------------------------------------+
 
+`:information_source:`
+
+  The ``--sr`` flag in the examples is the short version of the ``--search-regex`` flag which
+  allows you to perform regex-based search of ebook's content.
+
 Roadmap
 =======
 Starting from first priority tasks:
