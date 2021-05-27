@@ -82,10 +82,6 @@ the converted ebook files to ``.txt`` and hence speed up the searching by a
 lot. Depending on the number of files searched, the searching can even be 20
 times faster with cache than without it (TODO: add tests to show performance
 of searching with cache and no cache).
-
-The only search method that doesn't make use of the cache is the one based on
-``zipgrep`` because it doesn't return the whole extracted text, but only the 
-lines of the text that matched the given search query.
    
 Dependencies
 ============
