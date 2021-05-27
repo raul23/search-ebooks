@@ -168,7 +168,7 @@ from in the following examples:
 `:information_source:`
 
   Of the total eight PDF files, two are files that contain only
-  images: *Les Misérables by Victor Hugo.pdf* and *The Republic by Plato.pdf*.
+  images: *Les Misérables by Victor Hugo.pdf* and *The Republic by Plato (.pdf*.
 
 Search ebooks whose filenames satisfy a given pattern
 -----------------------------------------------------
@@ -217,7 +217,6 @@ using the ``--ocr`` flag which will convert the images to text with `Tesseract`_
 .. code:: bash
 
    $ search-ebooks ~/ebooks/ --query "\bknowledge\b" --filename "Aristotle|Plato" -i --use-cache --ocr
-
 
 `:information_source:`
  
