@@ -239,9 +239,11 @@ Tips
 ====
 Performing "full word" search and other types of search
 --------------------------------------------------------------
-The ``search-ebooks`` script accepts regular expressions for the search queries.
+The ``search-ebooks`` script accepts regular expressions for the search queries
+through the ``--search-regex`` and ``--metadata-regex`` flags.
 Thus you can perform specific searches such as a "full word" search (also
-called "whole words only" search) or a "starts with" search.
+called "whole words only" search) or a "starts with" search by making use of 
+regex-based search queries.
 
 This is how you would perform some of the important types of search based on 
 regular expressions:
@@ -249,20 +251,20 @@ regular expressions:
 +---------------------------+--------------------------------------------------------------+----------------------------------------------+
 | Search type               | Regex                                                        | Examples                                     |
 +===========================+==============================================================+==============================================+
-| "full word" search        | ``\bword\b``: surround the word with `\\b`_                  | ``\bknowledge\b``:                           |
+| "full word" search        | ``\bword\b``: surround the word with `\\b`_                  | ``--query "\bknowledge\b" --sr``:            |
 |                           |                                                              | will match exactly the word "knowledge" thus |
 |                           |                                                              | words like "acknowledge" or "knowledgeable"  |
 |                           |                                                              | will be rejected                             |
 +---------------------------+--------------------------------------------------------------+----------------------------------------------+
-| "starts with" search      | ``^string``: add the caret ``^`` before the string           | ``^Th``:                                     |
+| "starts with" search      | ``^string``: add the caret ``^`` before the string           | ``--query "^Th" --sr``:                      |
 |                           | to match lines that start with the given string              | will find all lines that start with          |
 |                           |                                                              | the characters "Th"                          |
 +---------------------------+--------------------------------------------------------------+----------------------------------------------+
-| "ends with" search        | ``string$``: add the dollar sign ``$`` at the end of         | ``through the$``:                            |
+| "ends with" search        | ``string$``: add the dollar sign ``$`` at the end of         | ``--query "through the$" --sr``:             |
 |                           | the string to match all lines that start with the given      | will find all lines that end with            |
 |                           | string                                                       | the words "through the"                      |
 +---------------------------+--------------------------------------------------------------+----------------------------------------------+
-| "contains pattern" search | * ``string``: a regex without tokens will find the           | ``^The|disputed.$``:                         |
+| "contains pattern" search | * ``string``: a regex without tokens will find the           | ``--query "^The|disputed.$" --sr``:          |
 |                           |   string anywhere in the text even if it is part of a word.  | will find all lines that                     |
 |                           | * ``string1|string2``: searches for the literal text         | either start with "The" or end               |
 |                           |   *string1* or *string2*. The vertical bar is called         | with "disputed."                             |
