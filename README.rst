@@ -303,6 +303,7 @@ References
 .. [1] ``txt``, ``html``, ``rtf``, ``rtfd``, ``doc``, ``wordml``, or ``webarchive``. See `<https://ss64.com/osx/textutil.html>`__
 
 .. URLs
+.. _\b: https://www.regular-expressions.info/wordboundaries.html
 .. _“whole words only” search: https://www.regular-expressions.info/wordboundaries.html
 .. _calibre: https://calibre-ebook.com/
 .. _catdoc: http://www.wagner.pp.ru/~vitus/software/catdoc/
