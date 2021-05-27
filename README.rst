@@ -198,9 +198,12 @@ case:
 `:information_source:`
 
   * The ``txt`` and ``pdf`` versions of *The Ethics of Aristotle by Aristotle*
-    provide different number of matches because they are not the same translations
+    show different number of matches because they are not the same translations
     and hence the word *knowledge* might come from the introduction (written by 
     another author) or the translator's footnotes.
+  * On the other hand, the two ``txt`` and ``epub`` versions of *Politics_ A 
+    Treatise on Government by Aristotle* show the same number of matches because
+    they are both the same translation.
   * As explained previously, *The Republic by Plato.pdf* is not included in
     the matches because it is a file with images only and since
     we didn't use the ``--ocr`` flag, the file couldn't be converted to ``.txt``.
