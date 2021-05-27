@@ -246,20 +246,30 @@ called "whole words only" search) or a "starts with" search.
 This is how you would perform some of these important types of search based on 
 regular expressions:
 
-+---------------------------+---------------------------------------------+---------------------------------------------------+
-| Search type               | Regex                                       | Examples                                          |
-+===========================+=============================================+===================================================+
-| "full word" search        | ``\bword\b``: surround the word with `\\b`_ | ``\bknowledge\b``:                                |
-|                           |                                             | will match all lines that                         |
-|                           |                                             | contain exactly the word *knowledge*              |
-|                           |                                             | thus words like *acknowledge* or *knowledgeable*  |
-+---------------------------+---------------------------------------------+---------------------------------------------------+
-| "contains pattern" search |                                             |                                                   |
-+---------------------------+---------------------------------------------+---------------------------------------------------+
-| "start with" search       |                                             |                                                   |
-+---------------------------+---------------------------------------------+---------------------------------------------------+
-| "end with" search         |                                             |                                                   |
-+---------------------------+---------------------------------------------+---------------------------------------------------+
++---------------------------+----------------------------------------------------+--------------------------------------------------------------+
+| Search type               | Regex                                              | Examples                                                     |
++===========================+====================================================+==============================================================+
+| "full word" search        | ``\bword\b``: surround the word with `\\b`_        | ``\bknowledge\b``:                                           |
+|                           |                                                    | will find all lines that                                     |
+|                           |                                                    | contain the word *knowledge*                                 |
+|                           |                                                    | thus lines with words like *acknowledge* or *knowledgeable*  |
+|                           |                                                    | will be rejected                                             |
++---------------------------+----------------------------------------------------+--------------------------------------------------------------+
+| "starts with" search      | ``^string``: add the caret ``^`` before the string | ``^Th``:                                                     |
+|                           | to match lines that start with the given string    | will find all lines that start with                          |
+|                           |                                                    | the characters *Th*, e.g. *The* and *This*                   |
++---------------------------+----------------------------------------------------+--------------------------------------------------------------+
+| "ends with" search        | ``string$``: add the caret ``^`` before the string | ``through the$``:                                            |
+|                           | to match lines that start with the given string    | will find all lines that end with                            |
+|                           |                                                    | the words *through the*                                      |
++---------------------------+----------------------------------------------------+--------------------------------------------------------------+
+| "contains pattern" search | * ``word``: a basic search without tokens will     | ``^The|disputed.$``:                                         |
+|                           | match all lines that contain the given word        | will find all lines that                                     |
+|                           |                                                    | either starts with *The* or ends                             |
+|                           | * ``word1|word2``: search for the literal text     | with *disputed.*                                             |
+|                           | *word1* or *word2*. The vertical bar is called     |                                                              |
+|                           | the `alternation operator`_.                       |                                                              |
++---------------------------+----------------------------------------------------+--------------------------------------------------------------+
 
 Roadmap
 =======
@@ -305,6 +315,7 @@ References
 .. URLs
 .. _\\b: https://www.regular-expressions.info/wordboundaries.html
 .. _“whole words only” search: https://www.regular-expressions.info/wordboundaries.html
+.. _alternation operator: https://www.regular-expressions.info/alternation.html
 .. _calibre: https://calibre-ebook.com/
 .. _catdoc: http://www.wagner.pp.ru/~vitus/software/catdoc/
 .. _convert_to_txt.py: https://github.com/raul23/pyebooktools/blob/master/pyebooktools/convert_to_txt.py
