@@ -160,8 +160,8 @@ potential of the ``search-ebooks`` script for executing complex queries.
 This is the ``~/ebooks/`` folder that contains the files which we will search
 from in the following examples:
 
-.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/list_of_ebooks.png
-   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tests/list_of_ebooks.png
+.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/list_of_ebooks.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/list_of_ebooks.png
    :align: left
    :alt: List of ebooks to search from
 
