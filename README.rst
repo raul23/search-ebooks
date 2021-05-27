@@ -148,10 +148,6 @@ multiple eviction policies. See `Features`_ for a more complete list.
 See `DiskCache Cache Benchmarks`_ for comparaisons to `Memcached`_ and 
 `Redis`_.
 
-Tips
-====
-TODO
-
 Examples
 ========
 We will present search examples that are not trivial in order to show the
@@ -238,6 +234,32 @@ using the ``--ocr`` flag which will convert the images to text with `Tesseract`_
 `:warning:`
 
   As you can see from the seach time, OCR is a slow process. Thus, use it wisely!
+
+Tips
+====
+Performing "full word" search and other types of search
+--------------------------------------------------------------
+The ``search-ebooks`` script accepts regular expressions for the search queries.
+Thus you can perform specific searches such as a "full word" search (also
+called "whole words only" search) or a "starts with" search.
+
+This is how you would perform some of these important types of search based on 
+regular expressions:
+
++---------------------------+--------------------------------------------+---------------------------------------------------+
+| Search type               | Regex                                      | Examples                                          |
++===========================+============================================+===================================================+
+| "full word" search        | ``\bword\b``: surround the word with `\b`_ | ``\bknowledge\b``:                                |
+|                           |                                            | will match all lines that                         |
+|                           |                                            | contain exactly the word *knowledge*              |
+|                           |                                            | thus words like *acknowledge* or *knowledgeable*  |
++---------------------------+--------------------------------------------+---------------------------------------------------+
+| "contains pattern" search |                                            |                                                   |
++---------------------------+--------------------------------------------+---------------------------------------------------+
+| "start with" search       |                                            |                                                   |
++---------------------------+--------------------------------------------+---------------------------------------------------+
+| "end with" search         |                                            |                                                   |
++---------------------------+--------------------------------------------+---------------------------------------------------+
 
 Roadmap
 =======
