@@ -168,7 +168,9 @@ from in the following examples:
 `:information_source:`
 
   Of the total eight PDF files, two are files that contain only
-  images: *Les Misérables by Victor Hugo.pdf* and *The Republic by Plato (.pdf*.
+  images: *Les Misérables by Victor Hugo.pdf* and 
+  *The Republic by Plato.pdf*. which both consist of only two images for 
+  testing purposes.
 
 Search ebooks whose filenames satisfy a given pattern
 -----------------------------------------------------
