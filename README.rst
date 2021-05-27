@@ -250,22 +250,22 @@ regular expressions:
 | Search type               | Regex                                                            | Examples                                     |
 +===========================+==================================================================+==============================================+
 | "full word" search        | ``\bword\b``: surround the word with `\\b`_                      | ``\bknowledge\b``:                           |
-|                           |                                                                  | will match exactly the word *knowledge* thus |
-|                           |                                                                  | words like *acknowledge* or *knowledgeable*  |
+|                           |                                                                  | will match exactly the word "knowledge" thus |
+|                           |                                                                  | words like "acknowledge" or "knowledgeable"  |
 |                           |                                                                  | will be rejected                             |
 +---------------------------+------------------------------------------------------------------+----------------------------------------------+
 | "starts with" search      | ``^string``: add the caret ``^`` before the string               | ``^Th``:                                     |
 |                           | to match lines that start with the given string                  | will find all lines that start with          |
-|                           |                                                                  | the characters *Th*, e.g. *The* and *This*   |
+|                           |                                                                  | the characters "Th", e.g. "The" and "This"   |
 +---------------------------+------------------------------------------------------------------+----------------------------------------------+
 | "ends with" search        | ``string$``: add the dollar sign ``$`` at the end of             | ``through the$``:                            |
 |                           | the string to match all lines that start with the given          | will find all lines that end with            |
-|                           | string                                                           | the words *through the*                      |
+|                           | string                                                           | the words "through the"                      |
 +---------------------------+------------------------------------------------------------------+----------------------------------------------+
 | "contains pattern" search | * ``string``: a regex without tokens will find the               | ``^The|disputed.$``:                         |
 |                           |   string anywhere in the text no matter if it is part of words.  | will find all lines that                     |
-|                           | * ``string1|string2``: searches for the literal text             | either start with *The* or end               |
-|                           |   *string1* or *string2*. The vertical bar is called             | with *disputed.*                             |
+|                           | * ``string1|string2``: searches for the literal text             | either start with "The" or end               |
+|                           |   *string1* or *string2*. The vertical bar is called             | with "disputed."                             |
 |                           |   the `alternation operator`_.                                   |                                              |
 +---------------------------+------------------------------------------------------------------+----------------------------------------------+
 
