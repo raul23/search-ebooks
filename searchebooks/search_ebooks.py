@@ -57,7 +57,7 @@ class SearchEbooks:
     def _search_file_txt_content(self, file_path):
         # num_matches = 0
         # window_length = 200
-        ext = file_path.suffix.split('.')[-1]
+        # ext = file_path.suffix.split('.')[-1]
         # TODO: flags as attribute? (other places)
         flags = re.MULTILINE | re.IGNORECASE if self.ignore_case else re.MULTILINE
         search_result = {'filename': file_path.name,
@@ -73,9 +73,10 @@ class SearchEbooks:
             elif cache_result and cache_result[0] is not None:
                 logger.debug('Text conversion was found in cache!')
                 text = cache_result[0]
+        """
         if not text and ext == 'epub' and self.epub_search_method == 'zipgrep':
             zipgrep = 'zipgrep -i' if self.ignore_case else 'zipgrep'
-            cmd = f'{zipgrep} {self.search_query} "{file_path}"'
+            cmd = f'{zipgrep} "{self.search_query}" "{file_path}"'
             cmd_args = shlex.split(cmd)
             result = subprocess.run(cmd_args, stdout=subprocess.PIPE,
                                     stderr=subprocess.PIPE)
@@ -91,9 +92,24 @@ class SearchEbooks:
                 # text = re.sub(f"({args.search_query})", f"{GREEN}{BOLD}\\1{NC}", text, flags=flags)
                 search_result['matches'] = len(matches)
                 return search_result
+            import ipdb
+            ipdb.set_trace()
+            cmd = f'unzip -c "{file_path}"'
+            cmd_args = shlex.split(cmd)
+            result = subprocess.run(cmd_args, stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE)
+            if result.stderr:
+                return 1
+            else:
+                text = str(result.stdout)
+                matches = re.findall(self.search_query, text, flags)
+                search_result['matches'] = len(matches)
+                return search_result
+        """
         if not text:
             text = convert(file_path,
                            djvu_convert_method=self.djvu_search_method,
+                           epub_convert_method=self.epub_search_method,
                            msword_convert_method=self.msword_search_method,
                            pdf_convert_method=self.pdf_search_method,
                            **self.__dict__)
@@ -198,6 +214,7 @@ class SearchEbooks:
             num_results, total_seconds = process_result(
                 start_time, num_results, total_seconds)
         else:
+            # TODO: important, mention it is recursive
             for fp in input_data.rglob('*'):
                 # print(fp)
                 start_time = time.time()
@@ -219,6 +236,7 @@ class SearchEbooks:
             msg = msg if self.search_query else "\n"
             print(f"{i}.\t{BLUE}{result['filename']}{NC}"
                   # f"\n\t{VIOLET}Folder path:{NC} {result['folder_path']}"
+                  # TODO: urgent, remove following debug line
                   f"\n\t{VIOLET}Folder path:{NC} /Users/test/ebooks" + msg)
         # f"\n\t{VIOLET}Number of matches:{NC} {len(result['matches'])}\n")
         return 0
