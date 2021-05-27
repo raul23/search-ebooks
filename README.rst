@@ -201,7 +201,7 @@ case:
     show different number of matches because they are not the same translations
     and hence the word *knowledge* might come from the introduction (written by 
     another author) or the translator's footnotes.
-  * On the other hand, the two ``txt`` and ``epub`` versions of *Politics_ A 
+  * On the other hand, the ``txt`` and ``epub`` versions of *Politics_ A 
     Treatise on Government by Aristotle* show the same number of matches because
     they are both the same translation.
   * As explained previously, *The Republic by Plato.pdf* is not included in
