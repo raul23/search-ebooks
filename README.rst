@@ -265,8 +265,8 @@ regular expressions:
 | "contains pattern" search | * ``string``: a regex without tokens will find the               | ``^The|disputed.$``:                         |
 |                           |   string anywhere in the text no matter if it is part of words.  | will find all lines that                     |
 |                           | * ``string1|string2``: searches for the literal text             | either starts with *The* or ends             |
-|                           | *string1* or *string2*. The vertical bar is called               | with *disputed.*                             |
-|                           | the `alternation operator`_.                                     |                                              |
+|                           |   *string1* or *string2*. The vertical bar is called             | with *disputed.*                             |
+|                           |   the `alternation operator`_.                                   |                                              |
 +---------------------------+------------------------------------------------------------------+----------------------------------------------+
 
 Roadmap
