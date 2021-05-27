@@ -243,7 +243,7 @@ The ``search-ebooks`` script accepts regular expressions for the search queries.
 Thus you can perform specific searches such as a "full word" search (also
 called "whole words only" search) or a "starts with" search.
 
-This is how you would perform some of these important types of search based on 
+This is how you would perform some of the important types of search based on 
 regular expressions:
 
 +---------------------------+--------------------------------------------------------------+----------------------------------------------+
