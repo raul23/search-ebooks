@@ -268,8 +268,8 @@ Thus:
     non-regex, i.e. it searches for the given query anywhere in the text by
     not processing any regex tokens (e.g. ``$`` or ``^``).
     
-Search for a string that goes on multiple lines
------------------------------------------------
+Search for a string that spans on multiple lines
+------------------------------------------------
 Let's say we want to search for the string "turned into a democracy" in the
 following text:
 
