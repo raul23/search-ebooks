@@ -168,8 +168,8 @@ from in the following examples:
   *The Republic by Plato.pdf* which both consist of only two images for 
   testing purposes.
 
-Search ebooks witch certain filenames
--------------------------------------
+Search ebooks with certain filenames
+------------------------------------
 We want to search for the word "knowledge" but only for those ebooks whose
 filenames contain either "Aristotle" or "Plato" and also we want the search
 to be case insensitive (i.e. ignore case):
