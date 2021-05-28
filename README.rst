@@ -403,9 +403,10 @@ those ebooks that have the "drama" **and** "history" tags:
 
 `:information_source:`
 
-  * The regex for the **AND** operator is a lot more complex than an OR-based regex which only use
+  * The regex for the **AND** operator is a lot more complex than an OR-based regex which only use the
     vertical bar (``|``) because we need to make use of positive lookahead which 
-    "asserts that the given subpattern can be matched here, without consuming characters". [2]
+    "asserts that the given subpattern can be matched here, without consuming characters". [2]_
+    
 
 Roadmap
 =======
@@ -446,8 +447,10 @@ details see the `LICENSE`_ file in the repository.
 
 References
 ==========
-.. [1] ``txt``, ``html``, ``rtf``, ``rtfd``, ``doc``, ``wordml``, or ``webarchive``. See `<https://ss64.com/osx/textutil.html>`__
-.. [2] Taken from regex101.com
+.. [1] ``txt``, ``html``, ``rtf``, ``rtfd``, ``doc``, ``wordml``, or ``webarchive``. 
+       See `<https://ss64.com/osx/textutil.html>`__
+.. [2] Regex from `stackoverflow`_ and definition from the quick reference 
+       at `regex101.com <regex101.com>`__
 
 .. URLs
 .. _\\b: https://www.regular-expressions.info/wordboundaries.html
@@ -477,6 +480,7 @@ References
 .. _PyLucene: https://lucene.apache.org/pylucene/
 .. _Read the Docs: https://readthedocs.org/
 .. _Redis: https://redis.io/
+.. _stackoverflow: https://stackoverflow.com/a/37692545/14664104
 .. _Tesseract: https://github.com/tesseract-ocr/tesseract
 .. _textutil: https://ss64.com/osx/textutil.html
 .. _TkInter: https://wiki.python.org/moin/TkInter
