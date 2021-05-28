@@ -170,9 +170,9 @@ from in the following examples:
 
 Search ebooks whose filenames satisfy a given pattern
 -----------------------------------------------------
-We want to search for the word *knowledge* but only for those ebooks whose
-filenames contain either *Aristotle* or *Plato* and also we want to ignore
-case:
+We want to search for the word "knowledge" but only for those ebooks whose
+filenames contain either "Aristotle" or "Plato" and also we want the search
+to be case insensitive (i.e. ignore case):
 
 .. code:: bash
 
@@ -180,8 +180,8 @@ case:
 
 `:information_source:`
 
-  * ``\bknowledge\b`` matches exactly the word *knowledge*, i.e. it performs a 
-    `“whole words only” search`_. Thus, words like *acknowledge* or *knowledgeable* 
+  * ``\bknowledge\b`` matches exactly the word "knowledge", i.e. it performs a 
+    `"whole words only" search`_. Thus, words like "acknowledge" or "knowledgeable"
     are rejected.
   * Since we already converted the files to ``.txt`` in previous runs,
     we make use of the cache with the ``--use-cache`` flag.
