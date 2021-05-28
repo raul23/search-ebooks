@@ -322,7 +322,7 @@ to be case insensitive (i.e. ignore case):
 
 `:information_source:`
 
-  * ``--regex`` treats the search query and metadata as regex.
+  * ``--regex`` treats the search query and metadata (e.g. filename) as regex.
   * ``\bknowledge\b`` matches exactly the word "knowledge", i.e. it performs a 
     `“whole words only” search`_. Thus, words like "acknowledge" or "knowledgeable"
     are rejected.
@@ -341,14 +341,16 @@ to be case insensitive (i.e. ignore case):
 
   * The ``txt`` and ``pdf`` versions of *The Ethics of Aristotle by Aristotle*
     show different number of matches because they are not the same translations
-    and hence the word *knowledge* might come from the introduction (written by 
-    another author) or the translator's footnotes.
+    and hence the word "knowledge" might come from the introduction (written by 
+    another author) or the translator's footnotes, depending on the version of
+    the text.
   * On the other hand, the ``txt`` and ``epub`` versions of *Politics_ A 
     Treatise on Government by Aristotle* show the same number of matches because
     they are both the same translation.
   * As explained previously, *The Republic by Plato.pdf* is not included in
     the matches because it is a file with images only and since
     we didn't use the ``--ocr`` flag, the file couldn't be converted to ``.txt``.
+    The next example makes use of the ``--ocr`` flag.
 
 Search documents with images 
 ----------------------------
@@ -358,12 +360,20 @@ using the ``--ocr`` flag which will convert the images to text with `Tesseract`_
 
 .. code:: bash
 
-   $ search-ebooks ~/ebooks/ --query "\bknowledge\b" --filename "Aristotle|Plato" --regex -i --use-cache --ocr
+   $ search-ebooks ~/ebooks/ --query "\bknowledge\b" --filename "Aristotle|Plato" --regex -i --use-cache --ocr true
 
 `:information_source:`
  
-  The ``--ocr`` flag allows you to search ``.pdf``, ``.djvu`` and image files but it
-  is disabled by default because `OCR`_ is a slow resource-intensive process.
+  * The ``--ocr`` flag allows you to search ``.pdf``, ``.djvu`` and image files but it
+    is disabled by default because `OCR`_ is a slow resource-intensive process.
+  * The ``--ocr`` flag takes on three values: ``{always,true,false}`` where:
+  
+    * ``always``: try OCR-ing first the ebook before trying the simple conversion tools
+    * ``true``: use OCR for books that failed to be converted to ``.txt`` or were 
+      converted to empty files by the simple conversion tools
+    * ``false``: try the simple conversion tools only. No OCR.
+    
+    More info in `pyebooktools README`_.
 
 **Output:**
 
@@ -457,6 +467,7 @@ References
 .. _pdftotext: https://www.xpdfreader.com/pdftotext-man.html
 .. _poppler: https://poppler.freedesktop.org/
 .. _pyebooktools: https://github.com/raul23/pyebooktools
+.. _pyebooktools README: https://github.com/raul23/pyebooktools#options-for-ocr
 .. _PyLucene: https://lucene.apache.org/pylucene/
 .. _Read the Docs: https://readthedocs.org/
 .. _Redis: https://redis.io/
