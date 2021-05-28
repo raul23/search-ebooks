@@ -397,13 +397,12 @@ those ebooks that have the "drama" **and** "history" tags:
 
 .. code:: bash
 
-   $ search-ebooks ~/ebooks/ --query "confront|treason" --tags "^(?=.*drama)(?=.*history).*$" --regex -i --use-cache
+   $ search-ebooks ~/ebooks/ --query "confront|treason" --tags "^(.*drama)(.*history).*$" --regex -i --use-cache
 
 `:information_source:`
 
-  * The regex for the **AND** operator is a lot more complex than an OR-based regex (``|``) 
-    because we need to make use of positive lookahead which 
-    "asserts that the given subpattern can be matched here, without consuming characters". [2]_
+  * The regex for the **AND** operator is a little more complex than an OR-based regex which 
+    only makes use of a vertical bar ``|``).
   * The ``--tags`` option acts like a filter by only executing the "confront|treason" regex on 
     those ebooks that have at least the two tags "drama" and "history".
 
@@ -471,8 +470,7 @@ References
 ==========
 .. [1] ``txt``, ``html``, ``rtf``, ``rtfd``, ``doc``, ``wordml``, or ``webarchive``. 
        See `<https://ss64.com/osx/textutil.html>`__
-.. [2] Regex from `stackoverflow`_ and definition from the quick reference 
-       at `regex101.com <https://regex101.com/>`__
+.. [2] Regex from `stackoverflow`_ (but without positive lookahead)
 
 .. URLs
 .. _\\b: https://www.regular-expressions.info/wordboundaries.html
