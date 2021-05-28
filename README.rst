@@ -418,8 +418,18 @@ those ebooks that have the "drama" **and** "history" tags:
 
 `:information_source:`
 
-  * All the other 16 ebooks from the `~/ebooks/`_ folder
-
+  * Here is the output of *calibre*\'s `ebook-meta`_ when running it on
+    *Julius Caesar by William Shakespeare.epub*:
+    
+    .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_ebook_meta.png
+       :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_ebook_meta.png
+       :align: left
+       :alt: Output of ``ebook-meta``
+    
+  * All the other 16 ebooks from the `~/ebooks/`_ folder were rejected for
+    not satisfying the two regexes (``--query`` and ``--tags``).
+  * *Julius Caesar by William Shakespeare.pdf* corresponds to the same
+    translation as the ``epub`` version but it doesn't have any tag.
 
 Roadmap
 =======
@@ -478,6 +488,7 @@ References
 .. _djvutxt: http://djvu.sourceforge.net/doc/man/djvutxt.html
 .. _docker: https://docs.docker.com/
 .. _ebook-convert: https://manual.calibre-ebook.com/generated/en/ebook-convert.html
+.. _ebook-meta: https://manual.calibre-ebook.com/generated/en/ebook-meta.html
 .. _Features: http://www.grantjenks.com/docs/diskcache/index.html#features
 .. _Kivy: https://kivy.org/
 .. _lib.py: https://github.com/raul23/pyebooktools/blob/master/pyebooktools/lib.py
