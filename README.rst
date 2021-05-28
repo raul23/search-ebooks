@@ -289,7 +289,7 @@ of the given string:
    :align: left
    :alt: Result of executing a simple search query without tokens, just the string
 
-See the `regex demo <https://regex101.com/r/L7wcqg/1/>`__.
+See the `regex demo <https://regex101.com/r/gSmRPc/1>`__.
 
 |
 
