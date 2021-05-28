@@ -295,7 +295,7 @@ See the `regex demo <https://regex101.com/r/gSmRPc/1>`__.
 
 To match all occurrences of the string no matter how many lines it spans, 
 the following query will do the trick: ``"turned\s+into\s+a\s+democracy"``.
-We replaced the space between the words with whitespaces (one or unlimited)
+We replaced the space between the words with whitespaces (one or unlimited):
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/correct_query_result.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/correct_query_result.png
