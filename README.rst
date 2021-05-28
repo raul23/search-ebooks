@@ -285,33 +285,32 @@ regular expressions:
 +---------------------------+--------------------------------------------------------------+----------------------------------------------+
 | Search type               | Regex                                                        | Examples                                     |
 +===========================+==============================================================+==============================================+
-| "full word" search        | ``\bword\b``: surround the word with the `\\b`_ anchor       | ``--query "\bknowledge\b" --sr``:            |
+| "full word" search        | ``\bword\b``: surround the word with the `\\b`_ anchor       | ``--query "\bknowledge\b" --regex``:         |
 |                           |                                                              | will match exactly the word "knowledge" thus |
 |                           |                                                              | words like "acknowledge" or "knowledgeable"  |
 |                           |                                                              | will be rejected                             |
 +---------------------------+--------------------------------------------------------------+----------------------------------------------+
-| "starts with" search      | ``^string``: add the caret ``^`` before the string           | ``--query "^Th" --sr``:                      |
+| "starts with" search      | ``^string``: add the caret ``^`` before the string           | ``--query "^Th" --regex``:                   |
 |                           | to match lines that start with the given string              | will find all lines that start with          |
 |                           |                                                              | the characters "Th"                          |
 +---------------------------+--------------------------------------------------------------+----------------------------------------------+
-| "ends with" search        | ``string$``: add the dollar sign ``$`` at the end of         | ``--query "through the$" --sr``:             |
+| "ends with" search        | ``string$``: add the dollar sign ``$`` at the end of         | ``--query "through the$" --regex``:          |
 |                           | the string to match all lines that start with the given      | will find all lines that end with            |
 |                           | string                                                       | the words "through the"                      |
 +---------------------------+--------------------------------------------------------------+----------------------------------------------+
-| "contains pattern" search | * ``string``: a regex without tokens will find the           | * ``--query "^The|disputed.$" --sr``:        |
+| "contains pattern" search | * ``string``: a regex without tokens will find the           | * ``--query "^The|disputed.$" --regex``:     |
 |                           |   string anywhere in the text even if it is part of a word.  |   will find all lines that                   |
 |                           | * ``string1|string2``: searches for the literal text         |   either start with "The" or end             |
 |                           |   *string1* or *string2*. The vertical bar is called         |   with "disputed."                           |
-|                           |   the `alternation operator`_.                               | * ``--filename "Aristotle|Plato" --mr``:     |
+|                           |   the `alternation operator`_.                               | * ``--filename "Aristotle|Plato" --regex``:  |
 |                           |                                                              |   will select those ebooks whose filenames   |
 |                           |                                                              |   contain either "Aristotle" or "Plato"      |
 +---------------------------+--------------------------------------------------------------+----------------------------------------------+
 
 `:information_source:`
 
-  The ``--sr`` and ``--mr`` flags in the examples are the short versions of ``--search-regex`` 
-  and ``--metadata-regex`` flags, respectively.  They allow you to perform **regex-based** 
-  search of ebook's content and metadata, respectively.
+  The ``--regex`` flag in the examples allow you to perform **regex-based** search 
+  of ebook's content and metadata.
 
 Roadmap
 =======
