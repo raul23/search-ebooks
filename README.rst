@@ -324,13 +324,22 @@ We can now try it out with the ``search-ebooks`` script:
   Only the book *Politics_ A Treatise on Government by Aristotle* whose two 
   versions ``epub`` and ``txt`` correspond to the same translation could 
   match the given string "turned into a democracy" which is found in the 
-  following part of the text:
+  following part of the ``txt`` version:
   
-  .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/aristotle_politics_section_match.png
-   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/aristotle_politics_section_match.png
+  .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/aristotle_politics_section_match_txt.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/aristotle_politics_section_match_txt.png
    :align: left
-   :alt: section where the match was found in the book *Politics_ A Treatise on Government by Aristotle*
-
+   :alt: section where the match was found in the book *Politics_ A Treatise on Government by Aristotle.txt*
+  
+  |
+  
+  and in the ``epub`` version:
+  
+  .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/aristotle_politics_section_match_epub.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/aristotle_politics_section_match_epub.png
+   :align: left
+   :alt: section where the match was found in the book *Politics_ A Treatise on Government by Aristotle.epub*
+  
 Advanced tip: perform "full word" search with regex
 ---------------------------------------------------
 The ``search-ebooks`` script accepts regular expressions for the search queries
