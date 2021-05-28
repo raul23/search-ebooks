@@ -243,7 +243,7 @@ those ebooks that have the "drama" **and** "history" tags:
 
 .. code:: bash
 
-   $ search-ebooks ~/ebooks/ --query "confront|treason|journal" --tags "^(?=.*drama)(?=.*history).*$" --regex -i --use-cache
+   $ search-ebooks ~/ebooks/ --query "confront|treason" --tags "^(?=.*drama)(?=.*history).*$" --regex -i --use-cache
 
 `:information_source:`
 
