@@ -267,8 +267,8 @@ Thus:
   * By default, the ``search-ebooks`` script considers the search queries as 
     non-regex, i.e. it searches for the given query anywhere in the text.
 
-Perform "full word" search and other types of search
-----------------------------------------------------
+Perform "full word" search and other types of search with regex
+---------------------------------------------------------------
 The ``search-ebooks`` script accepts regular expressions for the search queries
 through the ``--regex`` flag.
 Thus you can perform specific searches such as a "full word" search (also
