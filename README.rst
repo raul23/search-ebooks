@@ -165,7 +165,7 @@ from in the following examples:
 
   Of the total eight PDF files, two are files that contain only
   images: *Les Misérables by Victor Hugo.pdf* and 
-  *The Republic by Plato.pdf*. which both consist of only two images for 
+  *The Republic by Plato.pdf* which both consist of only two images for 
   testing purposes.
 
 Search ebooks whose filenames satisfy a given pattern
@@ -237,8 +237,23 @@ using the ``--ocr`` flag which will convert the images to text with `Tesseract`_
 
 Tips
 ====
-Performing "full word" search and other types of search
---------------------------------------------------------------
+Use ``--search-regex`` for regex-based search
+---------------------------------------------
+Use the ``--search-regex`` flag to perform regex-based search of ebook contents.
+Thus, ``--query "a battle"`` will find any line that contains the words "a battle".
+On the other hand, ``--query "^a battle" --search-regex`` will find any line that
+starts with the words "a battle" because the ``--search-regex`` considers the
+search query as a regex.
+
+`:information_source:`
+
+  If you want to perform a regex-based search of ebook **metadata** such as 
+  filenames then use the ``--metadata-regex`` flag, e.g. 
+  ``--filename "Aristotle|Plato" --metadata-regex`` will return all filenames
+  that contain either "Aristotle" or "Plato".
+
+Perform "full word" search and other types of search
+----------------------------------------------------
 The ``search-ebooks`` script accepts regular expressions for the search queries
 through the ``--search-regex`` and ``--metadata-regex`` flags.
 Thus you can perform specific searches such as a "full word" search (also
