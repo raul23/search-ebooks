@@ -213,8 +213,8 @@ See the `regex demo <https://regex101.com/r/cwmfOm/1/>`__.
 
 |
 
-We can now try it out with the ``search-ebooks`` script which will search in the
-``~/ebooks/`` folder from the `examples`_:
+We can now try it out with the ``search-ebooks`` script which will search the
+``~/ebooks/`` folder from the `Examples`_:
 
 .. code:: bash
 
