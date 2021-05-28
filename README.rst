@@ -237,8 +237,8 @@ using the ``--ocr`` flag which will convert the images to text with `Tesseract`_
   
 Search ebook metadata
 ---------------------
-Search for the string "confront|treason|journal" but only for those ebooks that have the 
-"fiction" **and** "play" tags:
+Search for the regex "confront|treason|journal" in ebook contents but only for 
+those ebooks that have the "fiction" **and** "play" tags:
 
 .. code:: bash
 
