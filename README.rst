@@ -278,6 +278,15 @@ following text:
    :align: left
    :alt: Find string than can span multiple lines in a text
 
+If we use the simple search query without tokens 
+``--query "turned into a democracy"``, we will only match the first occrrence
+of the given string:
+
+.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/simple_query_result.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/simple_query_result.png
+   :align: left
+   :alt: Result of executing a simple search query without tokens, just the string
+
 Advanced tip: perform "full word" search with regex
 ---------------------------------------------------
 The ``search-ebooks`` script accepts regular expressions for the search queries
