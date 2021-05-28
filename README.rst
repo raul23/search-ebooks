@@ -278,6 +278,8 @@ following text:
    :align: left
    :alt: Find string than can span multiple lines in a text
 
+|
+
 If we use the simple search query without tokens 
 ``--query "turned into a democracy"``, we will only match the first occrrence
 of the given string:
