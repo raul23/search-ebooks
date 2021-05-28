@@ -281,13 +281,25 @@ following text:
 |
 
 If we use the simple search query without tokens 
-``--query "turned into a democracy"``, we will only match the first occrrence
-of the given string:
+``"turned into a democracy"``, we will only match the first occurrence
+of the given string (in red):
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/simple_query_result.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/simple_query_result.png
    :align: left
    :alt: Result of executing a simple search query without tokens, just the string
+
+|
+
+To match all occurrences of the string no matter how many lines it spans, 
+the following query will do the trick: ``"turned\s+into\s+a\s+democracy"``.
+We replaced the space between the words with whitespaces (one or unlimited)
+
+.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/correct_query_result.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/correct_query_result.png
+   :align: left
+   :alt: Result of executing a search query where spaces between words are replaced white multiple whitespaces
+
 
 Advanced tip: perform "full word" search with regex
 ---------------------------------------------------
