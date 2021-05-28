@@ -407,7 +407,7 @@ those ebooks that have the "drama" **and** "history" tags:
     because we need to make use of positive lookahead which 
     "asserts that the given subpattern can be matched here, without consuming characters". [2]_
   * The ``--tags`` option acts like a filter by only executing the "confront|treason" regex on 
-    those ebooks that have at least these two tags.
+    those ebooks that have at least the two tags "drama" and "history".
 
 **Output:**
 
