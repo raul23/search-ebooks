@@ -450,7 +450,7 @@ References
 .. [1] ``txt``, ``html``, ``rtf``, ``rtfd``, ``doc``, ``wordml``, or ``webarchive``. 
        See `<https://ss64.com/osx/textutil.html>`__
 .. [2] Regex from `stackoverflow`_ and definition from the quick reference 
-       at `regex101.com <regex101.com>`__
+       at `regex101.com <https://regex101.com/>`__
 
 .. URLs
 .. _\\b: https://www.regular-expressions.info/wordboundaries.html
