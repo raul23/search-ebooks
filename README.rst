@@ -270,7 +270,7 @@ Thus:
     
 Search for a string that goes on multiple lines
 -----------------------------------------------
-Let's say we want to search for the string *turned into a democracy* into the
+Let's say we want to search for the string "turned into a democracy" into the
 following text:
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/string_multiple_lines.png
