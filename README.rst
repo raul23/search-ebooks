@@ -251,30 +251,26 @@ those ebooks that have the "fiction" **and** "play" tags:
 
 Tips
 ====
-Use ``--search-regex`` for regex-based search
----------------------------------------------
-Use the ``--search-regex`` flag to perform regex-based search of ebook contents.
+Use ``--regex`` for regex-based search
+--------------------------------------
+Use the ``--regex`` flag to perform regex-based search of ebook contents and metadata.
 Thus: 
 
 * ``--query "a battle"`` will find any line that **contains** the words 
   "a battle". 
-* ``--query "^a battle" --search-regex`` will find any line that **starts** 
-  with the words "a battle" because the ``--search-regex`` flag considers the 
+* ``--query "^a battle" --regex`` will find any line that **starts** 
+  with the words "a battle" because the ``--regex`` flag considers the 
   search query as a regex.
 
 `:information_source:`
 
   * By default, the ``search-ebooks`` script considers the search queries as 
     non-regex, i.e. it searches for the given query anywhere in the text.
-  * If you want to perform a regex-based search of ebook **metadata** such as 
-    filenames then use the ``--metadata-regex`` flag, e.g. 
-    ``--filename "Aristotle|Plato" --metadata-regex`` will return all filenames
-    that contain either "Aristotle" or "Plato".
 
 Perform "full word" search and other types of search
 ----------------------------------------------------
 The ``search-ebooks`` script accepts regular expressions for the search queries
-through the ``--search-regex`` and ``--metadata-regex`` flags.
+through the ``--regex`` flag.
 Thus you can perform specific searches such as a "full word" search (also
 called "whole words only" search) or a "starts with" search by making use of 
 regex-based search queries.
