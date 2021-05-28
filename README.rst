@@ -242,7 +242,7 @@ those ebooks that have the "fiction" **and** "play" tags:
 
 .. code:: bash
 
-   $ search-ebooks ~/ebooks/ --query "confront|treason|journal" --tags "^(?=.*fiction)(?=.*play).*$ -i --use-cache
+   $ search-ebooks ~/ebooks/ --query "confront|treason|journal" --tags "^(?=.*fiction)(?=.*play).*$" -i --use-cache
 
 `:information_source:`
 
