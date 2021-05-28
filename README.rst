@@ -234,6 +234,19 @@ using the ``--ocr`` flag which will convert the images to text with `Tesseract`_
 `:warning:`
 
   As you can see from the seach time, OCR is a slow process. Thus, use it wisely!
+  
+Search ebook metadata
+---------------------
+Search for the string "confront|treason|journal" but only for those ebooks that have the 
+"fiction" **and** "play" tags:
+
+.. code:: bash
+
+   $ search-ebooks ~/ebooks/ --query "confront|treason|journal" --tags "^(?=.*fiction)(?=.*play).*$ -i --use-cache
+
+`:information_source:`
+
+  TODO
 
 Tips
 ====
