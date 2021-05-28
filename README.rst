@@ -418,7 +418,7 @@ those ebooks that have the "drama" **and** "history" tags:
 
 `:information_source:`
 
-  * 
+  * All the other 16 ebooks from the `~/ebooks/`_ folder
 
 
 Roadmap
@@ -502,6 +502,7 @@ References
 .. _zipgrep: https://linux.die.net/man/1/zipgrep
 
 .. Local URLs
+.. _~/ebooks/: #examples
 .. _cache: #cache
 .. _examples: #examples
 .. _previous query: #search-ebooks-whose-filenames-satisfy-a-given-pattern
