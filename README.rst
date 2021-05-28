@@ -306,7 +306,8 @@ See the `regex demo <https://regex101.com/r/cwmfOm/1/>`__.
 
 |
 
-We can now try it out with the ``search-ebooks`` script:
+We can now try it out with the ``search-ebooks`` script which will search in the
+``~/ebooks/`` folder from the `examples`_:
 
 .. code:: bash
 
@@ -458,5 +459,6 @@ References
 
 .. Local URLs
 .. _cache: #cache
+.. _examples: #examples
 .. _previous query: #search-ebooks-whose-filenames-satisfy-a-given-pattern
 .. _search-ebooks: ./searchebooks/search_ebooks.py
