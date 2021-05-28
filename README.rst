@@ -310,7 +310,7 @@ regular expressions:
 `:information_source:`
 
   The ``--regex`` flag in the examples allow you to perform **regex-based** search 
-  of ebook's content and metadata.
+  of ebook contents and metadata.
 
 Roadmap
 =======
