@@ -183,7 +183,7 @@ to be case insensitive (i.e. ignore case):
   * ``\bknowledge\b`` matches exactly the word "knowledge", i.e. it performs a 
     `“whole words only” search`_. Thus, words like "acknowledge" or "knowledgeable"
     are rejected.
-  * The ``-i`` flag ignores case when searching in the book content and metadata.
+  * The ``-i`` flag ignores case when searching in ebook **contents** and **metadata**.
   * Since we already converted the files to ``.txt`` in previous runs,
     we make use of the cache with the ``--use-cache`` flag.
 
