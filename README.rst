@@ -271,7 +271,7 @@ regular expressions:
 +---------------------------+--------------------------------------------------------------+----------------------------------------------+
 | Search type               | Regex                                                        | Examples                                     |
 +===========================+==============================================================+==============================================+
-| "full word" search        | ``\bword\b``: surround the word with `\\b`_                  | ``--query "\bknowledge\b" --sr``:            |
+| "full word" search        | ``\bword\b``: surround the word with the `\\b`_ anchor       | ``--query "\bknowledge\b" --sr``:            |
 |                           |                                                              | will match exactly the word "knowledge" thus |
 |                           |                                                              | words like "acknowledge" or "knowledgeable"  |
 |                           |                                                              | will be rejected                             |
