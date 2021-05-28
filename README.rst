@@ -276,7 +276,7 @@ following text:
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/string_multiple_lines.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/string_multiple_lines.png
    :align: left
-   :alt: Find string than can span one or two lines in a text
+   :alt: Find string than can span multiple lines in a text
 
 Advanced tip: perform "full word" search with regex
 ---------------------------------------------------
