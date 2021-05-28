@@ -148,107 +148,6 @@ multiple eviction policies. See `Features`_ for a more complete list.
 See `DiskCache Cache Benchmarks`_ for comparaisons to `Memcached`_ and 
 `Redis`_.
 
-Examples
-========
-We will present search examples that are not trivial in order to show the
-potential of the ``search-ebooks`` script for executing complex queries.
-
-This is the ``~/ebooks/`` folder that contains the files which we will search
-from in the following examples:
-
-.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/list_of_ebooks.png
-   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/list_of_ebooks.png
-   :align: left
-   :alt: List of ebooks to search from
-
-`:information_source:`
-
-  Of the total eight PDF files, two are files that contain only
-  images: *Les Misérables by Victor Hugo.pdf* and 
-  *The Republic by Plato.pdf* which both consist of only two images for 
-  testing purposes.
-
-Search ebooks with certain filenames
-------------------------------------
-We want to search for the word "knowledge" but only for those ebooks whose
-filenames contain either "Aristotle" or "Plato" and also we want the search
-to be case insensitive (i.e. ignore case):
-
-.. code:: bash
-
-   $ search-ebooks ~/ebooks/ --query "\bknowledge\b" --filename "Aristotle|Plato" --regex -i --use-cache
-
-`:information_source:`
-
-  * ``--regex`` treats the search query and metadata as regex.
-  * ``\bknowledge\b`` matches exactly the word "knowledge", i.e. it performs a 
-    `“whole words only” search`_. Thus, words like "acknowledge" or "knowledgeable"
-    are rejected.
-  * The ``-i`` flag ignores case when searching in ebook **contents** and **metadata**.
-  * Since we already converted the files to ``.txt`` in previous runs,
-    we make use of the cache with the ``--use-cache`` flag.
-
-**Output:**
-
-.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_filenames_satisfy_pattern.png
-   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_filenames_satisfy_pattern.png
-   :align: left
-   :alt: Output for example: filenames satisfy a given pattern
-
-`:information_source:`
-
-  * The ``txt`` and ``pdf`` versions of *The Ethics of Aristotle by Aristotle*
-    show different number of matches because they are not the same translations
-    and hence the word *knowledge* might come from the introduction (written by 
-    another author) or the translator's footnotes.
-  * On the other hand, the ``txt`` and ``epub`` versions of *Politics_ A 
-    Treatise on Government by Aristotle* show the same number of matches because
-    they are both the same translation.
-  * As explained previously, *The Republic by Plato.pdf* is not included in
-    the matches because it is a file with images only and since
-    we didn't use the ``--ocr`` flag, the file couldn't be converted to ``.txt``.
-
-Search documents with images 
-----------------------------
-We will execute the `previous query`_ but this time we will include the
-file *The Republic by Plato.pdf* (which contains images) in the search by 
-using the ``--ocr`` flag which will convert the images to text with `Tesseract`_:
-
-.. code:: bash
-
-   $ search-ebooks ~/ebooks/ --query "\bknowledge\b" --filename "Aristotle|Plato" --regex -i --use-cache --ocr
-
-`:information_source:`
- 
-  The ``--ocr`` flag allows you to search ``.pdf``, ``.djvu`` and image files but it
-  is disabled by default because `OCR`_ is a slow resource-intensive process.
-
-**Output:**
-
-.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_ocr_images.png
-   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_ocr_images.png
-   :align: left
-   :alt: Output for example: OCR PDF file with images
-
-`:information_source:`
-
-  * Since the file *The Republic by Plato.pdf* was not already processed, the cache 
-    didn't have its text conversion at the start of the script. But by the end of the
-    script, the text conversion was saved in the cache.
-  * As you can see from the seach time, OCR is a slow process. Thus, use it wisely!
-  
-Search ebook metadata
----------------------
-Search for the regex "confront|treason" in ebook contents but only for 
-those ebooks that have the "drama" **and** "history" tags:
-
-.. code:: bash
-
-   $ search-ebooks ~/ebooks/ --query "confront|treason" --tags "^(?=.*drama)(?=.*history).*$" --regex -i --use-cache
-
-`:information_source:`
-
-  TODO
 
 Tips
 ====
@@ -383,6 +282,108 @@ regular expressions:
   The ``--regex`` flag in the examples allow you to perform **regex-based** search 
   of ebook contents and metadata, i.e. the ``search-ebooks`` treats the search 
   queries as regular expressions.
+
+Examples
+========
+We will present search examples that are not trivial in order to show the
+potential of the ``search-ebooks`` script for executing complex queries.
+
+This is the ``~/ebooks/`` folder that contains the files which we will search
+from in the following examples:
+
+.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/list_of_ebooks.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/list_of_ebooks.png
+   :align: left
+   :alt: List of ebooks to search from
+
+`:information_source:`
+
+  Of the total eight PDF files, two are files that contain only
+  images: *Les Misérables by Victor Hugo.pdf* and 
+  *The Republic by Plato.pdf* which both consist of only two images for 
+  testing purposes.
+
+Search ebooks with certain filenames
+------------------------------------
+We want to search for the word "knowledge" but only for those ebooks whose
+filenames contain either "Aristotle" or "Plato" and also we want the search
+to be case insensitive (i.e. ignore case):
+
+.. code:: bash
+
+   $ search-ebooks ~/ebooks/ --query "\bknowledge\b" --filename "Aristotle|Plato" --regex -i --use-cache
+
+`:information_source:`
+
+  * ``--regex`` treats the search query and metadata as regex.
+  * ``\bknowledge\b`` matches exactly the word "knowledge", i.e. it performs a 
+    `“whole words only” search`_. Thus, words like "acknowledge" or "knowledgeable"
+    are rejected.
+  * The ``-i`` flag ignores case when searching in ebook **contents** and **metadata**.
+  * Since we already converted the files to ``.txt`` in previous runs,
+    we make use of the cache with the ``--use-cache`` flag.
+
+**Output:**
+
+.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_filenames_satisfy_pattern.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_filenames_satisfy_pattern.png
+   :align: left
+   :alt: Output for example: filenames satisfy a given pattern
+
+`:information_source:`
+
+  * The ``txt`` and ``pdf`` versions of *The Ethics of Aristotle by Aristotle*
+    show different number of matches because they are not the same translations
+    and hence the word *knowledge* might come from the introduction (written by 
+    another author) or the translator's footnotes.
+  * On the other hand, the ``txt`` and ``epub`` versions of *Politics_ A 
+    Treatise on Government by Aristotle* show the same number of matches because
+    they are both the same translation.
+  * As explained previously, *The Republic by Plato.pdf* is not included in
+    the matches because it is a file with images only and since
+    we didn't use the ``--ocr`` flag, the file couldn't be converted to ``.txt``.
+
+Search documents with images 
+----------------------------
+We will execute the `previous query`_ but this time we will include the
+file *The Republic by Plato.pdf* (which contains images) in the search by 
+using the ``--ocr`` flag which will convert the images to text with `Tesseract`_:
+
+.. code:: bash
+
+   $ search-ebooks ~/ebooks/ --query "\bknowledge\b" --filename "Aristotle|Plato" --regex -i --use-cache --ocr
+
+`:information_source:`
+ 
+  The ``--ocr`` flag allows you to search ``.pdf``, ``.djvu`` and image files but it
+  is disabled by default because `OCR`_ is a slow resource-intensive process.
+
+**Output:**
+
+.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_ocr_images.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_ocr_images.png
+   :align: left
+   :alt: Output for example: OCR PDF file with images
+
+`:information_source:`
+
+  * Since the file *The Republic by Plato.pdf* was not already processed, the cache 
+    didn't have its text conversion at the start of the script. But by the end of the
+    script, the text conversion was saved in the cache.
+  * As you can see from the seach time, OCR is a slow process. Thus, use it wisely!
+  
+Search ebook metadata
+---------------------
+Search for the regex "confront|treason" in ebook contents but only for 
+those ebooks that have the "drama" **and** "history" tags:
+
+.. code:: bash
+
+   $ search-ebooks ~/ebooks/ --query "confront|treason" --tags "^(?=.*drama)(?=.*history).*$" --regex -i --use-cache
+
+`:information_source:`
+
+  TODO
 
 Roadmap
 =======
