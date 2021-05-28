@@ -181,7 +181,7 @@ to be case insensitive (i.e. ignore case):
 `:information_source:`
 
   * ``\bknowledge\b`` matches exactly the word "knowledge", i.e. it performs a 
-    `"whole words only" search`_. Thus, words like "acknowledge" or "knowledgeable"
+    `“whole words only” search`_. Thus, words like "acknowledge" or "knowledgeable"
     are rejected.
   * Since we already converted the files to ``.txt`` in previous runs,
     we make use of the cache with the ``--use-cache`` flag.
