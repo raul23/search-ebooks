@@ -251,8 +251,7 @@ Thus:
 `:information_source:`
 
   * By default, the ``search-ebooks`` script considers the search queries as 
-    non-regex, i.e. it checks if the text contains the given query, no matter
-    where.
+    non-regex, i.e. it searches for the given query anywhere in the text.
   * If you want to perform a regex-based search of ebook **metadata** such as 
     filenames then use the ``--metadata-regex`` flag, e.g. 
     ``--filename "Aristotle|Plato" --metadata-regex`` will return all filenames
