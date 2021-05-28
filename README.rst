@@ -52,14 +52,12 @@ These are the supported search-backends for each type of ebooks:
 
   * The utilities mentioned in the **Supported search-backends** column
     are used to extract the text before it is searched on. ``epubtxt`` is
-    the only that is not a standalone utility like the others but a 
-    combination of other utilities (``unzip`` and ``zipgre``) whose 
-    speciality is not for text extraction from epub files only.
+    the only one that is not a standalone utility like the others.
   * More specifically, ``epubtxt`` consists in uncompressing first the 
     ``epub`` file with `unzip`_ since ``epub``\s are zipped HTML files. Then, 
-    the extracted text is searched on. I tried to use `zipgrep`_ to do
-    both the unzipping and searching but I couldn't make it to work with
-    regular expressions such as ``\bpattern\b``.
+    the extracted text is searched on with Python's `re`_ library. I tried to 
+    use `zipgrep`_ to do both the unzipping and searching but I couldn't make 
+    it to work with regular expressions such as ``\bpattern\b``.
   * The **default** search methods (except for ``.epub``) are used since 
     they are quicker to extract text than *calibre*\'s `ebook-convert`_. But 
     if these default utilities are not installed, then the searching relies on 
@@ -503,6 +501,7 @@ References
 .. _pyebooktools: https://github.com/raul23/pyebooktools
 .. _pyebooktools README: https://github.com/raul23/pyebooktools#options-for-ocr
 .. _PyLucene: https://lucene.apache.org/pylucene/
+.. _re: https://docs.python.org/3/library/re.html
 .. _Read the Docs: https://readthedocs.org/
 .. _Redis: https://redis.io/
 .. _stackoverflow: https://stackoverflow.com/a/37692545/14664104
