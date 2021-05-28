@@ -51,7 +51,10 @@ These are the supported search-backends for each type of ebooks:
 `:information_source:`
 
   * The utilities mentioned in the **Supported search-backends** column
-    are used to extract the text before it is searched on.
+    are used to extract the text before it is searched on. ``epubtxt`` is
+    the only that is not a standalone utility like the others but a 
+    combination of other utilities (``unzip`` and ``zipgre``) whose 
+    speciality is not for text extraction from epub files only.
   * More specifically, ``epubtxt`` consists in uncompressing first the 
     ``epub`` file with `unzip`_ since ``epub``\s are zipped HTML files. Then, 
     the extracted text is searched on. I tried to use `zipgrep`_ to do
@@ -400,7 +403,9 @@ those ebooks that have the "drama" **and** "history" tags:
 
 `:information_source:`
 
-  TODO
+  * The regex for the **AND** operator is a lot more complex than an OR-based regex which only use
+    vertical bar (``|``) because we need to make use of positive lookahead which 
+    "asserts that the given subpattern can be matched here, without consuming characters". [2]
 
 Roadmap
 =======
@@ -442,6 +447,7 @@ details see the `LICENSE`_ file in the repository.
 References
 ==========
 .. [1] ``txt``, ``html``, ``rtf``, ``rtfd``, ``doc``, ``wordml``, or ``webarchive``. See `<https://ss64.com/osx/textutil.html>`__
+.. [2] Taken from regex101.com
 
 .. URLs
 .. _\\b: https://www.regular-expressions.info/wordboundaries.html
