@@ -333,7 +333,7 @@ We can now try it out with the ``search-ebooks`` script:
   
   |
   
-  and in the ``epub`` version:
+  and in the text conversion of the ``epub`` file:
   
   .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/aristotle_politics_section_match_epub.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/aristotle_politics_section_match_epub.png
