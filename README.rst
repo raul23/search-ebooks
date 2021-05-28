@@ -221,8 +221,8 @@ using the ``--ocr`` flag which will convert the images to text with `Tesseract`_
   * The ``--ocr`` flag allows you to search ``.pdf``, ``.djvu`` and image files but it
     is disabled by default because `OCR`_ is a slow resource-intensive process.
   * Since the file *The Republic by Plato.pdf* was not already processed, the cache 
-    doesn't have its text conversion yet but will have it as soon as the script is
-    finished searching.
+    didn't have its text conversion at the start of the script. But by the end of the
+    script, the text conversion was saved in the cache.
 
 **Output:**
 
