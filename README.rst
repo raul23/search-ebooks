@@ -304,6 +304,33 @@ We replaced the space between the words with whitespaces (one or unlimited):
 
 See the `regex demo <https://regex101.com/r/cwmfOm/1/>`__.
 
+|
+
+We can now try it out with the ``search-ebooks`` script:
+
+.. code:: bash
+
+   $ search-ebooks ~/ebooks/ --query "turned\s+into\s+a\s+democracy" --regex -i --use-cache
+   
+**Output:**
+
+.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/output_script.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/output_script.png
+   :align: left
+   :alt: Output of ``search-ebooks`` script when using the correct search query with appropriate tokens
+
+`:information_source:`
+
+  Only the book *Politics_ A Treatise on Government by Aristotle* whose two 
+  versions ``epub`` and ``txt`` correspond to the same translation could 
+  match the given string "turned into a democracy" which is found in the 
+  following part of the text:
+  
+  .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/aristotle_politics_section_match.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/aristotle_politics_section_match.png
+   :align: left
+   :alt: section where the match was found in the book *Politics_ A Treatise on Government by Aristotle*
+
 Advanced tip: perform "full word" search with regex
 ---------------------------------------------------
 The ``search-ebooks`` script accepts regular expressions for the search queries
