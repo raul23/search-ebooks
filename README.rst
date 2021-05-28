@@ -176,10 +176,11 @@ to be case insensitive (i.e. ignore case):
 
 .. code:: bash
 
-   $ search-ebooks ~/ebooks/ --query "\bknowledge\b" --filename "Aristotle|Plato" -i --use-cache
+   $ search-ebooks ~/ebooks/ --query "\bknowledge\b" --filename "Aristotle|Plato" --regex -i --use-cache
 
 `:information_source:`
 
+  * ``--regex`` treats the search query and metadata as regex.
   * ``\bknowledge\b`` matches exactly the word "knowledge", i.e. it performs a 
     `“whole words only” search`_. Thus, words like "acknowledge" or "knowledgeable"
     are rejected.
@@ -215,7 +216,7 @@ using the ``--ocr`` flag which will convert the images to text with `Tesseract`_
 
 .. code:: bash
 
-   $ search-ebooks ~/ebooks/ --query "\bknowledge\b" --filename "Aristotle|Plato" -i --use-cache --ocr
+   $ search-ebooks ~/ebooks/ --query "\bknowledge\b" --filename "Aristotle|Plato" --regex -i --use-cache --ocr
 
 `:information_source:`
  
@@ -380,7 +381,8 @@ regular expressions:
 `:information_source:`
 
   The ``--regex`` flag in the examples allow you to perform **regex-based** search 
-  of ebook contents and metadata.
+  of ebook contents and metadata, i.e. the ``search-ebooks`` treats the search 
+  queries as regular expressions.
 
 Roadmap
 =======
