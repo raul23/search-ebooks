@@ -428,8 +428,7 @@ those ebooks that have the "drama" **and** "history" tags:
     
   * All the other 16 ebooks from the `~/ebooks/`_ folder were rejected for
     not satisfying the two regexes (``--query`` and ``--tags``).
-  * *Julius Caesar by William Shakespeare.pdf* corresponds to the same
-    translation as the ``epub`` version but it doesn't have any tag.
+  * *Julius Caesar by William Shakespeare.pdf* doesn't have any tag, unlike the ``epub`` format.
   * *Julius Caesar by William Shakespeare.epub* only matches once for the
     word "treason".
 
