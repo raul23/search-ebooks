@@ -406,7 +406,20 @@ those ebooks that have the "drama" **and** "history" tags:
   * The regex for the **AND** operator is a lot more complex than an OR-based regex which only use the
     vertical bar (``|``) because we need to make use of positive lookahead which 
     "asserts that the given subpattern can be matched here, without consuming characters". [2]_
-    
+  * The ``--tags`` option acts like a filter by only executing the "confront|treason" regex on 
+    those ebooks that have at least these two tags.
+
+**Output:**
+
+.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_metadata.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_metadata.png
+   :align: left
+   :alt: Output for example: search ebook metadata
+
+`:information_source:`
+
+  * 
+
 
 Roadmap
 =======
