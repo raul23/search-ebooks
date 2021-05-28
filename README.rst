@@ -265,10 +265,21 @@ Thus:
 `:information_source:`
 
   * By default, the ``search-ebooks`` script considers the search queries as 
-    non-regex, i.e. it searches for the given query anywhere in the text.
+    non-regex, i.e. it searches for the given query anywhere in the text by
+    not processing any regex tokens (e.g. ``$`` or ``^``).
+    
+Search for a string that goes on multiple lines
+-----------------------------------------------
+Let's say we want to search for the string *turned into a democracy* into the
+following text:
 
-Perform "full word" search and other types of search with regex
----------------------------------------------------------------
+.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/string_multiple_lines.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/string_multiple_lines.png
+   :align: left
+   :alt: Find string than can span one or two lines in a text
+
+Advanced tip: perform "full word" search with regex
+---------------------------------------------------
 The ``search-ebooks`` script accepts regular expressions for the search queries
 through the ``--regex`` flag.
 Thus you can perform specific searches such as a "full word" search (also
