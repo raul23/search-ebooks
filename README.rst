@@ -289,7 +289,7 @@ of the given string:
    :align: left
    :alt: Result of executing a simple search query without tokens, just the string
 
-See the `regex demo <https://regex101.com/r/L7wcqg/1/`__.
+See the `regex demo <https://regex101.com/r/L7wcqg/1/>`__.
 
 |
 
@@ -302,7 +302,7 @@ We replaced the space between the words with whitespaces (one or unlimited)
    :align: left
    :alt: Result of executing a search query where spaces between words are replaced white multiple whitespaces
 
-See the `regex demo <https://regex101.com/r/cwmfOm/1/`__.
+See the `regex demo <https://regex101.com/r/cwmfOm/1/>`__.
 
 Advanced tip: perform "full word" search with regex
 ---------------------------------------------------
