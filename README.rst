@@ -282,12 +282,14 @@ following text:
 
 If we use the simple search query without tokens 
 ``"turned into a democracy"``, we will only match the first occurrence
-of the given string (in red):
+of the given string:
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/simple_query_result.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/simple_query_result.png
    :align: left
    :alt: Result of executing a simple search query without tokens, just the string
+
+See the `regex demo <https://regex101.com/r/L7wcqg/1/`__.
 
 |
 
@@ -300,6 +302,7 @@ We replaced the space between the words with whitespaces (one or unlimited)
    :align: left
    :alt: Result of executing a search query where spaces between words are replaced white multiple whitespaces
 
+See the `regex demo <https://regex101.com/r/cwmfOm/1/`__.
 
 Advanced tip: perform "full word" search with regex
 ---------------------------------------------------
