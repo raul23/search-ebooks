@@ -169,6 +169,17 @@ Thus:
     non-regex, i.e. it searches for the given query anywhere in the text by
     not processing any regex tokens (e.g. ``$`` or ``^``).
     
+`:star:`
+
+  When searching ebook contents and metadata at the same time, note that both
+  types of search are linked by **ANDs**. For instance, the following command
+  will search for the "reason" string on those ebooks whose filenames start 
+  with "The" and whose tags contain "history":
+  
+  .. code:: bash
+
+     $ search-ebooks ~/ebooks/ --query "reason" --filename "^The" --tags "history" --regex -i --use-cache
+    
 Search for a string that spans multiple lines
 ---------------------------------------------
 Let's say we want to search for the string "turned into a democracy" in the
