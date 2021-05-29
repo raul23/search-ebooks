@@ -470,6 +470,8 @@ Roadmap
 =======
 Starting from first priority tasks:
 
+Short-term
+----------
 1. Add many tests with many ebooks (in the thousands maybe)
 
    **Status:** working on it
@@ -482,12 +484,17 @@ Starting from first priority tasks:
    
    `PyLucene`_ will be used to access ``Lucene``\'s text indexing and searching
    capabilities from Python
-   
+
+Medium-term
+-----------
 5. Test on linux
 6. Create a `docker`_ image for this project
 7. Read also metadata from *calibre*\'s ``metadata.opf`` if found
 8. Add tests on `Travis CI`_
 9. Eventually add documentation on `Read the Docs`_
+
+Long-term
+---------
 10. Add support for multiprocessing so you can have multiple ebook files
     being searched in parallel based on the number of cores
 11. Implement a GUI, specially to make navigation of search results easier 
