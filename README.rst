@@ -131,8 +131,7 @@ it is a document with hundreds of pages. `DiskCache`_, a disk and file backed
 cache library, is used by the ``search-ebooks`` script.
 
 The cache is also used to save the results of *calibre*\'s `ebook-meta`_
-which can slow down the ``search-ebooks`` script when searching the metadata
-of ebooks such as their authors and tags.
+when searching the metadata of ebooks such as their authors and tags.
 
 The ``search-ebooks`` script can use the cache with the ``--use-cache`` flag.
 
@@ -420,8 +419,8 @@ those ebooks that have the "drama" **and** "history" tags:
   * The regex for the **AND** operator is a little more complex than an OR-based regex which 
     only makes use of a vertical bar ``|``.
   * *calibre*\'s `ebook-meta`_ is used by the ``search-ebooks`` script to get ebook metadata
-    such as ``Title`` and ``Tags``. It's recommended to use the cache not only to save
-    the text conversion but also ebook metadata since ``ebook-meta`` can be a slow process.
+    such as ``Title`` and ``Tags``. The cache not only save
+    the text conversion but also ebook metadata.
   * The ``--tags`` option acts like a filter by only executing the "confront|treason" regex on 
     those ebooks that have at least the two tags "drama" and "history".
 
@@ -455,7 +454,7 @@ those ebooks that have the "drama" **and** "history" tags:
 
 |
 
-If we don't use cache, *calibre*\'s `ebook-meta`_ can be slow to return the results:
+If we don't use cache for *calibre*\'s `ebook-meta`_:
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_metadata_without_cache.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_metadata_witthout_cache.png
@@ -464,7 +463,6 @@ If we don't use cache, *calibre*\'s `ebook-meta`_ can be slow to return the resu
    
 `:information_source:`
 
-  * **0.285** second when caching ``ebook-meta`` vs **13.273** seconds without caching ``ebook-meta``.
   * Keep in mind that caching the results of ``ebook-meta`` has its caveats. For instance if the ebook
     is modified (e.g. tags were added) then we have to re-run ``ebook-meta`` again since the
     keys in the cache are the MD5 hashes of the ebooks. 
