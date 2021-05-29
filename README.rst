@@ -464,7 +464,7 @@ If we don't use cache for *calibre*\'s `ebook-meta`_:
 `:information_source:`
 
   * Keep in mind that caching the results of ``ebook-meta`` has its caveats. For instance if the ebook
-    is modified (e.g. tags were added) then we have to re-run ``ebook-meta`` again since the
+    is modified (e.g. tags were added) then the ``search-ebooks`` have to run ``ebook-meta`` again since the
     keys in the cache are the MD5 hashes of the ebooks. 
   * There is no problem in the
     cache growing without bounds since its size is set to a maximum of 1 GB by default (check
