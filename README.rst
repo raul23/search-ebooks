@@ -124,10 +124,16 @@ And optionally, you might need:
 
 Cache
 =====
-Cache is used to save the converted ebook files into ``.txt`` to avoid
+Cache is used especially to save the converted ebook files into ``.txt`` to avoid
 re-converting them which is a time consuming process, specially if
 it is a document with hundreds of pages. `DiskCache`_, a disk and file backed
 cache library, is used by the ``search-ebooks`` script.
+
+The cache is also used to save the results of *calibre*\'s `ebook-meta`_
+which can slow down the ``search-ebooks`` script when searching the metadata
+of ebooks such as their filenames or tags.
+
+The ``search-ebooks`` script can use the cache with the ``--use-cache`` flag.
 
 A file-based cache library was choosen instead of a memory-based 
 cache like `Redis`_ because the converted files (``.txt``) needed to be 
