@@ -476,8 +476,6 @@ Starting from first priority tasks:
 
 2. |ss| Add examples for searching text content and metadata of ebooks |se|
    
-   **Status:** done
-   
 3. Add instructions on how to install the ``searchebooks`` package
 
 4. Add support for `Lucene`_ as a search backend
