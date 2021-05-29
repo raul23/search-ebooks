@@ -242,7 +242,7 @@ We can now try it out with the ``search-ebooks`` script which will search the
 
 `:information_source:`
 
-  Only the book *Politics_ A Treatise on Government by Aristotle* whose two 
+  Only the ebook *Politics_ A Treatise on Government by Aristotle* whose two 
   versions ``epub`` and ``txt`` correspond to the same translation could 
   match the given string "turned into a democracy" which is found in the 
   following part of the ``txt`` version:
