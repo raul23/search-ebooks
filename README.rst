@@ -415,7 +415,7 @@ those ebooks that have the "drama" **and** "history" tags:
 `:information_source:`
 
   * The regex for the **AND** operator is a little more complex than an OR-based regex which 
-    only makes use of a vertical bar ``|``).
+    only makes use of a vertical bar ``|``.
   * The ``--tags`` option acts like a filter by only executing the "confront|treason" regex on 
     those ebooks that have at least the two tags "drama" and "history".
 
