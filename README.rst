@@ -417,7 +417,7 @@ those ebooks that have the "drama" **and** "history" tags:
 `:information_source:`
 
   * The regex for the **AND** operator is a little more complex than an OR-based regex which 
-    only makes use of a vertical bar ``|``.
+    only makes use of a vertical bar ``|``. [2]_
   * *calibre*\'s `ebook-meta`_ is used by the ``search-ebooks`` script to get ebook metadata
     such as ``Title`` and ``Tags``. The cache not only save
     the text conversion but also ebook metadata.
