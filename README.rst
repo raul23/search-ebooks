@@ -450,7 +450,7 @@ those ebooks that have the "drama" **and** "history" tags:
 
 |
 
-If we don't use cache, *calibre*\'s `ebook-meta`_ slows down the ``search-ebooks`` script by a lot:
+If we don't use cache, *calibre*\'s `ebook-meta`_ can be slow to return the results:
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_metadata_without_cache.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_metadata_witthout_cache.png
