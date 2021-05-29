@@ -474,9 +474,9 @@ Starting from first priority tasks:
 
    **Status:** working on it
 
-2. Add examples for searching text content and metadata of ebooks
+2. |ss| Add examples for searching text content and metadata of ebooks |se|
    
-   **Status:** working on it
+   **Status:** done
    
 3. Add instructions on how to install the ``searchebooks`` package
 
@@ -553,3 +553,11 @@ References
 .. _examples: #examples
 .. _previous query: #search-ebooks-whose-filenames-satisfy-a-given-pattern
 .. _search-ebooks: ./searchebooks/search_ebooks.py
+
+.. |ss| raw:: html
+
+   <strike>
+
+.. |se| raw:: html
+
+   </strike>
