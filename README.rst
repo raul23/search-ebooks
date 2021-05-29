@@ -343,6 +343,8 @@ to be case insensitive (i.e. ignore case):
   * Since we already converted the files to ``.txt`` in previous runs,
     we make use of the cache with the ``--use-cache`` flag.
 
+|
+
 **Output:**
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_filenames_satisfy_pattern.png
@@ -388,6 +390,8 @@ using the ``--ocr`` flag which will convert the images to text with `Tesseract`_
     
     More info in `pyebooktools README`_.
 
+|
+
 **Output:**
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_ocr_images.png
@@ -420,6 +424,8 @@ those ebooks that have the "drama" **and** "history" tags:
     the text conversion but also ebook metadata since ``ebook-meta`` can be a slow process.
   * The ``--tags`` option acts like a filter by only executing the "confront|treason" regex on 
     those ebooks that have at least the two tags "drama" and "history".
+
+|
 
 **Output:**
 
