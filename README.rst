@@ -131,7 +131,7 @@ cache library, is used by the ``search-ebooks`` script.
 
 The cache is also used to save the results of *calibre*\'s `ebook-meta`_
 which can slow down the ``search-ebooks`` script when searching the metadata
-of ebooks such as their filenames or tags.
+of ebooks such as their authors and tags.
 
 The ``search-ebooks`` script can use the cache with the ``--use-cache`` flag.
 
@@ -416,6 +416,9 @@ those ebooks that have the "drama" **and** "history" tags:
 
   * The regex for the **AND** operator is a little more complex than an OR-based regex which 
     only makes use of a vertical bar ``|``.
+  * *calibre*\'s `ebook-meta`_ is used by the ``search-ebooks`` script to get ebook metadata
+    such as ``Title`` and ``Tags``. It's recommended to use the cache not only to save
+    the text conversion but also ebook metadata since ``ebook-meta`` can be a slow process.
   * The ``--tags`` option acts like a filter by only executing the "confront|treason" regex on 
     those ebooks that have at least the two tags "drama" and "history".
 
@@ -428,10 +431,10 @@ those ebooks that have the "drama" **and** "history" tags:
 
 `:information_source:`
 
-  * The results of `ebook-meta`_ were already cached from previous runs of the ``searche-ebooks`` script
+  * The results of `ebook-meta`_ were already cached from previous runs of the ``search-ebooks`` script
     by using the ``--use-cache`` flag. Hence, the running time of the script can be speed up not only
     by caching the text conversion of ebooks but also the results of ``ebook-meta``.
-  * Here is the output of *calibre*\'s `ebook-meta`_ when running it on
+  * Here is the output of ``ebook-meta`` when running it on
     *Julius Caesar by William Shakespeare.epub*:
     
     .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_ebook_meta.png
@@ -444,10 +447,10 @@ those ebooks that have the "drama" **and** "history" tags:
   * *Julius Caesar by William Shakespeare.pdf* doesn't have any tag, unlike its ``epub`` counterpart.
   * *Julius Caesar by William Shakespeare.epub* only matches once for the
     word "treason".
-    
+
 |
 
-If we don't use cache, *calibre*\'s ``ebook-meta`` slows down the ``search-ebooks`` script by a lot:
+If we don't use cache, *calibre*\'s `ebook-meta`_ slows down the ``search-ebooks`` script by a lot:
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_metadata_without_cache.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_metadata_witthout_cache.png
