@@ -196,11 +196,9 @@ following text:
    :align: left
    :alt: Find string than can span multiple lines in a text
 
-`:information_source:`
-
-  The difficulty in searching the given string is that sometimes it spans multiple
-  lines and you want to make the regex as general as possible in matching the string
-  no matter where the newline(s) happens in the string.
+The difficulty in searching the given string is that sometimes it spans multiple
+lines and you want to make the regex as general as possible in matching the string
+no matter where the newline(s) happens in the string.
 
 |
 
