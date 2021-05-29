@@ -450,7 +450,7 @@ If we don't use cache, *calibre*\'s ``ebook-meta`` slows down the ``search-ebook
    
 `:information_source:`
 
-  * 0.285 second when caching ``ebook-meta`` vs 13.273 seconds without caching ``ebook-meta``.
+  * **0.285** second when caching ``ebook-meta`` vs **13.273** seconds without caching ``ebook-meta``.
   * Keep in mind that caching the results of ``ebook-meta`` has its caveats. For instance if the ebook
     is modified (e.g. tags were added) then we have to re-run ``ebook-meta`` again since the
     keys in the cache are the MD5 hashes of the ebooks. 
