@@ -171,9 +171,9 @@ Thus:
 
 `:information_source:`
 
-  * By default, the ``search-ebooks`` script considers the search queries as 
-    non-regex, i.e. it searches for the given query anywhere in the text by
-    not processing any regex tokens (e.g. ``$`` or ``^``).
+  By default, the ``search-ebooks`` script considers the search queries as 
+  non-regex, i.e. it searches for the given query anywhere in the text by
+  not processing any regex tokens (e.g. ``$`` or ``^``).
     
 `:star:`
 
