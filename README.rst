@@ -196,32 +196,28 @@ following text:
   lines and you want to make the regex as general as possible in matching the string
   no matter where the newline(s) happens in the string.
 
-
 |
 
 If we use the simple search query without tokens 
 ``"turned into a democracy"``, we will only match the first occurrence
-of the given string:
+of the given string, as show in the following `regex101.com demo <https://regex101.com/r/gSmRPc/1>`__:
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/simple_query_result.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/simple_query_result.png
    :align: left
    :alt: Result of executing a simple search query without tokens, just the string
 
-See the `regex demo <https://regex101.com/r/gSmRPc/1>`__.
-
 |
 
 To match all occurrences of the string no matter how many lines it spans, 
 the following regex will do the trick: ``"turned\s+into\s+a\s+democracy"``.
-We replaced the space between the words with whitespaces (one or unlimited):
+We replaced the space between the words with whitespaces (one or unlimited), as 
+shown in the following `regex101.com demo <https://regex101.com/r/cwmfOm/1>`__:
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/correct_query_result.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/correct_query_result.png
    :align: left
    :alt: Result of executing a search query where spaces between words are replaced white multiple whitespaces
-
-See the `regex demo <https://regex101.com/r/cwmfOm/1/>`__.
 
 |
 
