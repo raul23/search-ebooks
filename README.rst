@@ -487,21 +487,21 @@ Short-term
 
 Medium-term
 -----------
-5. Test on linux
-6. Create a `docker`_ image for this project
-7. Read also metadata from *calibre*\'s ``metadata.opf`` if found
-8. Add tests on `Travis CI`_
-9. Eventually add documentation on `Read the Docs`_
+1. Test on linux
+2. Create a `docker`_ image for this project
+3. Read also metadata from *calibre*\'s ``metadata.opf`` if found
+4. Add tests on `Travis CI`_
+5. Eventually add documentation on `Read the Docs`_
 
 Long-term
 ---------
-10. Add support for multiprocessing so you can have multiple ebook files
-    being searched in parallel based on the number of cores
-11. Implement a GUI, specially to make navigation of search results easier 
-    since you can have thousands of matches for a given search query
+1. Add support for multiprocessing so you can have multiple ebook files
+   being searched in parallel based on the number of cores
+2. Implement a GUI, specially to make navigation of search results easier 
+   since you can have thousands of matches for a given search query
   
-    Though, for the moment not sure which GUI library to choose from 
-    (e.g. `Kivy`_, `TkInter`_)
+   Though, for the moment not sure which GUI library to choose from 
+   (e.g. `Kivy`_, `TkInter`_)
 
 License
 =======
