@@ -415,13 +415,16 @@ those ebooks that have the "drama" **and** "history" tags:
 
 **Output:**
 
-.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_metadata.png
-   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_metadata.png
+.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_metadata_with_cache.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_metadata_witth_cache.png
    :align: left
    :alt: Output for example: search ebook metadata
 
 `:information_source:`
 
+  * The results of `ebook-meta`_ were already cached from previous runs of the ``searche-ebooks`` script
+    by using the ``--use-cache`` flag. Hence, the running time of the script can be speed up not only
+    by caching the text conversion of ebooks but the results of ``ebook-meta``.
   * Here is the output of *calibre*\'s `ebook-meta`_ when running it on
     *Julius Caesar by William Shakespeare.epub*:
     
@@ -435,6 +438,27 @@ those ebooks that have the "drama" **and** "history" tags:
   * *Julius Caesar by William Shakespeare.pdf* doesn't have any tag, unlike its ``epub`` counterpart.
   * *Julius Caesar by William Shakespeare.epub* only matches once for the
     word "treason".
+    
+|
+
+If we don't use cache, *calibre*\'s ``ebook-meta`` slows down the ``search-ebooks`` script by a lot:
+
+.. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_metadata_without_cache.png
+   :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_metadata_witthout_cache.png
+   :align: left
+   :alt: Output for example: search ebook metadata without cache
+   
+`:information_source:`
+
+  * 0.285 second when caching ``ebook-meta`` vs 13.273 seconds without caching ``ebook-meta``.
+  * Keep in mind that caching the results of ``ebook-meta`` has its caveats like if the ebook
+    is modified (e.g. tags were added) then we have to re-run ``ebook-meta`` again since the
+    items in the cache are identified by the ebooks' MD5. 
+  * There is no problem in the
+    cache growing without bounds since its size is set to a maximum of 1 GB by default (check
+    the ``--cache-size-limit`` option) and its eviction policy determines what items get to be
+    evicted to make space for more items which by default it is the least-recently-stored
+    eviction policy (check the ``--eviction-policy`` option).
 
 Roadmap
 =======
