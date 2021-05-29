@@ -424,7 +424,7 @@ those ebooks that have the "drama" **and** "history" tags:
 
   * The results of `ebook-meta`_ were already cached from previous runs of the ``searche-ebooks`` script
     by using the ``--use-cache`` flag. Hence, the running time of the script can be speed up not only
-    by caching the text conversion of ebooks but the results of ``ebook-meta``.
+    by caching the text conversion of ebooks but also the results of ``ebook-meta``.
   * Here is the output of *calibre*\'s `ebook-meta`_ when running it on
     *Julius Caesar by William Shakespeare.epub*:
     
