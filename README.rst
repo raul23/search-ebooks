@@ -9,7 +9,7 @@ search-ebooks
   </p>
 
 `search-ebooks`_ is a command-line program that searches through content
-and metadata of different types of ebooks. It is based on the `pyebooktools`_
+and metadata of various types of ebooks. It is based on the `pyebooktools`_
 Python package for building ebook management scripts.
 
 `:warning:`
