@@ -56,10 +56,10 @@ These are the supported search-backends for each type of ebooks:
   the extracted text is searched on with Python's `re`_ library. I tried to 
   use `zipgrep`_ to do both the unzipping and searching but I couldn't make 
   it to work with regular expressions such as ``\bpattern\b``.
-* The **default** search methods (except for ``.epub``) are used since 
+* The **default** search methods (except for ``epub``) are used since 
   they are quicker to extract text than *calibre*\'s `ebook-convert`_. But 
   if these default utilities are not installed, then the searching relies on 
-  ``ebook-convert`` for converting the documents to ``.txt``
+  ``ebook-convert`` for converting the documents to ``txt``
 * Eventually, I will add support for `Lucene`_ as a search backend since it 
   has "powerful indexing and search features, as well as spellchecking, hit 
   highlighting and advanced analysis/tokenization capabilities".
