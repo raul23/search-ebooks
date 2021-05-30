@@ -138,7 +138,7 @@ persistent to speed up subsequent searches and since we are storing huge
 quantities of data (e.g. we can have thousands of ebooks to search from), 
 a memory-based cache might not be suited. In order to avoid using too much 
 disk space, you can set the cache size with the ``--cache-size-limit`` flag
-which by default it is set to 1 GB.
+which by default is set to 1 GB.
 
 As an example to see how much disk space you might need to cache one thousand
 ``.txt`` files all at once, let's say that on average each ``.txt`` file uses
