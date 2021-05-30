@@ -524,7 +524,7 @@ References
 .. _“whole words only” search: https://www.regular-expressions.info/wordboundaries.html
 .. _alternation operator: https://www.regular-expressions.info/alternation.html
 .. _calibre: https://calibre-ebook.com/
-.. _catdoc: http://www.wagner.pp.ru/~vitus/software/catdoc/
+.. _catdoc: https://www.wagner.pp.ru/~vitus/software/catdoc/
 .. _convert_to_txt.py: https://github.com/raul23/pyebooktools/blob/master/pyebooktools/convert_to_txt.py
 .. _DiskCache: http://www.grantjenks.com/docs/diskcache/
 .. _DiskCache Cache Benchmarks: http://www.grantjenks.com/docs/diskcache/cache-benchmarks.html
@@ -538,7 +538,7 @@ References
 .. _lib.py: https://github.com/raul23/pyebooktools/blob/master/pyebooktools/lib.py
 .. _LICENSE: ./LICENSE
 .. _Lucene: https://lucene.apache.org/
-.. _Memcached: http://memcached.org/
+.. _Memcached: https://memcached.org/
 .. _OCR: https://en.wikipedia.org/wiki/Optical_character_recognition
 .. _other related text files: https://ss64.com/osx/textutil.html
 .. _pdftotext: https://www.xpdfreader.com/pdftotext-man.html
