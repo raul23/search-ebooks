@@ -9,8 +9,9 @@ search-ebooks
   </p>
 
 `search-ebooks`_ is a command-line program that searches through content
-and metadata of various types of ebooks. It is based on the `pyebooktools`_
-Python package for building ebook management scripts.
+and metadata of various types of ebooks (``djvu``, ``epub``, ``txt``, 
+``pdf``). It is based on the `pyebooktools`_ Python package for building 
+ebook management scripts.
 
 `:warning:`
 
@@ -76,7 +77,7 @@ These are the supported search-backends for each type of ebooks:
 |
 
 All the utilities that extract text make use of a file-based `cache`_ to save
-the converted ebook files to ``.txt`` and hence speed up the searching by a
+the converted ebook files to ``txt`` and hence speed up the searching by a
 lot. Depending on the number of files searched, the searching can even be 20
 times faster with cache than without it (TODO: add tests to show performance
 of searching with cache and no cache).
@@ -88,8 +89,8 @@ Python dependencies
 * **Platforms:** macOS [soon linux]
 * **Python**: >= **3.6**
 * `diskcache`_ >= **5.2.1** for caching persistently the converted files into
-  ``.txt``
-* `pyebooktools`_ >= **0.1.0a3** for converting files to ``.txt`` (see
+  ``txt``
+* `pyebooktools`_ >= **0.1.0a3** for converting files to ``txt`` (see
   `convert_to_txt.py`_) along with its library `lib.py`_ that has useful
   functions for building ebook management scripts.
 
@@ -99,7 +100,7 @@ As explained in the documentation for
 `pyebooktools <https://github.com/raul23/pyebooktools#other-dependencies>`__, 
 you need recent version of:
 
-* `calibre`_ to convert ebook files to ``.txt`` and get metadata from ebooks
+* `calibre`_ to convert ebook files to ``txt`` and get metadata from ebooks
   
 And optionally, you might need recent versions of:
 
@@ -122,7 +123,7 @@ And optionally, you might need recent versions of:
 
 Cache
 =====
-Cache is used especially to save the converted ebook files into ``.txt`` to avoid
+Cache is used especially to save the converted ebook files into ``txt`` to avoid
 re-converting them which is a time consuming process, especially if
 it is a document with hundreds of pages. `DiskCache`_, a disk and file backed
 cache library, is used by the ``search-ebooks`` script.
@@ -133,17 +134,18 @@ when searching the metadata of ebooks such as their authors and tags.
 The ``search-ebooks`` script can use the cache with the ``--use-cache`` flag.
 
 A file-based cache library was choosen instead of a memory-based 
-cache like `Redis`_ because the converted files (``.txt``) needed to be 
+cache like `Redis`_ because the converted files (``txt``) needed to be 
 persistent to speed up subsequent searches and since we are storing huge
 quantities of data (e.g. we can have thousands of ebooks to search from), 
 a memory-based cache might not be suited. In order to avoid using too much 
 disk space, you can set the cache size with the ``--cache-size-limit`` flag
 which by default is set to 1 GB.
 
-As an example to see how much disk space you might need to cache one thousand
-``.txt`` files all at once, let's say that on average each ``.txt`` file uses
-approximately 700 KB which roughly corresponds to a file with 350 pages. 
-Thus, you will need a cache size of at least 700 MB.
+As an example to see how much disk space you might need to cache the ``txt`` 
+conversion of one thousand ebooks, let's say that on average each ``txt`` 
+file (what is actually being cached) uses approximately 700 KB which roughly 
+corresponds to a file with 350 pages. Thus, you will need a cache size of at 
+least 700 MB to be able to store the ``txt`` conversion of one thousand ebooks.
 
 Also `DiskCache`_ has interesting features compared to other file-based 
 cache libraries such as being thread-safe and process-safe and supporting 
@@ -336,7 +338,7 @@ to be case insensitive (i.e. ignore case):
     `“whole words only” search`_. Thus, words like "acknowledge" or "knowledgeable"
     are rejected.
   * The ``-i`` flag ignores case when searching in ebook **contents** and **metadata**.
-  * Since we already converted the files to ``.txt`` in previous runs,
+  * Since we already converted the files to ``txt`` in previous runs,
     we make use of the cache with the ``--use-cache`` flag.
 
 |
@@ -360,7 +362,7 @@ to be case insensitive (i.e. ignore case):
     they are both the same translation.
   * As explained previously, *The Republic by Plato.pdf* is not included in
     the matches because it is a file with images only and since
-    we didn't use the ``--ocr`` flag, the file couldn't be converted to ``.txt``.
+    we didn't use the ``--ocr`` flag, the file couldn't be converted to ``txt``.
     The next example makes use of the ``--ocr`` flag.
 
 Search documents with images 
@@ -380,7 +382,7 @@ using the ``--ocr`` flag which will convert the images to text with `Tesseract`_
   * The ``--ocr`` flag takes on three values: ``{always,true,false}`` where:
   
     * ``always``: try OCR-ing first the ebook before trying the simple conversion tools
-    * ``true``: use OCR for books that failed to be converted to ``.txt`` or were 
+    * ``true``: use OCR for books that failed to be converted to ``txt`` or were 
       converted to empty files by the simple conversion tools
     * ``false``: try the simple conversion tools only. No OCR.
     
