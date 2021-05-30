@@ -560,7 +560,7 @@ References
 .. _cache: #cache
 .. _examples: #examples
 .. _previous query: #search-ebooks-whose-filenames-satisfy-a-given-pattern
-.. _search-ebooks: ./searchebooks/scripts/search-ebooks.py
+.. _search-ebooks: ./searchebooks/scripts/search-ebooks
 
 .. |ss| raw:: html
 
