@@ -203,7 +203,7 @@ no matter where the newline(s) happens in the string.
 
 If we use the simple search query without tokens 
 ``"turned into a democracy"``, we will only match the first occurrence
-of the given string, as show in the following `regex101.com demo <https://regex101.com/r/gSmRPc/1>`__:
+of the given string, as shown in the following `regex101.com demo <https://regex101.com/r/gSmRPc/1>`__:
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/simple_query_result.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/tips/simple_query_result.png
