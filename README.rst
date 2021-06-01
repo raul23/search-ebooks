@@ -131,6 +131,10 @@ when searching the metadata of ebooks such as their authors and tags.
 
 The ``search-ebooks`` script can use the cache with the ``--use-cache`` flag.
 
+`:information_source:`
+
+  The MD5 hashes of the ebook files are used as keys to the file-based cache.
+
 A file-based cache library was choosen instead of a memory-based 
 cache like `Redis`_ because the converted files (``txt``) needed to be 
 persistent to speed up subsequent searches and since we are storing huge
@@ -152,6 +156,22 @@ multiple eviction policies. See `Features`_ for a more complete list.
 See `DiskCache Cache Benchmarks`_ for comparaisons to `Memcached`_ and 
 `Redis`_.
 
+.. _cache-warning-label:
+
+`:warning:`
+
+  * When enabling the cache with the ``--use-cache`` flag, the script
+    ``search-ebooks`` has to cache the converted ebooks (``txt``) if they were not
+    already saved in previous runs. Therefore, the speed up of the
+    searching will be seen in subsequent executions of the script.
+  * Keep in mind that caching has its caveats. For instance if the ebook
+    is modified (e.g. tags were added) then the ``search-ebooks`` script has to run 
+    ``ebook-meta`` again since the keys in the cache are the MD5 hashes of the ebooks. 
+  * There is no problem in the
+    cache growing without bounds since its size is set to a maximum of 1 GB by default (check
+    the ``--cache-size-limit`` option) and its eviction policy determines what items get to be
+    evicted to make space for more items which by default it is the least-recently-stored
+    eviction policy (check the ``--eviction-policy`` option).
 
 Tips
 ====
@@ -461,14 +481,7 @@ the searching time is greater:
    
 `:information_source:`
 
-  * Keep in mind that caching the results of ``ebook-meta`` has its caveats. For instance if the ebook
-    is modified (e.g. tags were added) then the ``search-ebooks`` script has to run ``ebook-meta`` again since the
-    keys in the cache are the MD5 hashes of the ebooks. 
-  * There is no problem in the
-    cache growing without bounds since its size is set to a maximum of 1 GB by default (check
-    the ``--cache-size-limit`` option) and its eviction policy determines what items get to be
-    evicted to make space for more items which by default it is the least-recently-stored
-    eviction policy (check the ``--eviction-policy`` option).
+  See `cache <#cache-warning-label>`_ for important info to know about using the ``--use-cache`` flag.
 
 Roadmap
 =======
