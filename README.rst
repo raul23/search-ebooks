@@ -77,10 +77,7 @@ These are the supported search-backends for each type of ebooks:
 |
 
 All the utilities that extract text make use of a file-based `cache`_ to save
-the converted ebook files to ``txt`` and hence speed up the searching by a
-lot. Depending on the number of files searched, the searching can even be 20
-times faster with cache than without it (TODO: add tests to show performance
-of searching with cache and no cache).
+the ``txt`` conversion of the ebooks and hence the searching is greatly speep up.
    
 Dependencies
 ============
