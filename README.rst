@@ -481,7 +481,7 @@ the searching time is greater:
    
 `:information_source:`
 
-  See `Cache`_ for important info to know about using the ``--use-cache`` flag.
+  See `Cache <#cache-warning-label>`__ for important info to know about using the ``--use-cache`` flag.
 
 Roadmap
 =======
@@ -567,7 +567,6 @@ References
 
 .. Local URLs
 .. _~/ebooks/: #examples
-.. _Cache: #cache-warning-label
 .. _cache: #cache
 .. _examples: #examples
 .. _previous query: #search-ebooks-whose-filenames-satisfy-a-given-pattern
