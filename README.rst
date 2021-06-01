@@ -77,7 +77,8 @@ These are the supported search-backends for each type of ebooks:
 |
 
 All the utilities that extract text make use of a file-based `cache`_ to save
-the ``txt`` conversion of the ebooks and hence the searching is greatly speep up.
+the converted files (``txt``) of the ebooks and hence the searching can be greatly 
+speep up.
    
 Dependencies
 ============
@@ -450,7 +451,8 @@ those ebooks that have the "drama" **and** "history" tags:
 
 |
 
-If we don't use cache for *calibre*\'s `ebook-meta`_:
+If we don't cache *calibre*\'s `ebook-meta`_ and the converted files (``txt``), 
+the searching time is greater:
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_metadata_without_cache.png
    :target: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_metadata_witthout_cache.png
@@ -474,15 +476,11 @@ Starting from first priority tasks:
 
 Short-term
 ----------
-1. Add many tests with many ebooks (in the thousands maybe)
-
-   **Status:** working on it
-
-2. |ss| Add examples for searching text content and metadata of ebooks |se|
+1. |ss| Add examples for searching text content and metadata of ebooks |se|
    
-3. Add instructions on how to install the ``searchebooks`` package
+2. Add instructions on how to install the ``searchebooks`` package
 
-4. Add support for `Lucene`_ as a search backend
+3. Add support for `Lucene`_ as a search backend
    
    `PyLucene`_ will be used to access ``Lucene``\'s text indexing and searching
    capabilities from Python
