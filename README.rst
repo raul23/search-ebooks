@@ -160,8 +160,8 @@ See `DiskCache Cache Benchmarks`_ for comparaisons to `Memcached`_ and
 
 `:warning:`
 
-  * When enabling the cache with the ``--use-cache`` flag, the script
-    ``search-ebooks`` has to cache the converted ebooks (``txt``) if they were
+  * When enabling the cache with the ``--use-cache`` flag, the ``search-ebooks`` 
+    script has to cache the converted ebooks (``txt``) if they were
     not already saved in previous runs. Therefore, the speed up of the
     searching will be seen in subsequent executions of the script.
   * Keep in mind that caching has its caveats. For instance if the ebook
