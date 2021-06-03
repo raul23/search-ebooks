@@ -1,0 +1,5 @@
+include README.rst
+include LICENSE
+include searchebooks/configs/default*.py
+exclude searchebooks/configs/config.py
+exclude searchebooks/configs/logging.py

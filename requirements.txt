@@ -1,0 +1,2 @@
+diskcache>=5.2.1
+search-ebooks@git+git://github.com/raul23/search-ebooks@master
