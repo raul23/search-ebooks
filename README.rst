@@ -8,10 +8,10 @@ search-ebooks
     <br> 🚧 &nbsp;&nbsp;&nbsp;<b>Work-In-Progress</b>
   </p>
 
-`search-ebooks`_ is a command-line program that searches through content
-and metadata of various types of ebooks (``djvu``, ``epub``, ``txt``, 
-``pdf``). It is based on the `pyebooktools`_ Python package for building 
-ebook management scripts.
+`search-ebooks`_ is a Python command-line program that searches through 
+content and metadata of various types of ebooks (``djvu``, ``epub``, 
+``txt``, ``pdf``). It is based on the `pyebooktools`_ Python package 
+for building ebook management scripts.
 
 `:warning:`
 
