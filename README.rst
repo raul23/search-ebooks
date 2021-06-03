@@ -499,22 +499,20 @@ Starting from first priority tasks:
 
 Short-term
 ----------
-1. |ss| Add examples for searching text content and metadata of ebooks |se|
-   
+1. |ss| Add examples for searching text content and metadata of ebooks |se| 
 2. Add instructions on how to install the ``searchebooks`` package
-
-3. Add support for `Lucene`_ as a search backend
-   
-   `PyLucene`_ will be used to access ``Lucene``\'s text indexing and searching
-   capabilities from Python
+3. Test on linux
+4. Create a `docker`_ image for this project
 
 Medium-term
 -----------
-1. Test on linux
-2. Create a `docker`_ image for this project
-3. Read also metadata from *calibre*\'s ``metadata.opf`` if found
-4. Add tests on `Travis CI`_
-5. Eventually add documentation on `Read the Docs`_
+1. Add support for `Lucene`_ as a search backend
+   
+   `PyLucene`_ will be used to access ``Lucene``\'s text indexing and searching
+   capabilities from Python
+2. Add tests on `Travis CI`_
+3. Eventually add documentation on `Read the Docs`_
+4. Read also metadata from *calibre*\'s ``metadata.opf`` if found
 
 Long-term
 ---------
