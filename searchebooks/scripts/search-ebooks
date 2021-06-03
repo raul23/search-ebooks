@@ -10,9 +10,10 @@ from pyebooktools.lib import (
     BLUE, GREEN, NC, RED, YELLOW, color_msg as c, get_hash)
 from pyebooktools.utils.genutils import (
     get_config_dict, namespace_to_dict, override_config_with_args, setup_log)
+from pyebooktools.scripts.ebooktools import required_length
 from pyebooktools.utils.logutils import init_log
 from searchebooks.configs import default_config as default_cfg, __path__
-from searchebooks.search_ebooks import searcher
+from searchebooks.searchebooks import searcher
 
 logger = init_log(__name__, __file__)
 
@@ -30,6 +31,7 @@ EPUB_SEARCH_METHODS = ['epubtxt', 'calibre']
 EVICTION_POLICY = default_cfg.eviction_policy
 MSWORD_SEARCH_METHOD = default_cfg.msword_search_method
 MSWORD_SEARCH_METHODS = ['catdoc', 'textutil', 'calibre']
+OCR_ENABLED = default_cfg.ocr_enabled
 PDF_SEARCH_METHOD = default_cfg.pdf_search_method
 PDF_SEARCH_METHODS = ['pdftotext', 'calibre']
 USE_CACHE = default_cfg.use_cache
@@ -151,9 +153,10 @@ def setup_argparser():
     name_input = 'input_data'
     msg = 'Search through content and metadata of ebooks.'
     parser = ArgumentParser(
-        description=f'{RED}IMPORTANT{NC}: if an argument has spaces, enclose it in '
-                    'quotation marks, e.g. "Book title with spaces"',
-        usage=f'{BLUE}%(prog)s [OPTIONS] {name_input}{NC}\n\n{msg}',
+        description=f'{RED}IMPORTANT{NC}: if an argument has spaces, '
+                    'enclose it in quotation marks, e.g. "Book title with '
+                    'spaces"',
+        usage=f'{BLUE}%(prog)s [OPTIONS] {{{name_input}}}{NC}\n\n{msg}',
         add_help=False,
         # ArgumentDefaultsHelpFormatter
         # HelpFormatter
@@ -177,9 +180,15 @@ def setup_argparser():
         help='Print various debugging information, e.g. print traceback '
              'when there is an exception.')
     general_group.add_argument(
-        '-i', '--ignore-case', action='store_true',
-        help='Perform case insensitive matching. By default, %(prog)s is case '
-             'sensitive.')
+        "--regex", dest='regex',
+        action='store_true',
+        help='Use regex when searching ebook content and metadata.')
+    general_group.add_argument(
+        '-i', '-ignore-case', dest='ignore_case',
+        action='store_true',
+        help='Perform case insensitive matching when searching ebook '
+             'content and metadata. By default, content and metadata search is '
+             'case sensitive.')
     # =====
     # Cache
     # =====
@@ -201,22 +210,27 @@ def setup_argparser():
         default=CACHE_SIZE_LIMIT, type=int,
         help='Size limit in gigabytes (GB).'
              + get_default_message(CACHE_SIZE_LIMIT))
-    cache_group.add_argument(
+    mutual_cache_group = cache_group.add_mutually_exclusive_group()
+    mutual_cache_group.add_argument(
         '-c', '--clear-cache', dest='clear_cache', action='store_true',
         help='Clear cache.')
-    cache_group.add_argument(
+    mutual_cache_group.add_argument(
         '-r', '--remove-keys', metavar='KEY', dest='remove_keys',
         nargs='+', default=[],
         help='Keys to be removed from the cache which can either be the paths '
              'to the ebook files or their MD5 hash.')
+    mutual_cache_group.add_argument(
+        '-n', '--number-items', dest='number_items',  action='store_true',
+        help='Shows number of items stored in cache.')
     # ===========
     # Search text
     # ===========
     search_text_group = parser.add_argument_group(
-        title=f'{YELLOW}Search options{NC}')
+        title=f'{YELLOW}Text search options{NC}')
     search_text_group.add_argument(
         '--query', dest='search_query', metavar='QUERY',
-        help='Search query which can also be a regex.')
+        help='Search query to look through an ebook text content. It can also '
+             'be considered a regex by using the `--text-regex` flag.')
     search_text_group.add_argument(
         '-f', '--ebook-formats', metavar='FORMAT', nargs='+',
         default=EBOOK_FORMATS, action=check_formats(),
@@ -234,7 +248,8 @@ def setup_argparser():
         dest='msword_search_method', choices=MSWORD_SEARCH_METHODS,
         default=MSWORD_SEARCH_METHOD,
         help='Search method for doc files. Choose one from '
-             f'{MSWORD_SEARCH_METHODS}.' + get_default_message(MSWORD_SEARCH_METHOD))
+             f'{MSWORD_SEARCH_METHODS}.'
+             + get_default_message(MSWORD_SEARCH_METHOD))
     search_text_group.add_argument(
         '--esm', '--epub-search-method', metavar='METHOD',
         dest='epub_search_method', choices=EPUB_SEARCH_METHODS,
@@ -248,16 +263,25 @@ def setup_argparser():
         help='Search method for pdf files. Choose one from: '
              f'{PDF_SEARCH_METHOD}.' + get_default_message(PDF_SEARCH_METHOD))
     search_text_group.add_argument(
+        "--tr", "--text-regex", dest='text_regex',
+        action='store_true',
+        help='Use regex when searching ebook text content.')
+    search_text_group.add_argument(
+        '--ti', '--text-ignore-case', dest='text_ignore_case',
+        action='store_true',
+        help='Perform case insensitive matching when searching ebook '
+             'text content. By default, content search is case sensitive.')
+    search_text_group.add_argument(
         "--ocr", "--ocr-enabled", dest='ocr_enabled',
-        choices=['always', 'true', 'false'],
+        choices=['always', 'true', 'false'], default=OCR_ENABLED,
         help='Whether to enable OCR for .pdf, .djvu and image files. It is '
-             'disabled by default.')
+             'disabled by default.' + get_default_message(OCR_ENABLED))
     # ===============
     # Search metadata
     # ===============
     search_metadata_group = parser.add_argument_group(
-        title=f'{YELLOW}Advanced search options{NC}',
-        description=f'{RED}IMPORTANT:{NC} all the selected fields and the '
+        title=f'{YELLOW}Metadata search options{NC}',
+        description=f'{RED}IMPORTANT:{NC} the metadata fields and the content '
                     'search query are linked with ANDs between each other')
     # TODO: add pages field
     search_metadata_group.add_argument(
@@ -293,28 +317,43 @@ def setup_argparser():
         '--tags', help='Tags')
     search_metadata_group.add_argument(
         '-t', '--title', help='Title')
+    search_metadata_group.add_argument(
+        "--mr", "--metadata-regex", dest='metadata_regex',
+        action='store_true',
+        help='Use regex when searching ebook metadata.')
+    search_metadata_group.add_argument(
+        '-mi', '--metadata-ignore-case', dest='metadata_ignore_case',
+        action='store_true',
+        help='Perform case insensitive matching when searching ebook '
+             'metadata. By default, metadata earch is case sensitive.')
     # ==============
     # Input argument
     # ==============
     input_group = parser.add_argument_group(title=f'{YELLOW}Input argument{NC}')
     input_group.add_argument(
-        name_input,
+        name_input, default=None, nargs='*', action=required_length(0, 1),
         help='Can either be the path to an ebook or a folder containing ebooks.')
     return parser
 
 
 def main():
     try:
+        exit_code = 0
         parser = setup_argparser()
         args = parser.parse_args()
+        args.cache_size_limit *= 10 ** 9
+        if args.regex:
+            args.text_regex = True
+            args.metadata_regex = True
+        if args.ignore_case:
+            args.text_ignore_case = True
+            args.metadata_ignore_case = True
         # Get main cfg dict
         # TODO: important, check if an option is defined more than once
         configs_dirpath = __path__[0]
         main_cfg = argparse.Namespace(**get_config_dict('main', configs_dirpath))
         # Override main configuration from file with command-line arguments
-        returned_values = override_config_with_args(main_cfg, parser, default_cfg)
-        # TODO: check if can be done before
-        main_cfg.cache_size_limit *= 10 ** 9
+        returned_values = override_config_with_args(main_cfg, args, default_cfg)
         setup_log(package='searchebooks', configs_dirpath=configs_dirpath,
                   quiet=main_cfg.quiet,
                   verbose=main_cfg.verbose,
@@ -325,13 +364,19 @@ def main():
         cache = Cache(directory=main_cfg.cache_folder,
                       eviction_policy=main_cfg.eviction_policy,
                       size_limit=main_cfg.cache_size_limit)
-        if args.clear_cache:
+
+        # TODO: important, exit script after remove keys ...?
+        if args.number_items:
+            n_items = len([k for k in cache.iterkeys()])
+            ending = 's' if n_items > 1 else ''
+            logger.info(f'There are {n_items} item{ending} in cache')
+        elif args.clear_cache:
             result = cache.clear()
             if result:
                 logger.info('Cache cleared!')
             else:
                 logger.info('Cache was already empty!')
-        if args.remove_keys:
+        elif args.remove_keys:
             for key in args.remove_keys:
                 if Path(key).is_file():
                     file_path = Path(key)
@@ -346,15 +391,17 @@ def main():
                 if result:
                     logger.info(msg1)
                 else:
-                    logger.info(f'{msg2} not found in cache')
-        return searcher.search(cache=cache, **namespace_to_dict(main_cfg))
+                    logger.info(msg2)
+        if main_cfg.input_data:
+            main_cfg.input_data = main_cfg.input_data[0]
+            exit_code = searcher.search(cache=cache, **namespace_to_dict(main_cfg))
     except AssertionError as e:
         # TODO (IMPORTANT): use same logic as in Darth-Vader-RPi
         # TODO: add KeyboardInterruptError
         logger.error(e)
-        return 1
+        exit_code = 1
+    return exit_code
 
 
 if __name__ == '__main__':
-    # search-ebooks ~/test/_search_ebooks/search_text/... --use-cache
     retcode = main()
