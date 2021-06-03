@@ -9,6 +9,7 @@ import os
 # =========================
 quiet = False
 verbose = False
+regex = False
 ignore_case = False
 
 # 1.2 Options for OCR
@@ -34,18 +35,20 @@ eviction_policy = 'least-recently-stored'
 cache_size_limit = 1
 clear_cache = False
 
-# =================
-# 3. Search options
-# =================
+# ==============================
+# 3. Text-content search options
+# ==============================
 search_query = None
 ebook_formats = ['djvu', 'epub', 'html', 'pdf', 'txt']
 djvu_search_method = 'djvutxt'
 msword_search_method = 'textutil'
 epub_search_method = 'calibre'
 pdf_search_method = 'pdftotext'
+text_regex = False
+text_ignore_case = False
 
 # ==========================
-# 4. Advanced search options
+# 4. Metadata search options
 # ==========================
 authors = None
 book_producer = None
@@ -62,3 +65,5 @@ rating = None
 series = None
 tags = None
 title = None
+metadata_regex = False
+metadata_ignore_case = False
