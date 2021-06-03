@@ -86,7 +86,7 @@ logging = {
           "handlers": ["console"],
           "propagate": False
         },
-        "searchebooks.search_ebooks":
+        "searchebooks":
         {
           "level": "DEBUG",
           "handlers": ["console"],
