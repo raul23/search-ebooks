@@ -29,8 +29,8 @@ ebook management scripts.
    
 Introduction
 ============
-``search-ebooks`` allows you to choose the search methods for the different ebook formats.
-These are the supported search-backends for each type of ebooks:
+``search-ebooks`` allows you to choose the search methods for the different
+ebook formats. These are the supported search-backends for each type of ebooks:
 
 +---------------+----------------------------------------------------------+
 | File type     | Supported search-backends                                |
@@ -77,8 +77,8 @@ These are the supported search-backends for each type of ebooks:
 |
 
 All the utilities that extract text make use of a file-based `cache`_ to save
-the converted files (``txt``) of the ebooks and hence the searching can be greatly 
-speep up.
+the converted files (``txt``) of the ebooks and hence the searching can be
+greatly speep up.
    
 Dependencies
 ============
@@ -121,8 +121,8 @@ And optionally, you might need recent versions of:
 
 Cache
 =====
-Cache is used especially to save the converted ebook files into ``txt`` to avoid
-re-converting them which is a time consuming process, especially if
+Cache is used especially to save the converted ebook files into ``txt`` to
+avoid re-converting them which is a time consuming process, especially if
 it is a document with hundreds of pages. `DiskCache`_, a disk and file backed
 cache library, is used by the ``search-ebooks`` script.
 
@@ -161,24 +161,26 @@ See `DiskCache Cache Benchmarks`_ for comparaisons to `Memcached`_ and
 `:warning:`
 
   * When enabling the cache with the ``--use-cache`` flag, the script
-    ``search-ebooks`` has to cache the converted ebooks (``txt``) if they were not
-    already saved in previous runs. Therefore, the speed up of the
+    ``search-ebooks`` has to cache the converted ebooks (``txt``) if they were
+    not already saved in previous runs. Therefore, the speed up of the
     searching will be seen in subsequent executions of the script.
   * Keep in mind that caching has its caveats. For instance if the ebook
-    is modified (e.g. tags were added) then the ``search-ebooks`` script has to run 
-    ``ebook-meta`` again since the keys in the cache are the MD5 hashes of the ebooks. 
+    is modified (e.g. tags were added) then the ``search-ebooks`` script has to
+    run ``ebook-meta`` again since the keys in the cache are the MD5 hashes of
+    the ebooks.
   * There is no problem in the
-    cache growing without bounds since its size is set to a maximum of 1 GB by default (check
-    the ``--cache-size-limit`` option) and its eviction policy determines what items get to be
-    evicted to make space for more items which by default it is the least-recently-stored
-    eviction policy (check the ``--eviction-policy`` option).
+    cache growing without bounds since its size is set to a maximum of 1 GB by
+    default (check the ``--cache-size-limit`` option) and its eviction policy
+    determines what items get to be evicted to make space for more items which
+    by default it is the least-recently-stored eviction policy (check the
+    ``--eviction-policy`` option).
 
 Tips
 ====
 Use ``--regex`` for regex-based search
 --------------------------------------
-Use the ``--regex`` flag to perform regex-based search of ebook contents and metadata.
-Thus: 
+Use the ``--regex`` flag to perform regex-based search of ebook contents and
+metadata. Thus:
 
 * ``--query "a battle"`` will find any line that **contains** the words 
   "a battle". 
@@ -213,9 +215,9 @@ following text:
    :align: left
    :alt: Find string than can span multiple lines in a text
 
-The difficulty in searching the given string is that sometimes it spans multiple
-lines and you want to make the regex as general as possible in matching the string
-no matter where the newline(s) happens in the string.
+The difficulty in searching the given string is that sometimes it spans
+multiple lines and you want to make the regex as general as possible in
+matching the string no matter where the newline(s) happens in the string.
 
 |
 
@@ -315,9 +317,9 @@ regular expressions:
 
 `:information_source:`
 
-  The ``--regex`` flag in the examples allow you to perform **regex-based** search 
-  of ebook contents and metadata, i.e. the ``search-ebooks`` treats the search 
-  queries as regular expressions.
+  The ``--regex`` flag in the examples allow you to perform **regex-based**
+  search of ebook contents and metadata, i.e. the ``search-ebooks`` treats the
+  search queries as regular expressions.
 
 Examples
 ========
@@ -353,9 +355,10 @@ to be case insensitive (i.e. ignore case):
 
   * ``--regex`` treats the search query and metadata (e.g. filename) as regex.
   * ``\bknowledge\b`` matches exactly the word "knowledge", i.e. it performs a 
-    `“whole words only” search`_. Thus, words like "acknowledge" or "knowledgeable"
-    are rejected.
-  * The ``-i`` flag ignores case when searching in ebook **contents** and **metadata**.
+    `“whole words only” search`_. Thus, words like "acknowledge" or
+    "knowledgeable" are rejected.
+  * The ``-i`` flag ignores case when searching in ebook **contents** and
+    **metadata**.
   * Since we already converted the files to ``txt`` in previous runs,
     we make use of the cache with the ``--use-cache`` flag.
 
@@ -395,13 +398,15 @@ using the ``--ocr`` flag which will convert the images to text with `Tesseract`_
 
 `:information_source:`
  
-  * The ``--ocr`` flag allows you to search ``.pdf``, ``.djvu`` and image files but it
-    is disabled by default because `OCR`_ is a slow resource-intensive process.
+  * The ``--ocr`` flag allows you to search ``.pdf``, ``.djvu`` and image files
+    but it is disabled by default because `OCR`_ is a slow resource-intensive
+    process.
   * The ``--ocr`` flag takes on three values: ``{always,true,false}`` where:
   
-    * ``always``: try OCR-ing first the ebook before trying the simple conversion tools
-    * ``true``: use OCR for books that failed to be converted to ``txt`` or were 
-      converted to empty files by the simple conversion tools
+    * ``always``: try OCR-ing first the ebook before trying the simple
+      conversion tools
+    * ``true``: use OCR for books that failed to be converted to ``txt`` or
+      were converted to empty files by the simple conversion tools
     * ``false``: try the simple conversion tools only. No OCR.
     
     More info in `pyebooktools README`_.
@@ -417,15 +422,16 @@ using the ``--ocr`` flag which will convert the images to text with `Tesseract`_
 
 `:information_source:`
 
-  * Since the file *The Republic by Plato.pdf* was not already processed, the cache 
-    didn't have its text conversion at the start of the script. But by the end of the
-    script, the text conversion was saved in the cache.
-  * As you can see from the seach time, OCR is a slow process. Thus, use it wisely!
+  * Since the file *The Republic by Plato.pdf* was not already processed, the
+    cache didn't have its text conversion at the start of the script. But by
+    the end of the script, the text conversion was saved in the cache.
+  * As you can see from the seach time, OCR is a slow process. Thus, use it
+    wisely!
   
 Search ebook metadata
 ---------------------
-Search for the regex "confront|treason" in ebook contents but only for 
-those ebooks that have the "drama" **and** "history" tags:
+Search for the regex "confront|treason" in ebook contents but only for those
+ebooks that have the "drama" **and** "history" tags:
 
 .. code:: bash
 
@@ -433,13 +439,14 @@ those ebooks that have the "drama" **and** "history" tags:
 
 `:information_source:`
 
-  * The regex for the **AND** operator is a little more complex than an OR-based regex which 
-    only uses a vertical bar ``|``. [2]_
-  * *calibre*\'s `ebook-meta`_ is used by the ``search-ebooks`` script to get ebook metadata
-    such as ``Title`` and ``Tags``. The cache not only save
-    the text conversion but also ebook metadata.
-  * The ``--tags`` option acts like a filter by only executing the "confront|treason" regex on 
-    those ebooks that have at least the two tags "drama" and "history".
+  * The regex for the **AND** operator is a little more complex than an
+    OR-based regex which only uses a vertical bar ``|``. [2]_
+  * *calibre*\'s `ebook-meta`_ is used by the ``search-ebooks`` script to get
+    ebook metadata such as ``Title`` and ``Tags``. The cache not only save the
+    text conversion but also ebook metadata.
+  * The ``--tags`` option acts like a filter by only executing the
+    "confront|treason" regex on those ebooks that have at least the two tags
+    "drama" and "history".
 
 |
 
@@ -452,9 +459,10 @@ those ebooks that have the "drama" **and** "history" tags:
 
 `:information_source:`
 
-  * The results of `ebook-meta`_ were already cached from previous runs of the ``search-ebooks`` script
-    by using the ``--use-cache`` flag. Hence, the running time of the script can be speed up not only
-    by caching the text conversion of ebooks but also the results of ``ebook-meta``.
+  * The results of `ebook-meta`_ were already cached from previous runs of the
+    ``search-ebooks`` script by using the ``--use-cache`` flag. Hence, the
+    running time of the script can be speed up not only by caching the text
+    conversion of ebooks but also the results of ``ebook-meta``.
   * Here is the output of ``ebook-meta`` when running it on
     *Julius Caesar by William Shakespeare.epub*:
     
@@ -465,13 +473,14 @@ those ebooks that have the "drama" **and** "history" tags:
     
   * All the other 16 ebooks from the `~/ebooks/`_ folder were rejected for
     not satisfying the two regexes (``--query`` and ``--tags``).
-  * *Julius Caesar by William Shakespeare.pdf* doesn't have any tag, unlike its ``epub`` counterpart.
-  * *Julius Caesar by William Shakespeare.epub* only matches once for the
-    word "treason".
+  * *Julius Caesar by William Shakespeare.pdf* doesn't have any tag, unlike its
+    ``epub`` counterpart.
+  * *Julius Caesar by William Shakespeare.epub* only matches once for the word
+    "treason".
 
 |
 
-If we don't cache *calibre*\'s `ebook-meta`_ and the converted files (``txt``), 
+If we don't cache *calibre*\'s `ebook-meta`_ and the converted files (``txt``),
 the searching time is greater:
 
 .. image:: https://raw.githubusercontent.com/raul23/images/master/search-ebooks/readme/examples/output_metadata_without_cache.png
@@ -481,7 +490,8 @@ the searching time is greater:
    
 `:information_source:`
 
-  See `Cache <#cache-warning-label>`__ for important info to know about using the ``--use-cache`` flag.
+  See `Cache <#cache-warning-label>`__ for important info to know about using
+  the ``--use-cache`` flag.
 
 Roadmap
 =======
