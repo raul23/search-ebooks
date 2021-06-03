@@ -506,13 +506,13 @@ Short-term
 
 Medium-term
 -----------
-1. Add support for `Lucene`_ as a search backend
+1. Add tests on `Travis CI`_
+2. Eventually add documentation on `Read the Docs`_
+3. Read also metadata from *calibre*\'s ``metadata.opf`` if found
+4. Add support for `Lucene`_ as a search backend
    
    `PyLucene`_ will be used to access ``Lucene``\'s text indexing and searching
    capabilities from Python
-2. Add tests on `Travis CI`_
-3. Eventually add documentation on `Read the Docs`_
-4. Read also metadata from *calibre*\'s ``metadata.opf`` if found
 
 Long-term
 ---------
