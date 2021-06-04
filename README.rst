@@ -495,7 +495,7 @@ the searching time is greater:
 
 Roadmap
 =======
-Starting from first priority tasks:
+Starting from first priority tasks
 
 Short-term
 ----------
