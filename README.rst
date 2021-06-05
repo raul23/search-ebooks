@@ -109,7 +109,9 @@ And optionally, you might need recent versions of the following utilities:
   `:warning:`
    
     On macOS, `textutil`_ is the counterpart to linux's ``catdoc`` and is 
-    already installed by default.
+    a **built-in** command-line tool for converting  any ``txt``, ``html``, 
+    ``rtf``, ``rtfd``, ``doc``, ``docx``, ``wordml``, ``odt``, or 
+    ``webarchive`` file.
   
 * `Tesseract`_ for running OCR on books - version 4 gives better results
   even though it's still in alpha. OCR is disabled by default since it 
