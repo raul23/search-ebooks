@@ -100,7 +100,7 @@ you need recent version of:
 
 * `calibre`_ to convert ebook files to ``txt`` and get metadata from ebooks
   
-And optionally, you might need recent versions of:
+And optionally, you might need recent versions of the following utilities:
 
 * (**Highly recommended**) `poppler`_, `catdoc`_ and `DjVuLibre`_ 
   can be installed for faster than calibre's conversion of ``.pdf``, ``.doc``
