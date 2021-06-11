@@ -39,7 +39,7 @@ ebook formats. These are the supported search-backends for each type of ebooks:
 |               | 2. `ebook-convert`_                                      |
 +---------------+----------------------------------------------------------+
 | ``.epub``     | 1. `ebook-convert`_ (**default**)                        |
-|               | 2. ``epubtxt``                                           |
+|               | 2. `epubtxt`_                                            |
 +---------------+----------------------------------------------------------+
 | ``.doc`` [1]_ | 1. `catdoc`_ or `textutil`_ (if on macOS) (**default**)  |
 |               | 2. `ebook-convert`_                                      |
@@ -49,9 +49,9 @@ ebook formats. These are the supported search-backends for each type of ebooks:
 +---------------+----------------------------------------------------------+
 
 * The utilities mentioned in the **Supported search-backends** column
-  are used to extract the text before it is searched on. ``epubtxt`` is
+  are used to extract the text before it is searched on. `epubtxt`_ is
   the only one that is not a standalone utility like the others.
-* More specifically, ``epubtxt`` consists in uncompressing first the 
+* More specifically, `epubtxt`_ consists in uncompressing first the 
   ``epub`` file with `unzip`_ since epubs are zipped HTML files. Then, 
   the extracted text is searched on with Python's `re`_ library. I tried to 
   use `zipgrep`_ to do both the unzipping and searching but I couldn't make 
@@ -66,7 +66,7 @@ ebook formats. These are the supported search-backends for each type of ebooks:
 
 `:warning:`
 
-  I didn't set ``epubtxt`` as a default search-backend for ``epub`` files 
+  I didn't set `epubtxt`_ as a default search-backend for ``epub`` files 
   because it also includes the HTML tags in the extracted text even though 
   text extraction is faster than with `ebook-convert`_.
   
@@ -551,6 +551,7 @@ References
 .. _docker: https://docs.docker.com/
 .. _ebook-convert: https://manual.calibre-ebook.com/generated/en/ebook-convert.html
 .. _ebook-meta: https://manual.calibre-ebook.com/generated/en/ebook-meta.html
+.. _epubtxt: https://github.com/raul23/pyebooktools/blob/acdfe61874fff745111e2869ef49b4cf4c944143/pyebooktools/lib.py#L370
 .. _Features: http://www.grantjenks.com/docs/diskcache/index.html#features
 .. _Kivy: https://kivy.org/
 .. _lib.py: https://github.com/raul23/pyebooktools/blob/master/pyebooktools/lib.py
