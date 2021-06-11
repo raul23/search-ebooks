@@ -39,7 +39,7 @@ ebook formats. These are the supported search-backends for each type of ebooks:
 |               | 2. `ebook-convert`_ + `re`_                        |
 +---------------+----------------------------------------------------+
 | ``.epub``     | 1. `ebook-convert`_ + `re`_ (**default**)          |
-|               | 2. ``epubtxt`` + `re`_                             |
+|               | 2. `epubtxt`_ + `re`_                              |
 +---------------+----------------------------------------------------+
 | ``.doc`` [1]_ | 1. `catdoc`_ or `textutil`_ + `re`_ (**default**)  |
 |               | 2. `ebook-convert`_ + `re`_                        |
