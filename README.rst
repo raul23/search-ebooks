@@ -32,21 +32,21 @@ Introduction
 ``search-ebooks`` allows you to choose the search methods for the different
 ebook formats. These are the supported search-backends for each type of ebooks:
 
-+---------------+----------------------------------------------------------+
-| File type     | Supported search-backends                                |
-+===============+==========================================================+
-| ``.djvu``     | 1. `djvutxt`_ (**default**)                              |
-|               | 2. `ebook-convert`_                                      |
-+---------------+----------------------------------------------------------+
-| ``.epub``     | 1. `ebook-convert`_ (**default**)                        |
-|               | 2. `epubtxt`_                                            |
-+---------------+----------------------------------------------------------+
-| ``.doc`` [1]_ | 1. `catdoc`_ or `textutil`_ (if on macOS) (**default**)  |
-|               | 2. `ebook-convert`_                                      |
-+---------------+----------------------------------------------------------+
-| ``.pdf``      | 1. `pdftotext`_ (**default**)                            |
-|               | 2. `ebook-convert`_                                      |
-+---------------+----------------------------------------------------------+
++---------------+------------------------------------------------------------------+
+| File type     | Supported search-backends                                        |
++===============+==================================================================+
+| ``.djvu``     | 1. `djvutxt`_ + `re`_ (**default**)                              |
+|               | 2. `ebook-convert`_ + `re`_                                      |
++---------------+------------------------------------------------------------------+
+| ``.epub``     | 1. `ebook-convert`_ + `re`_ (**default**)                        |
+|               | 2. `epubtxt`_ + `re`_                                            |
++---------------+------------------------------------------------------------------+
+| ``.doc`` [1]_ | 1. `catdoc`_ or `textutil`_ (if on macOS) + `re`_ (**default**)  |
+|               | 2. `ebook-convert`_                                              |
++---------------+------------------------------------------------------------------+
+| ``.pdf``      | 1. `pdftotext`_ + `re`_ (**default**)                            |
+|               | 2. `ebook-convert`_ + `re`_                                      |
++---------------+------------------------------------------------------------------+
 
 * The utilities mentioned in the **Supported search-backends** column
   are used to extract the text before it is searched on with Python's `re`_ 
