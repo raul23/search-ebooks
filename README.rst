@@ -8,10 +8,10 @@ search-ebooks
     <br> 🚧 &nbsp;&nbsp;&nbsp;<b>Work-In-Progress</b>
   </p>
 
-`search-ebooks`_ is a command-line program that searches through content
-and metadata of various types of ebooks (``djvu``, ``epub``, ``txt``, 
-``pdf``). It is based on the `pyebooktools`_ Python package for building 
-ebook management scripts.
+`search-ebooks`_ is a Python command-line program that searches through 
+content and metadata of various types of ebooks (``djvu``, ``epub``, 
+``txt``, ``pdf``). It is based on the `pyebooktools`_ package for 
+building ebook management scripts.
 
 `:warning:`
 
@@ -52,7 +52,7 @@ ebook formats. These are the supported search-backends for each type of ebooks:
   are used to extract the text before it is searched on. ``epubtxt`` is
   the only one that is not a standalone utility like the others.
 * More specifically, ``epubtxt`` consists in uncompressing first the 
-  ``epub`` file with `unzip`_ since ``epub``\s are zipped HTML files. Then, 
+  ``epub`` file with `unzip`_ since epubs are zipped HTML files. Then, 
   the extracted text is searched on with Python's `re`_ library. I tried to 
   use `zipgrep`_ to do both the unzipping and searching but I couldn't make 
   it to work with regular expressions such as ``\bpattern\b``.
@@ -77,8 +77,8 @@ ebook formats. These are the supported search-backends for each type of ebooks:
 |
 
 All the utilities that extract text make use of a file-based `cache`_ to save
-the converted files (``txt``) of the ebooks and hence the searching can be
-greatly speep up.
+the converted files (``txt``) of the ebooks and hence subsequent searching can
+be greatly speep up.
    
 Dependencies
 ============
@@ -100,7 +100,7 @@ you need recent version of:
 
 * `calibre`_ to convert ebook files to ``txt`` and get metadata from ebooks
   
-And optionally, you might need recent versions of:
+And optionally, you might need recent versions of the following utilities:
 
 * (**Highly recommended**) `poppler`_, `catdoc`_ and `DjVuLibre`_ 
   can be installed for faster than calibre's conversion of ``.pdf``, ``.doc``
@@ -108,8 +108,10 @@ And optionally, you might need recent versions of:
   
   `:warning:`
    
-    On macOS, you don't need ``catdoc`` since `textutil`_ is already
-    present
+    On macOS, you don't need ``catdoc`` since it has the built-in `textutil`_
+    command-line tool that converts any ``txt``, ``html``, ``rtf``, 
+    ``rtfd``, ``doc``, ``docx``, ``wordml``, ``odt``, or 
+    ``webarchive`` file.
   
 * `Tesseract`_ for running OCR on books - version 4 gives better results
   even though it's still in alpha. OCR is disabled by default since it 
@@ -160,8 +162,8 @@ See `DiskCache Cache Benchmarks`_ for comparaisons to `Memcached`_ and
 
 `:warning:`
 
-  * When enabling the cache with the ``--use-cache`` flag, the script
-    ``search-ebooks`` has to cache the converted ebooks (``txt``) if they were
+  * When enabling the cache with the ``--use-cache`` flag, the ``search-ebooks`` 
+    script has to cache the converted ebooks (``txt``) if they were
     not already saved in previous runs. Therefore, the speed up of the
     searching will be seen in subsequent executions of the script.
   * Keep in mind that caching has its caveats. For instance if the ebook
@@ -495,26 +497,24 @@ the searching time is greater:
 
 Roadmap
 =======
-Starting from first priority tasks:
+Starting from first priority tasks
 
 Short-term
 ----------
-1. |ss| Add examples for searching text content and metadata of ebooks |se|
-   
+1. |ss| Add examples for searching text content and metadata of ebooks |se| 
 2. Add instructions on how to install the ``searchebooks`` package
-
-3. Add support for `Lucene`_ as a search backend
-   
-   `PyLucene`_ will be used to access ``Lucene``\'s text indexing and searching
-   capabilities from Python
+3. Test on linux
+4. Create a `docker`_ image for this project
 
 Medium-term
 -----------
-1. Test on linux
-2. Create a `docker`_ image for this project
+1. Add tests on `Travis CI`_
+2. Eventually add documentation on `Read the Docs`_
 3. Read also metadata from *calibre*\'s ``metadata.opf`` if found
-4. Add tests on `Travis CI`_
-5. Eventually add documentation on `Read the Docs`_
+4. Add support for `Lucene`_ as a search backend
+   
+   `PyLucene`_ will be used to access ``Lucene``\'s text indexing and searching
+   capabilities from Python
 
 Long-term
 ---------
