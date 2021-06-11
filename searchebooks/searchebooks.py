@@ -7,7 +7,8 @@ from pathlib import Path
 from pyebooktools.convert_to_txt import convert
 from searchebooks.configs import default_config as default_cfg
 from pyebooktools.lib import (
-    BLUE, BOLD, GREEN, NC, VIOLET, YELLOW, get_ebook_metadata, get_hash)
+    BLUE, BOLD, GREEN, NC, VIOLET, YELLOW, get_ebook_metadata, get_hash,
+    get_parts_from_path as g)
 from pyebooktools.utils.logutils import init_log
 
 logger = init_log(__name__)
@@ -23,12 +24,14 @@ class SearchEbooks:
         self.epub_search_method = default_cfg.epub_search_method
         self.msword_search_method = default_cfg.msword_search_method
         self.ocr_enabled = default_cfg.ocr_enabled
-        self.ocr_only_first_last_pages = default_cfg.ocr_only_first_last_pages
-        self.ocr_command = default_cfg.ocr_command
+        # TODO: important, include ocr_only_first_last_pages?
+        # self.ocr_only_first_last_pages = default_cfg.ocr_only_first_last_pages
+        # TODO: important, include ocr_command?
+        # self.ocr_command = default_cfg.ocr_command
         self.pdf_search_method = default_cfg.pdf_search_method
         # TODO: important, include reverse?
-        self.reverse = default_cfg.reverse
-        self.search_query = default_cfg.search_query
+        # self.reverse = default_cfg.reverse
+        self.query = default_cfg.query
         self.text_ignore_case = default_cfg.text_ignore_case
         self.text_regex = default_cfg.text_regex
         self.use_cache = default_cfg.use_cache
@@ -74,7 +77,7 @@ class SearchEbooks:
             cache_result = self.cache.get(hash)
             if cache_result is None:
                 logger.debug('Text conversion was not found in cache')
-            elif cache_result and cache_result['text'] is not None:
+            elif cache_result and cache_result.get('text'):
                 logger.debug('Text conversion was found in cache!')
                 text = cache_result['text']
         if not text:
@@ -88,11 +91,12 @@ class SearchEbooks:
         if text == 1:
             return 1
         else:
+            logger.info('Searching...')
             if self.text_regex:
-                matches = re.findall(self.search_query, text, flags)
+                matches = re.findall(self.query, text, flags)
                 search_result['matches'] = len(matches)
             else:
-                search_result['matches'] = text.count(self.search_query)
+                search_result['matches'] = text.count(self.query)
             return search_result
 
     def _search_file_metadata(self, file_path):
@@ -149,12 +153,12 @@ class SearchEbooks:
         return 0
 
     def _search_file(self, file_path):
-        # assert self.search_query
+        # assert self.query
         if file_path.suffix.split('.')[-1] not in self.ebook_formats:
             return 1
         search_metadata_result = self._search_file_metadata(file_path)
         if search_metadata_result == 0:
-            if not self.search_query:
+            if not self.query:
                 search_result = {'filename': file_path.name,
                                  'folder_path': file_path.parent,
                                  'file_path': file_path,
@@ -172,7 +176,9 @@ class SearchEbooks:
     def search(self, input_data, cache=None, **kwargs):
 
         def process_result(start_t, num_res, total_secs):
-            if search_result != 1:
+            if search_result == 1:
+                logger.info('Rejected!')
+            else:
                 search_results.append(search_result)
                 # num_res += len(search_result['matches'])
                 num_res += search_result['matches']
@@ -197,14 +203,14 @@ class SearchEbooks:
         else:
             # TODO: important, mention it is recursive
             for fp in input_data.rglob('*'):
-                print(fp)
+                logger.info(f'{BLUE}Processing {g(fp)}...{NC}')
                 start_time = time.time()
                 search_result = self._search_file(fp)
                 num_results, total_seconds = process_result(
                     start_time, num_results, total_seconds)
             # search_results = sorted(search_results, key=lambda k: len(k['matches']),
             #                         reverse=True)
-            if self.search_query:
+            if self.query:
                 search_results = sorted(search_results, key=lambda k: k['matches'],
                                         reverse=True)
             else:
@@ -212,15 +218,15 @@ class SearchEbooks:
         n_seconds = round(total_seconds, 3)
         ending1 = 'es' if num_results > 1 else ''
         ending2 = 's' if n_seconds > 1 else ''
-        print(f'{YELLOW}Total of {num_results} match{ending1} '
-              f'({n_seconds} second{ending2}){NC}\n')
+        logger.info(f'\n{YELLOW}Total of {num_results} match{ending1} '
+                    f'({n_seconds} second{ending2}){NC}\n')
         for i, result in enumerate(search_results, start=1):
             msg = f"\n\t{VIOLET}Number of matches:{NC} {result['matches']}\n"
-            msg = msg if self.search_query else "\n"
-            print(f"{i}.\t{BLUE}{result['filename']}{NC}"
-                  # f"\n\t{VIOLET}Folder path:{NC} {result['folder_path']}"
-                  # TODO: urgent, remove following debug line
-                  f"\n\t{VIOLET}Folder path:{NC} /Users/test/ebooks" + msg)
+            msg = msg if self.query else "\n"
+            logger.info(f"{i}.\t{BLUE}{result['filename']}{NC}"
+                        # f"\n\t{VIOLET}Folder path:{NC} {result['folder_path']}"
+                        # TODO: urgent, remove following debug line
+                        f"\n\t{VIOLET}Folder path:{NC} /Users/test/ebooks" + msg)
         # f"\n\t{VIOLET}Number of matches:{NC} {len(result['matches'])}\n")
         return 0
 
