@@ -6,11 +6,14 @@ from pathlib import Path
 from diskcache import Cache
 
 import searchebooks
+from pyebooktools.edit_config import edit_file, reset_file
 from pyebooktools.lib import (
     BLUE, GREEN, NC, RED, YELLOW, color_msg as c, get_hash)
+from pyebooktools.scripts.ebooktools import (
+    LOG_CFG, MAIN_CFG, add_general_options, add_ocr_options,
+    process_returned_values, required_length)
 from pyebooktools.utils.genutils import (
     get_config_dict, namespace_to_dict, override_config_with_args, setup_log)
-from pyebooktools.scripts.ebooktools import required_length
 from pyebooktools.utils.logutils import init_log
 from searchebooks.configs import default_config as default_cfg, __path__
 from searchebooks.searchebooks import searcher
@@ -117,34 +120,13 @@ def check_formats():
     return CheckFromats
 
 
+def get_configs_dirpath():
+    from searchebooks.configs import __path__
+    return __path__[0]
+
+
 def get_default_message(default_value):
     return f' ({GREEN}default: {default_value}{NC})'
-
-
-def process_returned_values(returned_values):
-    def log_opts_overriden(opts_overriden, msg, log_level='debug'):
-        nb_items = len(opts_overriden)
-        for i, (cfg_name, old_v, new_v) in enumerate(opts_overriden):
-            msg += f'\t {cfg_name}: {old_v} --> {new_v}'
-            if i + 1 < nb_items:
-                msg += "\n"
-        getattr(logger, log_level)(msg)
-
-    # Process 1st returned values: default args overriden by config options
-    if returned_values.default_args_overriden:
-        msg = 'Default arguments overridden by config options:\n'
-        log_opts_overriden(returned_values.default_args_overriden, msg)
-    # Process 2nd returned values: config options overriden by args
-    if returned_values.config_opts_overridden:
-        msg = 'Config options overridden by command-line arguments:\n'
-        log_opts_overriden(returned_values.config_opts_overridden, msg, 'debug')
-    # Process 3rd returned values: arguments not found in config file
-    """
-    if args_not_found_in_config:
-        msg = 'Command-line arguments not found in config file: ' \
-              f'\n\t{args_not_found_in_config}'
-        logger.debug(msg)
-    """
 
 
 def setup_argparser():
@@ -163,24 +145,13 @@ def setup_argparser():
         # RawDescriptionHelpFormatter
         formatter_class=lambda prog: MyFormatter(
             prog, max_help_position=50, width=width))
-    general_group = parser.add_argument_group(
+    general_group = add_general_options(
+        parser,
+        remove_opts=['dry-run', 'keep-metadata', 'reverse', 'symlink-only'],
+        program_version=searchebooks.__version__,
         title=f'{YELLOW}General options{NC}')
     general_group.add_argument(
-        '-h', '--help', action='help',
-        help='Show this help message and exit.')
-    general_group.add_argument(
-        '-v', '--version', action='version',
-        version=f'%(prog)s v{searchebooks.__version__}',
-        help="Show program's version number and exit.")
-    general_group.add_argument(
-        '-q', '--quiet', action='store_true',
-        help='Enable quiet mode, i.e. nothing will be printed.')
-    general_group.add_argument(
-        '--verbose', action='store_true',
-        help='Print various debugging information, e.g. print traceback '
-             'when there is an exception.')
-    general_group.add_argument(
-        "--regex", dest='regex',
+        '--regex', dest='regex',
         action='store_true',
         help='Use regex when searching ebook content and metadata.')
     general_group.add_argument(
@@ -189,14 +160,43 @@ def setup_argparser():
         help='Perform case insensitive matching when searching ebook '
              'content and metadata. By default, content and metadata search is '
              'case sensitive.')
+    general_group.add_argument(
+        "--ocr", "--ocr-enabled", dest='ocr_enabled',
+        choices=['always', 'true', 'false'], default=OCR_ENABLED,
+        help='Whether to enable OCR for .pdf, .djvu and image files. It is '
+             'disabled by default.' + get_default_message(OCR_ENABLED))
+    # ================
+    # Edit/reset files
+    # ================
+    edit_group = parser.add_argument_group(
+        f'{YELLOW}Edit/reset a configuration file{NC}')
+    parser_edit_mutual_group = edit_group.add_mutually_exclusive_group()
+    parser_edit_mutual_group.add_argument(
+        "-e", "--edit", action='store_true',
+        help='Edit a configuration file, either the main configuration file '
+             f'(`{MAIN_CFG}`) or the logging configuration file (`{LOG_CFG}`).')
+    edit_group.add_argument(
+        "-a", "--app", dest="app", default=None,
+        help='''Name of the application to use for editing the file. If no 
+            name is given, then the default application for opening this type of
+            file will be used.''')
+    parser_edit_mutual_group.add_argument(
+        '-r', '--reset', action='store_true',
+        help=f'Reset a configuration file (`{MAIN_CFG}` or `{LOG_CFG}`) '
+             'with factory default values.')
+    edit_group.add_argument(
+        '--cfg', choices=[LOG_CFG, MAIN_CFG],
+        help='Configuration file to edit or reset: '
+             f'`{MAIN_CFG}` or `{LOG_CFG}`' + get_default_message(MAIN_CFG))
     # =====
     # Cache
     # =====
     cache_group = parser.add_argument_group(title=f'{YELLOW}Cache options{NC}')
     cache_group.add_argument(
-        '--use-cache', action='store_true', help='Use cache.')
+        '--uc', '--use-cache', dest='use_cache', action='store_true',
+        help='Use cache.')
     cache_group.add_argument(
-        '--cache-folder', default=CACHE_FOLDER,
+        '--cf', '--cache-folder', metavar='PATH', default=CACHE_FOLDER,
         help='Cache folder.' + get_default_message(CACHE_FOLDER))
     cache_group.add_argument(
         '--ep', '--eviction-policy', dest='eviction_policy', metavar='POLICY',
@@ -215,7 +215,7 @@ def setup_argparser():
         '-c', '--clear-cache', dest='clear_cache', action='store_true',
         help='Clear cache.')
     mutual_cache_group.add_argument(
-        '-r', '--remove-keys', metavar='KEY', dest='remove_keys',
+        '--rk', '--remove-keys', metavar='KEY', dest='remove_keys',
         nargs='+', default=[],
         help='Keys to be removed from the cache which can either be the paths '
              'to the ebook files or their MD5 hash.')
@@ -228,7 +228,7 @@ def setup_argparser():
     search_text_group = parser.add_argument_group(
         title=f'{YELLOW}Text search options{NC}')
     search_text_group.add_argument(
-        '--query', dest='search_query', metavar='QUERY',
+        '--query', metavar='QUERY',
         help='Search query to look through an ebook text content. It can also '
              'be considered a regex by using the `--text-regex` flag.')
     search_text_group.add_argument(
@@ -271,11 +271,6 @@ def setup_argparser():
         action='store_true',
         help='Perform case insensitive matching when searching ebook '
              'text content. By default, content search is case sensitive.')
-    search_text_group.add_argument(
-        "--ocr", "--ocr-enabled", dest='ocr_enabled',
-        choices=['always', 'true', 'false'], default=OCR_ENABLED,
-        help='Whether to enable OCR for .pdf, .djvu and image files. It is '
-             'disabled by default.' + get_default_message(OCR_ENABLED))
     # ===============
     # Search metadata
     # ===============
@@ -285,7 +280,7 @@ def setup_argparser():
                     'search query are linked with ANDs between each other')
     # TODO: add pages field
     search_metadata_group.add_argument(
-        '-a', '--authors', help='Authors')
+        '--authors', help='Authors')
     search_metadata_group.add_argument(
         '-k', '--book-producer', help='Book producer')
     search_metadata_group.add_argument(
@@ -322,7 +317,7 @@ def setup_argparser():
         action='store_true',
         help='Use regex when searching ebook metadata.')
     search_metadata_group.add_argument(
-        '-mi', '--metadata-ignore-case', dest='metadata_ignore_case',
+        '--mi', '--metadata-ignore-case', dest='metadata_ignore_case',
         action='store_true',
         help='Perform case insensitive matching when searching ebook '
              'metadata. By default, metadata earch is case sensitive.')
@@ -341,19 +336,25 @@ def main():
         exit_code = 0
         parser = setup_argparser()
         args = parser.parse_args()
+        # TODO: find if you can do it in setup_argparser()
+        if args.app and not args.edit:
+            print(f'\n{RED}error: argument -e/--edit: required with argument '
+                  f'-a/--app{NC}')
+            return 1
         args.cache_size_limit *= 10 ** 9
-        if args.regex:
-            args.text_regex = True
-            args.metadata_regex = True
-        if args.ignore_case:
-            args.text_ignore_case = True
-            args.metadata_ignore_case = True
         # Get main cfg dict
         # TODO: important, check if an option is defined more than once
         configs_dirpath = __path__[0]
         main_cfg = argparse.Namespace(**get_config_dict('main', configs_dirpath))
         # Override main configuration from file with command-line arguments
-        returned_values = override_config_with_args(main_cfg, args, default_cfg)
+        returned_values = override_config_with_args(
+            main_cfg, args, default_cfg.__dict__,  use_config=args.use_config)
+        if main_cfg.regex:
+            main_cfg.text_regex = True
+            main_cfg.metadata_regex = True
+        if main_cfg.ignore_case:
+            main_cfg.text_ignore_case = True
+            main_cfg.metadata_ignore_case = True
         setup_log(package='searchebooks', configs_dirpath=configs_dirpath,
                   quiet=main_cfg.quiet,
                   verbose=main_cfg.verbose,
@@ -364,7 +365,6 @@ def main():
         cache = Cache(directory=main_cfg.cache_folder,
                       eviction_policy=main_cfg.eviction_policy,
                       size_limit=main_cfg.cache_size_limit)
-
         # TODO: important, exit script after remove keys ...?
         if args.number_items:
             n_items = len([k for k in cache.iterkeys()])
@@ -392,8 +392,13 @@ def main():
                     logger.info(msg1)
                 else:
                     logger.info(msg2)
-        if main_cfg.input_data:
-            main_cfg.input_data = main_cfg.input_data[0]
+        if main_cfg.edit:
+            exit_code = edit_file(main_cfg.cfg, main_cfg.app, get_configs_dirpath())
+        elif main_cfg.reset:
+            exit_code = reset_file(main_cfg.cfg, get_configs_dirpath())
+        elif main_cfg.input_data:
+            if isinstance(main_cfg.input_data, list):
+                main_cfg.input_data = main_cfg.input_data[0]
             exit_code = searcher.search(cache=cache, **namespace_to_dict(main_cfg))
     except AssertionError as e:
         # TODO (IMPORTANT): use same logic as in Darth-Vader-RPi
