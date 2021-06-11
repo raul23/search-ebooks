@@ -50,8 +50,8 @@ ebook formats. These are the supported search-backends for each type of ebooks:
 
 * The utilities mentioned in the **Supported search-backends** column
   are used to extract the text before it is searched on with Python's `re`_ 
-  library. `epubtxt`_ is the only one that is not a standalone utility like 
-  the others.
+  library (`re.findall`_ and `re.search`_). `epubtxt`_ is the only one that 
+  is not a standalone utility like the others.
 * More specifically, `epubtxt`_ consists in uncompressing first the 
   ``epub`` file with `unzip`_ since epubs are zipped HTML files. Then, 
   the extracted text is searched on with Python's `re`_ library. I tried to 
@@ -554,6 +554,7 @@ References
 .. _ebook-meta: https://manual.calibre-ebook.com/generated/en/ebook-meta.html
 .. _epubtxt: https://github.com/raul23/pyebooktools/blob/acdfe61874fff745111e2869ef49b4cf4c944143/pyebooktools/lib.py#L370
 .. _Features: http://www.grantjenks.com/docs/diskcache/index.html#features
+.. _re.findall: https://docs.python.org/3/library/re.html#re.findall
 .. _Kivy: https://kivy.org/
 .. _lib.py: https://github.com/raul23/pyebooktools/blob/master/pyebooktools/lib.py
 .. _LICENSE: ./LICENSE
@@ -569,6 +570,7 @@ References
 .. _re: https://docs.python.org/3/library/re.html
 .. _Read the Docs: https://readthedocs.org/
 .. _Redis: https://redis.io/
+.. _re.search: https://docs.python.org/3/library/re.html#re.search
 .. _stackoverflow: https://stackoverflow.com/a/37692545/14664104
 .. _Tesseract: https://github.com/tesseract-ocr/tesseract
 .. _textutil: https://ss64.com/osx/textutil.html
