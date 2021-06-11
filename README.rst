@@ -110,7 +110,7 @@ And optionally, you might need recent versions of the following utilities:
   
   `:warning:`
    
-    On macOS, you don't need ``catdoc`` since it has the built-in `textutil`_
+    On macOS, you don't need `catdoc`_ since it has the built-in `textutil`_
     command-line tool that converts any ``txt``, ``html``, ``rtf``, 
     ``rtfd``, ``doc``, ``docx``, ``wordml``, ``odt``, or 
     ``webarchive`` file.
