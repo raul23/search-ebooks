@@ -35,7 +35,7 @@ ebook formats. These are the supported search-backends for each type of ebooks:
 +---------------+------------------------------------------------------------------+
 | File type     | Supported search-backends                                        |
 +===============+==================================================================+
-| ``.djvu``     | 1. `djvutxt`_ +`re`_ (**default**)                               |
+| ``.djvu``     | 1. `djvutxt`_ + `re`_ (**default**)                              |
 |               | 2. `ebook-convert`_ + `re`_                                      |
 +---------------+------------------------------------------------------------------+
 | ``.epub``     | 1. `ebook-convert`_ + `re`_ (**default**)                        |
