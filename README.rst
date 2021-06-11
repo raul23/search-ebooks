@@ -49,8 +49,9 @@ ebook formats. These are the supported search-backends for each type of ebooks:
 +---------------+----------------------------------------------------------+
 
 * The utilities mentioned in the **Supported search-backends** column
-  are used to extract the text before it is searched on. `epubtxt`_ is
-  the only one that is not a standalone utility like the others.
+  are used to extract the text before it is searched on with Python's `re`_ 
+  library. `epubtxt`_ is the only one that is not a standalone utility like 
+  the others.
 * More specifically, `epubtxt`_ consists in uncompressing first the 
   ``epub`` file with `unzip`_ since epubs are zipped HTML files. Then, 
   the extracted text is searched on with Python's `re`_ library. I tried to 
