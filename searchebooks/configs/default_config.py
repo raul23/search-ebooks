@@ -37,9 +37,9 @@ eviction_policy = 'least-recently-stored'
 cache_size_limit = 1
 clear_cache = False
 
-# ==============================
-# 4. Text content search options
-# ==============================
+# ==========================
+# 4. Fulltext search options
+# ==========================
 # Use raw string (r'string') for search query to be able to use regex anchors like \b
 query = r''
 ebook_formats = ['djvu', 'epub', 'html', 'pdf', 'txt']
@@ -53,7 +53,15 @@ text_ignore_case = False
 # ==========================
 # 5. Metadata search options
 # ==========================
-# Use raw string (r'string') for metadata to be able to use regex anchors like \b
+# IMPORTANT:
+# - the metadata fields and the fulltext search query are linked with ANDs
+#   between each other,
+#   EXAMPLE: if query = 'science' and title = 'physics', then all ebooks with
+#   'science' in their content AND 'physics' in their title will be returned
+#
+# - Use raw string (r'string') for any metadata to be able to use regex anchors
+#   like \b, e.g. title = r'\bMathematics\b'
+#
 authors = None
 book_producer = None
 category = None
