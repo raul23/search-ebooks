@@ -10,7 +10,7 @@ search-ebooks
 
 `search-ebooks`_ is a Python command-line program that searches through 
 content and metadata of various types of ebooks (``djvu``, ``epub``, 
-``txt``, ``pdf``). It is based on the `pyebooktools`_ package for 
+``pdf``, ``txt``). It is based on the `pyebooktools`_ package for 
 building ebook management scripts.
 
 `:warning:`
@@ -32,41 +32,43 @@ Introduction
 ``search-ebooks`` allows you to choose the search methods for the different
 ebook formats. These are the supported search-backends for each type of ebooks:
 
-+---------------+----------------------------------------------------------+
-| File type     | Supported search-backends                                |
-+===============+==========================================================+
-| ``.djvu``     | 1. `djvutxt`_ (**default**)                              |
-|               | 2. `ebook-convert`_                                      |
-+---------------+----------------------------------------------------------+
-| ``.epub``     | 1. `ebook-convert`_ (**default**)                        |
-|               | 2. ``epubtxt``                                           |
-+---------------+----------------------------------------------------------+
-| ``.doc`` [1]_ | 1. `catdoc`_ or `textutil`_ (if on macOS) (**default**)  |
-|               | 2. `ebook-convert`_                                      |
-+---------------+----------------------------------------------------------+
-| ``.pdf``      | 1. `pdftotext`_ (**default**)                            |
-|               | 2. `ebook-convert`_                                      |
-+---------------+----------------------------------------------------------+
++---------------+----------------------------------------------------+
+| File type     | Supported search-backends                          |
++===============+====================================================+
+| ``.djvu``     | 1. `djvutxt`_ + `re`_ (**default**)                |
+|               | 2. `ebook-convert`_ + `re`_                        |
++---------------+----------------------------------------------------+
+| ``.epub``     | 1. `ebook-convert`_ + `re`_ (**default**)          |
+|               | 2. `epubtxt`_ + `re`_                              |
++---------------+----------------------------------------------------+
+| ``.doc`` [1]_ | 1. `catdoc`_ or `textutil`_ + `re`_ (**default**)  |
+|               | 2. `ebook-convert`_ + `re`_                        |
++---------------+----------------------------------------------------+
+| ``.pdf``      | 1. `pdftotext`_ + `re`_ (**default**)              |
+|               | 2. `ebook-convert`_ + `re`_                        |
++---------------+----------------------------------------------------+
 
 * The utilities mentioned in the **Supported search-backends** column
-  are used to extract the text before it is searched on. ``epubtxt`` is
-  the only one that is not a standalone utility like the others.
-* More specifically, ``epubtxt`` consists in uncompressing first the 
+  are used to extract the text before it is searched with Python's `re`_ 
+  library (`re.findall`_ and `re.search`_). `epubtxt`_ is the only one that 
+  is not an ebook converter *per se* like the others.
+* More specifically, `epubtxt`_ consists in uncompressing first the 
   ``epub`` file with `unzip`_ since epubs are zipped HTML files. Then, 
-  the extracted text is searched on with Python's `re`_ library. I tried to 
+  the extracted text is searched with Python's `re`_ library. I tried to 
   use `zipgrep`_ to do both the unzipping and searching but I couldn't make 
   it to work with regular expressions such as ``\bpattern\b``.
 * The **default** search methods (except for ``epub``) are used since 
   they are quicker to extract text than *calibre*\'s `ebook-convert`_. But 
   if these default utilities are not installed, then the searching relies on 
   ``ebook-convert`` for converting the documents to ``txt``
+* On macOS, `textutil`_ is a built-in command-line text converter.
 * Eventually, I will add support for `Lucene`_ as a search backend since it 
   has "powerful indexing and search features, as well as spellchecking, hit 
   highlighting and advanced analysis/tokenization capabilities".
 
 `:warning:`
 
-  I didn't set ``epubtxt`` as a default search-backend for ``epub`` files 
+  I didn't set `epubtxt`_ as a default search-backend for ``epub`` files 
   because it also includes the HTML tags in the extracted text even though 
   text extraction is faster than with `ebook-convert`_.
   
@@ -108,7 +110,7 @@ And optionally, you might need recent versions of the following utilities:
   
   `:warning:`
    
-    On macOS, you don't need ``catdoc`` since it has the built-in `textutil`_
+    On macOS, you don't need `catdoc`_ since it has the built-in `textutil`_
     command-line tool that converts any ``txt``, ``html``, ``rtf``, 
     ``rtfd``, ``doc``, ``docx``, ``wordml``, ``odt``, or 
     ``webarchive`` file.
@@ -551,7 +553,9 @@ References
 .. _docker: https://docs.docker.com/
 .. _ebook-convert: https://manual.calibre-ebook.com/generated/en/ebook-convert.html
 .. _ebook-meta: https://manual.calibre-ebook.com/generated/en/ebook-meta.html
+.. _epubtxt: https://github.com/raul23/pyebooktools/blob/acdfe61874fff745111e2869ef49b4cf4c944143/pyebooktools/lib.py#L370
 .. _Features: http://www.grantjenks.com/docs/diskcache/index.html#features
+.. _re.findall: https://docs.python.org/3/library/re.html#re.findall
 .. _Kivy: https://kivy.org/
 .. _lib.py: https://github.com/raul23/pyebooktools/blob/master/pyebooktools/lib.py
 .. _LICENSE: ./LICENSE
@@ -567,6 +571,7 @@ References
 .. _re: https://docs.python.org/3/library/re.html
 .. _Read the Docs: https://readthedocs.org/
 .. _Redis: https://redis.io/
+.. _re.search: https://docs.python.org/3/library/re.html#re.search
 .. _stackoverflow: https://stackoverflow.com/a/37692545/14664104
 .. _Tesseract: https://github.com/tesseract-ocr/tesseract
 .. _textutil: https://ss64.com/osx/textutil.html
