@@ -49,12 +49,12 @@ ebook formats. These are the supported search-backends for each type of ebooks:
 +---------------+----------------------------------------------------+
 
 * The utilities mentioned in the **Supported search-backends** column
-  are used to extract the text before it is searched on with Python's `re`_ 
+  are used to extract the text before it is searched with Python's `re`_ 
   library (`re.findall`_ and `re.search`_). `epubtxt`_ is the only one that 
   is not an ebook converter *per se* like the others.
 * More specifically, `epubtxt`_ consists in uncompressing first the 
   ``epub`` file with `unzip`_ since epubs are zipped HTML files. Then, 
-  the extracted text is searched on with Python's `re`_ library. I tried to 
+  the extracted text is searched with Python's `re`_ library. I tried to 
   use `zipgrep`_ to do both the unzipping and searching but I couldn't make 
   it to work with regular expressions such as ``\bpattern\b``.
 * The **default** search methods (except for ``epub``) are used since 
