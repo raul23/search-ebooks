@@ -226,7 +226,7 @@ def setup_argparser():
     # Search text
     # ===========
     search_text_group = parser.add_argument_group(
-        title=f'{YELLOW}Text search options{NC}')
+        title=f'{YELLOW}Fulltext search options{NC}')
     search_text_group.add_argument(
         '--query', metavar='QUERY',
         help='Search query to look through an ebook text content. It can also '
@@ -276,7 +276,7 @@ def setup_argparser():
     # ===============
     search_metadata_group = parser.add_argument_group(
         title=f'{YELLOW}Metadata search options{NC}',
-        description=f'{RED}IMPORTANT:{NC} the metadata fields and the content '
+        description=f'{RED}IMPORTANT:{NC} the metadata fields and the fulltext '
                     'search query are linked with ANDs between each other')
     # TODO: add pages field
     search_metadata_group.add_argument(
