@@ -80,8 +80,11 @@ ebook formats. These are the supported search-backends for each type of ebooks:
 
 All the utilities that extract text make use of a file-based `cache`_ to save
 the converted files (``txt``) of the ebooks and hence subsequent searching can
-be greatly speep up.
+be greatly speed up.
    
+The search results are ranked in decreasing order of the number of matches 
+found in the ebook contents.
+
 Dependencies
 ============
 Python dependencies
