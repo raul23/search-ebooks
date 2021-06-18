@@ -433,7 +433,7 @@ using the ``--ocr`` flag which will convert the images to text with `Tesseract`_
   * Since the file *The Republic by Plato.pdf* was not already processed, the
     cache didn't have its text conversion at the start of the script. But by
     the end of the script, the text conversion was saved in the cache.
-  * As you can see from the seach time, OCR is a slow process. Thus, use it
+  * As you can see from the search time, OCR is a slow process. Thus, use it
     wisely!
   
 Search ebook metadata
