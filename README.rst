@@ -21,11 +21,6 @@ building ebook management scripts.
     soon.
 
 |
-
-.. contents:: **Contents**
-   :depth: 2
-   :local:
-   :backlinks: top
    
 Introduction
 ============
